@@ -130,7 +130,7 @@ def main() -> int:
     p.add_argument("--eps-to", type=float, default=0.03)
     p.add_argument("--steps", type=int, default=30)
     p.add_argument("--K", type=int, default=6)
-    p.add_argument("--seeds", type=int, default=2)
+    p.add_argument("--seeds", type=int, default=3)
     p.add_argument("--popsize", type=int, default=40)
     p.add_argument("--maxiter", type=int, default=200)
     p.add_argument("--grid", type=int, default=420)
@@ -156,7 +156,11 @@ def main() -> int:
             wsrc = f"cont(eps={prev_eps:.4g})"
         best = None
         for seed in range(a.seeds):
-            r = continuation_point(eps, a.K, warm, seed, a.popsize,
+            # seed 0: warm-started (tracks the basin family along the eps
+            # axis); seeds >= 1: fresh independent starts (escape valve --
+            # take the min so we never do worse than an independent search)
+            w = warm if seed == 0 else None
+            r = continuation_point(eps, a.K, w, seed, a.popsize,
                                    a.maxiter, a.grid, 140)
             if best is None or r["area_hi"] < best["area_hi"]:
                 best = r
@@ -170,7 +174,9 @@ def main() -> int:
                 json.dump([best], fh)
         except OSError as e:
             print(f"write failed for eps={eps}: {e}", file=sys.stderr)
-        print(f"eps={eps:.4g} area_hi={best['area_hi']:.5f} ({wsrc})",
+        print(f"eps={eps:.4g} area_hi={best['area_hi']:.5f} "
+              f"({wsrc}{'+' if best['warm'] else ''}"
+              f"{'warm' if best['warm'] else 'fresh'} s{best['seed']})",
               flush=True)
         summary.append({k: best[k] for k in
                         ("eps", "area", "area_hi", "warm", "warm_source")})
