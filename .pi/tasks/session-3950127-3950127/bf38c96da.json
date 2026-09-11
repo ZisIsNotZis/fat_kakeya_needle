@@ -1,0 +1,20 @@
+{
+  "id": "bf38c96da",
+  "name": "fresh-K study eps 0.05",
+  "command": "cd /home/z/vibe/fat_kakeya_needle && chmod +x run_fresh_K.sh && ./run_fresh_K.sh 2>&1",
+  "description": "Six fresh v2 runs at K=6..16, eps=0.05, sequential, 6 workers each",
+  "status": "completed",
+  "outputPath": ".pi/tasks/session-3950127-3950127/bf38c96da.output",
+  "cwd": "/home/z/vibe/fat_kakeya_needle",
+  "startTime": 1789109288166,
+  "endTime": 1789110225321,
+  "exitCode": 0,
+  "signal": null,
+  "pid": 4010519,
+  "bytesWritten": 607,
+  "isAgent": false,
+  "notified": true,
+  "notifyOnCompletion": true,
+  "triggerOnCompletion": true,
+  "timeoutSeconds": 21600
+}

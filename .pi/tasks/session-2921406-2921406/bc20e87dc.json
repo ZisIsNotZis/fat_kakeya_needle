@@ -1,0 +1,20 @@
+{
+  "id": "bc20e87dc",
+  "name": "continuation pass 2",
+  "command": "cd /home/z/vibe/fat_kakeya_needle && /home/z/.venv/bin/python3 continuation.py --eps-from 0.8 --eps-to 0.035 --steps 24 --K 6 --seeds 3 --popsize 30 --maxiter 150 --grid 400 2>&1",
+  "description": "Continuation pass 2: warm-start plus 2 fresh seeds per eps, take min",
+  "status": "killed",
+  "outputPath": ".pi/tasks/session-2921406-2921406/bc20e87dc.output",
+  "cwd": "/home/z/vibe/fat_kakeya_needle",
+  "startTime": 1789065153959,
+  "endTime": 1789078583822,
+  "exitCode": null,
+  "signal": "SIGTERM",
+  "pid": 3133677,
+  "bytesWritten": 1236,
+  "isAgent": false,
+  "notified": true,
+  "notifyOnCompletion": true,
+  "triggerOnCompletion": true,
+  "timeoutSeconds": 18000
+}

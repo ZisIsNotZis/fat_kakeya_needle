@@ -1,0 +1,21 @@
+{
+  "id": "b7482f3f2",
+  "name": "relaunch K10 K14 eps001",
+  "command": "cd /home/z/vibe/fat_kakeya_needle && (./run_multiseed_K_K10_14.sh 2>/dev/null || { for K in 10 14; do echo \"=== K=$K ===\"; /home/z/.venv/bin/python3 optimize_v2.py --eps 0.05 --K_start $K --K_end $K --seeds 3 --popsize 24 --maxiter 150 --n_theta 40 --workers 6 --out results/v2_005_K${K}_multiseed.json 2>&1 | grep -v Warning; done; echo \"=== eps 0.01 ===\"; /home/z/.venv/bin/python3 optimize_v2.py --eps 0.01 --K_start 6 --K_end 6 --seeds 3 --popsize 24 --maxiter 150 --n_theta 40 --workers 6 --out results/v2_001.json 2>&1 | grep -v Warning; })",
+  "description": "Relaunch: K=10 and K=14 multiseed at eps 0.05, then eps 0.01, sequential",
+  "status": "killed",
+  "outputPath": ".pi/tasks/session-3950127-3950127/b7482f3f2.output",
+  "cwd": "/home/z/vibe/fat_kakeya_needle",
+  "startTime": 1789126913253,
+  "endTime": 1789127573474,
+  "exitCode": null,
+  "signal": "SIGTERM",
+  "pid": 4141071,
+  "bytesWritten": 173,
+  "isAgent": false,
+  "error": "Killed during Pi session shutdown/reload",
+  "notified": false,
+  "notifyOnCompletion": true,
+  "triggerOnCompletion": true,
+  "timeoutSeconds": 32400
+}

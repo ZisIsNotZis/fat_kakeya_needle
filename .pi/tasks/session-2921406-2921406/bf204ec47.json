@@ -1,0 +1,21 @@
+{
+  "id": "bf204ec47",
+  "name": "eps sweep optimization",
+  "command": "cd /home/z/vibe/fat_kakeya_needle && ./run_sweep.sh 2>&1",
+  "description": "Differential-evolution sweep over eps in {0.8..0.05}, 4 seeds each, K=6 keyframes, writes results/eps_*.json",
+  "status": "failed",
+  "outputPath": ".pi/tasks/session-2921406-2921406/bf204ec47.output",
+  "cwd": "/home/z/vibe/fat_kakeya_needle",
+  "startTime": 1789041267922,
+  "endTime": 1789055667952,
+  "exitCode": null,
+  "signal": "SIGTERM",
+  "pid": 2942696,
+  "bytesWritten": 2770,
+  "isAgent": false,
+  "error": "Timed out after 14400s",
+  "notified": true,
+  "notifyOnCompletion": true,
+  "triggerOnCompletion": true,
+  "timeoutSeconds": 14400
+}

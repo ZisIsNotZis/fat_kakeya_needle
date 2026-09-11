@@ -1,0 +1,21 @@
+{
+  "id": "b4327de4f",
+  "name": "v2 eps 0.01",
+  "command": "cd /home/z/vibe/fat_kakeya_needle && nice -n 19 /home/z/.venv/bin/python3 optimize_v2.py --eps 0.01 --K_start 6 --K_end 6 --seeds 3 --popsize 24 --maxiter 150 --n_theta 40 --workers 3 --out results/v2_001.json 2>&1 | grep -v Warning",
+  "description": "eps=0.01, K=6, 3 seeds, niced, 3 workers (coexists with running study)",
+  "status": "killed",
+  "outputPath": ".pi/tasks/session-3950127-3950127/b4327de4f.output",
+  "cwd": "/home/z/vibe/fat_kakeya_needle",
+  "startTime": 1789114243782,
+  "endTime": 1789115118091,
+  "exitCode": null,
+  "signal": "SIGTERM",
+  "pid": 4038638,
+  "bytesWritten": 0,
+  "isAgent": false,
+  "error": "Killed during Pi session shutdown/reload",
+  "notified": false,
+  "notifyOnCompletion": true,
+  "triggerOnCompletion": true,
+  "timeoutSeconds": 28800
+}

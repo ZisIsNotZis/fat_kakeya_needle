@@ -1,0 +1,20 @@
+{
+  "id": "b27b4bacf",
+  "name": "continuation fine eps grid",
+  "command": "cd /home/z/vibe/fat_kakeya_needle && /home/z/.venv/bin/python3 continuation.py --eps-from 0.8 --eps-to 0.035 --steps 24 --K 6 --seeds 2 --popsize 30 --maxiter 150 --grid 400 2>&1",
+  "description": "Warm-started continuation pass on fine eps grid 0.8 to 0.035, K=6, 2 seeds per point",
+  "status": "completed",
+  "outputPath": ".pi/tasks/session-2921406-2921406/b27b4bacf.output",
+  "cwd": "/home/z/vibe/fat_kakeya_needle",
+  "startTime": 1789055748487,
+  "endTime": 1789065024069,
+  "exitCode": 0,
+  "signal": null,
+  "pid": 3127471,
+  "bytesWritten": 1115,
+  "isAgent": false,
+  "notified": true,
+  "notifyOnCompletion": true,
+  "triggerOnCompletion": true,
+  "timeoutSeconds": 14400
+}

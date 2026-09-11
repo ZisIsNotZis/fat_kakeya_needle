@@ -1,0 +1,20 @@
+{
+  "id": "b3834b7c7",
+  "name": "v2 deep eps 0.05",
+  "command": "cd /home/z/vibe/fat_kakeya_needle && /home/z/.venv/bin/python3 optimize_v2.py --eps 0.05 --K_start 4 --K_end 14 --seeds 1 --popsize 20 --maxiter 150 --n_theta 40 --workers 6 --out results/v2_005_deep.json 2>&1",
+  "description": "Single deep run: growing K=4-14 at eps=0.05, 6 workers, bounded load",
+  "status": "completed",
+  "outputPath": ".pi/tasks/session-3950127-3950127/b3834b7c7.output",
+  "cwd": "/home/z/vibe/fat_kakeya_needle",
+  "startTime": 1789108682662,
+  "endTime": 1789109224247,
+  "exitCode": 0,
+  "signal": null,
+  "pid": 4008498,
+  "bytesWritten": 234,
+  "isAgent": false,
+  "notified": true,
+  "notifyOnCompletion": true,
+  "triggerOnCompletion": true,
+  "timeoutSeconds": 10800
+}

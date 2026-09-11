@@ -1,0 +1,58 @@
+=== eps=0.8 ===
+eps=0.8 K=6 seed=0: area=1.26283 hi-res=1.26723
+eps=0.8 K=6 seed=1: area=1.25403 hi-res=1.25843
+eps=0.8 K=6 seed=2: area=1.25403 hi-res=1.27163
+eps=0.8 K=6 seed=3: area=1.24963 hi-res=1.26283
+BEST: {"eps": 0.8, "K": 6, "area": 1.2540323129251705, "area_hi": 1.2584324263038553}
+=== eps=0.6 ===
+eps=0.6 K=6 seed=0: area=1.04964 hi-res=1.05719
+eps=0.6 K=6 seed=1: area=1.03957 hi-res=1.05216
+eps=0.6 K=6 seed=2: area=1.04964 hi-res=1.05719
+eps=0.6 K=6 seed=3: area=1.03705 hi-res=1.05216
+BEST: {"eps": 0.6, "K": 6, "area": 1.0395706349206348, "area_hi": 1.0521562358276644}
+=== eps=0.5 ===
+eps=0.5 K=6 seed=0: area=0.97080 hi-res=0.97789
+eps=0.5 K=6 seed=1: area=0.97080 hi-res=0.97789
+eps=0.5 K=6 seed=2: area=0.95663 hi-res=0.96018
+eps=0.5 K=6 seed=3: area=0.95309 hi-res=0.96549
+BEST: {"eps": 0.5, "K": 6, "area": 0.9566326530612245, "area_hi": 0.9601757369614512}
+=== eps=0.4 ===
+eps=0.4 K=6 seed=0: area=0.89866 hi-res=0.90213
+eps=0.4 K=6 seed=1: area=0.90329 hi-res=0.90560
+eps=0.4 K=6 seed=2: area=0.89982 hi-res=0.90676
+eps=0.4 K=6 seed=3: area=0.89982 hi-res=0.90213
+BEST: {"eps": 0.4, "K": 6, "area": 0.898659523809524, "area_hi": 0.9021292517006805}
+=== eps=0.3 ===
+eps=0.3 K=6 seed=0: area=0.82952 hi-res=0.83423
+eps=0.3 K=6 seed=1: area=0.82751 hi-res=0.83087
+eps=0.3 K=6 seed=2: area=0.83019 hi-res=0.83490
+eps=0.3 K=6 seed=3: area=0.82751 hi-res=0.83019
+BEST: {"eps": 0.3, "K": 6, "area": 0.8275055555555553, "area_hi": 0.8301944444444441}
+=== eps=0.2 ===
+eps=0.2 K=6 seed=0: area=0.74047 hi-res=0.74206
+eps=0.2 K=6 seed=1: area=0.74429 hi-res=0.74875
+eps=0.2 K=6 seed=2: area=0.75384 hi-res=0.75735
+eps=0.2 K=6 seed=3: area=0.74015 hi-res=0.74302
+BEST: {"eps": 0.2, "K": 6, "area": 0.74046768707483, "area_hi": 0.742060090702948}
+=== eps=0.15 ===
+eps=0.15 K=6 seed=0: area=0.69470 hi-res=0.69832
+eps=0.15 K=6 seed=1: area=0.67869 hi-res=0.68364
+eps=0.15 K=6 seed=2: area=0.66973 hi-res=0.67221
+eps=0.15 K=6 seed=3: area=0.67450 hi-res=0.67697
+BEST: {"eps": 0.15, "K": 6, "area": 0.669731746031746, "area_hi": 0.6722094104308389}
+=== eps=0.1 ===
+eps=0.1 K=6 seed=0: area=0.59089 hi-res=0.59499
+eps=0.1 K=6 seed=1: area=0.58574 hi-res=0.58965
+eps=0.1 K=6 seed=2: area=0.59557 hi-res=0.60119
+eps=0.1 K=6 seed=3: area=0.59032 hi-res=0.59604
+BEST: {"eps": 0.1, "K": 6, "area": 0.5857441043083902, "area_hi": 0.5896535147392292}
+=== eps=0.07 ===
+eps=0.07 K=6 seed=0: area=0.52239 hi-res=0.52745
+eps=0.07 K=6 seed=1: area=0.52627 hi-res=0.53074
+eps=0.07 K=6 seed=2: area=0.53306 hi-res=0.53839
+eps=0.07 K=6 seed=3: area=0.52411 hi-res=0.52896
+BEST: {"eps": 0.07, "K": 6, "area": 0.5223868253968255, "area_hi": 0.5274517414965987}
+=== eps=0.05 ===
+eps=0.05 K=6 seed=0: area=0.47373 hi-res=0.47939
+
+[background task timeout: Timed out after 14400s]

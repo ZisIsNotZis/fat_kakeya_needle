@@ -1,0 +1,21 @@
+{
+  "id": "bb156b129",
+  "name": "multiseed K study",
+  "command": "cd /home/z/vibe/fat_kakeya_needle && chmod +x run_multiseed_K.sh && ./run_multiseed_K.sh 2>&1",
+  "description": "Multi-seed K study: K in {6,10,14}, 3 seeds each, min as estimator",
+  "status": "killed",
+  "outputPath": ".pi/tasks/session-3950127-3950127/bb156b129.output",
+  "cwd": "/home/z/vibe/fat_kakeya_needle",
+  "startTime": 1789113080336,
+  "endTime": 1789113699081,
+  "exitCode": null,
+  "signal": "SIGTERM",
+  "pid": 4025055,
+  "bytesWritten": 168,
+  "isAgent": false,
+  "error": "Killed during Pi session shutdown/reload",
+  "notified": false,
+  "notifyOnCompletion": true,
+  "triggerOnCompletion": true,
+  "timeoutSeconds": 28800
+}
