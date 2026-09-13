@@ -1,0 +1,47 @@
+# Methodology — hard-won optimizer lessons
+
+Procedural lessons from this experiment; each one cost a failed run to
+learn. Read before extending the optimization pipeline.
+
+## Search landscape
+
+- **Warm-starting underperforms fresh search.** Warm-started DE chains
+  (continuation pass 1, growing-K) consistently locked into worse
+  basins: pass-1 small-ε sat +5% above independent results; growing-K
+  stuck at 0.56–0.59 while a fresh single-K run hit 0.46. Use fresh
+  independent seeds and take the min; track basins post-hoc instead.
+- **Seed variance dominates.** Identical configs (same K, popsize,
+  maxiter) differ up to 46% across RNG streams; the good basin is hit
+  in ~1 of 3–4 seeds. Any single-seed area-vs-parameter comparison is
+  meaningless — measure min over ≥3 seeds, and prefer more seeds over
+  more K or more iterations.
+- **Blind DE degrades with dimension.** K=6 (12–14 params) beats K=10
+  and K=14 at the same budget. More keyframes only help with
+  structure-aware initialization, which is untested (open question).
+
+## Model geometry
+
+- **Bounded-motion myth:** the optimal construction family (Perron
+  trees / Pál joins) is spatially bounded; travel distance is not the
+  resource that buys small area — overlapping rotation stations are.
+  A log-space reach parametrization is cheap insurance (v2 keeps it)
+  but the winning motions stayed compact.
+- **Mirror closure is valid and halves the search:** keyframes over
+  θ ∈ [0, π/2] with pose(π/2) = mirror(pose(0)); swept set = S1 ∪
+  mirror_x(S1). Matches the symmetry of every known construction.
+- **Exact polygon union (shapely) over rasterization:** no raster
+  window to cap the reach, no grid-convergence error tax on every
+  evaluation, ~10 ms/eval at K=14. Rasterization (v1) is fine at
+  bounded reach but silently biased near window edges.
+
+## Process
+
+- **bg_run children die on pi-session restart** (silent, 3× observed).
+  Hour-long jobs: `setsid nohup … &` detached runner writing a log +
+  done-marker; check the log, never sleep-poll.
+- **Multiprocessing pitfalls:** objective classes at module level
+  (picklable); dynamically imported modules registered in
+  `sys.modules`; no spawn from heredoc/stdin scripts.
+- **Validate the evaluator first:** the centered half-turn must give
+  π/4 to <1% before trusting anything downstream (caught a mirrored
+  Y-axis bug and a 12% raster bias this way).

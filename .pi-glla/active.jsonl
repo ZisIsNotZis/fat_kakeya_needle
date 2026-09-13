@@ -10,3 +10,8 @@
 {"type":"context_usage_sample","value":{"goalId":null,"provider":"omniroute","model":"combo","providerUsage":{"inputTokens":1087,"outputTokens":538,"cacheReadTokens":116544,"cacheWriteTokens":0,"totalTokens":118169},"contextUsage":{"tokens":118169,"contextWindow":1048576,"percent":11.269474029541016}},"at":"2026-09-11T02:22:36.522Z"}
 {"type":"session_shutdown","value":{"reason":"quit"},"at":"2026-09-11T02:42:01.398Z"}
 {"type":"session_rebound","value":{"reason":"startup"},"at":"2026-09-11T12:05:34.770Z"}
+{"type":"session_shutdown","value":{"reason":"quit"},"at":"2026-09-11T12:31:11.749Z"}
+{"type":"session_rebound","value":{"reason":"startup"},"at":"2026-09-13T21:55:44.352Z"}
+{"type":"state","value":{"goal":null,"list":[],"loop":null,"mainModelRecovery":null,"lastModelRef":"omniroute/combo","lastCompactionAt":null,"supervisorPausedAt":null,"loadHoldAt":null,"lastOutcome":null},"at":"2026-09-13T21:58:56.518Z"}
+{"type":"context_usage_sample","value":{"goalId":null,"provider":"omniroute","model":"combo","providerUsage":{"inputTokens":764,"outputTokens":1619,"cacheReadTokens":130304,"cacheWriteTokens":0,"totalTokens":132687},"contextUsage":{"tokens":132687,"contextWindow":1048576,"percent":12.65401840209961}},"at":"2026-09-13T21:59:47.837Z"}
+{"type":"session_shutdown","value":{"reason":"quit"},"at":"2026-09-13T22:09:47.864Z"}

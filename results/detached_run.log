@@ -1,2 +1,26 @@
 === detached runner start Fri Sep 11 20:14:44 CST 2026 ===
 --- K=14 eps=0.05 Fri Sep 11 20:14:44 CST 2026 ---
+  eps=0.05 K=14: area=0.73920
+  eps=0.05 K=14: area=0.62481
+  eps=0.05 K=14: area=0.60800
+BEST: {"eps": 0.05, "K": 14, "area": 0.607997962499976}
+--- K=14 eps=0.05 done rc=0 Fri Sep 11 20:24:33 CST 2026 ---
+--- eps=0.01 K=6 Fri Sep 11 20:24:33 CST 2026 ---
+  eps=0.01 K=6: area=0.34364
+  eps=0.01 K=6: area=0.42297
+  eps=0.01 K=6: area=0.42311
+BEST: {"eps": 0.01, "K": 6, "area": 0.3436386983573304}
+--- eps=0.01 K=6 done rc=0 Fri Sep 11 20:40:37 CST 2026 ---
+--- K=6 eps=0.05 extra seeds 3-5 Fri Sep 11 20:40:37 CST 2026 ---
+  eps=0.05 K=6: area=0.67442
+  eps=0.05 K=6: area=0.59378
+  eps=0.05 K=6: area=0.56352
+BEST: {"eps": 0.05, "K": 6, "area": 0.5635174720062047}
+--- K=6 eps=0.05 extra seeds 3-5 done rc=0 Fri Sep 11 20:43:29 CST 2026 ---
+--- K=10 eps=0.05 extra seeds 3-5 Fri Sep 11 20:43:29 CST 2026 ---
+  eps=0.05 K=10: area=0.66950
+  eps=0.05 K=10: area=0.58312
+  eps=0.05 K=10: area=0.66019
+BEST: {"eps": 0.05, "K": 10, "area": 0.5831235157810088}
+--- K=10 eps=0.05 extra seeds 3-5 done rc=0 Fri Sep 11 20:50:52 CST 2026 ---
+=== detached runner done Fri Sep 11 20:50:52 CST 2026 ===

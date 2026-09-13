@@ -1,0 +1,11 @@
+# Python
+__pycache__/
+*.pyc
+
+# Harness runtime state (machine-generated, session-local)
+.pi/
+.pi-glla/
+.tmp/
+
+# Transient
+*.log
