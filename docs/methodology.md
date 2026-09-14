@@ -52,3 +52,8 @@ learn. Read before extending the optimization pipeline.
   dump per-segment swept areas before blaming the idea (caught mirror-
   closure violations, chain drift, and the endpoint-pivot sector cost
   this way; each produced a different fix or conclusion).
+- **Pivot+slide evaluator checks:** a center-pivot 180° motion must
+  reproduce π/4; an arc evaluator must include both opposite arms of
+  the rectangle; a continuous along-axis slide must be represented by
+  the exact enlarged rectangle, not only its endpoint poses. These
+  checks caught a factor-of-two sector bug and slide undercoverage.

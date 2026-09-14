@@ -84,6 +84,14 @@ O(log) parameters. Search: differential evolution + Nelder-Mead polish.
 3. Sharp A for the true optimum: theory gives no candidate value.
 4. Seed-farm: min over N≥10 seeds at ε ∈ {0.01, 0.05} for a stable
    estimate of the good-basin value and its hit rate.
+5. Pivot+slide representation (`pivot_slide.py`): first valid model,
+   with each angle interval an exact pivot arc and each boundary an
+   along-needle slide. At ε=0.05, preliminary DE gives 0.4925 (K=6)
+   and 0.4880 (K=8), close to but above the v2 keyframe best 0.461.
+   This is a physically interpretable family; the initial sector-only
+   implementation was rejected because it undercounted the two arms of
+   the needle and omitted continuous slide area. The corrected model
+   passes the fixed-center π/4 smoke test within 0.2%.
 
 ## References
 
