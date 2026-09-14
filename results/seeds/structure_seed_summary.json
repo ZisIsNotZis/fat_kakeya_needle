@@ -1,0 +1,22 @@
+{
+ "experiment": "structure-seeded DE, eps=0.05 K=6",
+ "seed_areas": {
+  "alternating": 1.2374,
+  "ramp": 1.4992,
+  "center": 0.7868,
+  "random": 0.776
+ },
+ "fan_areas_by_K": {
+  "4": 0.7424,
+  "6": 0.8955,
+  "8": 1.0435,
+  "12": 1.3236,
+  "16": 1.5839
+ },
+ "family_seeds_best_of_200": 0.7835,
+ "controlled_AB": {
+  "seeded_init_DE": 0.46306,
+  "random_init_best": 0.46143
+ },
+ "conclusion": "negative result: pivot-chain structure cannot beat random init in keyframe model"
+}

@@ -17,7 +17,10 @@ learn. Read before extending the optimization pipeline.
   more K or more iterations.
 - **Blind DE degrades with dimension.** K=6 (12–14 params) beats K=10
   and K=14 at the same budget. More keyframes only help with
-  structure-aware initialization, which is untested (open question).
+  structure-aware initialization — which was tested and failed: see
+  the structure-seed finding in docs/findings.md. The landscape's good
+  basin is not reachable by geometric intuition; only broad random
+  search finds it.
 
 ## Model geometry
 
@@ -45,3 +48,7 @@ learn. Read before extending the optimization pipeline.
 - **Validate the evaluator first:** the centered half-turn must give
   π/4 to <1% before trusting anything downstream (caught a mirrored
   Y-axis bug and a 12% raster bias this way).
+- **Forensics before rewrites:** when a construction underperforms,
+  dump per-segment swept areas before blaming the idea (caught mirror-
+  closure violations, chain drift, and the endpoint-pivot sector cost
+  this way; each produced a different fix or conclusion).

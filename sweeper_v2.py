@@ -76,13 +76,22 @@ class LogSweeper:
         return off[:, 0], off[:, 1]
 
     def swept_area(self, u: np.ndarray) -> float:
-        """u = [thetas (K+1), zs (K+1, 2)] flattened; theta[0]=0,
-        theta[-1]=pi/2 enforced by sort+clip; second half = mirror."""
+        """Swept area of a keyframe motion.
+
+        Accepts two layouts:
+        * zs-only (uniform-theta model): size 2*(K+1) -- thetas implicit
+          on the uniform grid (optimize_v2 uniform variant, seed_lib)
+        * full: size 3*(K+1) -- [thetas (K+1), zs (2*(K+1))]
+        """
         u = np.asarray(u, dtype=float)
         K = self.K
-        th = np.sort(np.clip(u[:K + 1], 0.0, math.pi / 2))
-        th[0], th[-1] = 0.0, math.pi / 2
-        zs = u[K + 1:].reshape(K + 1, 2)
+        if u.size == 2 * (K + 1):
+            th = np.linspace(0.0, math.pi / 2, K + 1)
+            zs = u.reshape(K + 1, 2)
+        else:
+            th = np.sort(np.clip(u[:K + 1], 0.0, math.pi / 2))
+            th[0], th[-1] = 0.0, math.pi / 2
+            zs = u[K + 1:].reshape(K + 1, 2)
         xs, ys = self.keyframe_centers(zs)
 
         polys = []

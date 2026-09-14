@@ -57,16 +57,33 @@ O(log) parameters. Search: differential evolution + Nelder-Mead polish.
 - K (keyframe count) study at ε=0.05: min-area K=6 (0.461) < K=10
   (0.583) < K=14 (0.608) — blind DE degrades with more parameters;
   extra stations only help with structure-aware initialization.
+- Structure-seeded DE (Pál-join/Perron pivot-chain seeds, `seed_lib.py`):
+  **negative result.** Geometric analysis shows endpoint-pivot fans
+  sweep quarter-sectors (~0.15–0.33/segment) and inter-pivot slides add
+  ε per line change — the fan gets WORSE with K (0.74 @K=4 → 1.58
+  @K=16), opposite to the intended 1/log behavior; all parameterized
+  pivot-profile seeds collapse to the fixed-center disk (≈0.784).
+  Controlled A/B (same budget, same RNG): seeded-init DE 0.463 vs
+  random-init 0.461 — a tie. Conclusion: the good basin DE finds is
+  NOT the classical pivot-chain family; the uniform-θ keyframe model
+  with interpolated poses cannot faithfully express Perron-tree
+  triangle-overlap packing. A faithful test of the construction family
+  needs a pivot+slide segment representation (open).
 
 ## Open questions
 
 1. Does f̂·ln(1/ε) flatten (log law, constant A) below ε = 0.01, or
    does the measured curve keep its power-law character? Needs both
    smaller ε and better search at fixed ε.
-2. Structure-seeded initialization (Perron-tree-like overlapping
-   stations) vs blind DE — would separate optimizer limits from
-   parametrization limits.
+2. ~~Structure-seeded initialization~~ — tested, negative result (see
+   findings above). The successor question: does a **pivot+slide
+   segment representation** (each keyframe interval = rotate about a
+   chosen cross-section point, then slide along the needle), which can
+   faithfully express Perron-tree packing, find areas the keyframe-
+   interpolation model cannot?
 3. Sharp A for the true optimum: theory gives no candidate value.
+4. Seed-farm: min over N≥10 seeds at ε ∈ {0.01, 0.05} for a stable
+   estimate of the good-basin value and its hit rate.
 
 ## References
 
