@@ -16,3 +16,5 @@
 {"type":"context_usage_sample","value":{"goalId":null,"provider":"omniroute","model":"combo","providerUsage":{"inputTokens":764,"outputTokens":1619,"cacheReadTokens":130304,"cacheWriteTokens":0,"totalTokens":132687},"contextUsage":{"tokens":132687,"contextWindow":1048576,"percent":12.65401840209961}},"at":"2026-09-13T21:59:47.837Z"}
 {"type":"session_shutdown","value":{"reason":"quit"},"at":"2026-09-13T22:09:47.864Z"}
 {"type":"context_usage_sample","value":{"goalId":null,"provider":"omniroute","model":"combo","providerUsage":{"inputTokens":293,"outputTokens":577,"cacheReadTokens":150400,"cacheWriteTokens":0,"totalTokens":151270},"contextUsage":{"tokens":151270,"contextWindow":1048576,"percent":14.426231384277344}},"at":"2026-09-13T22:16:59.864Z"}
+{"type":"context_usage_sample","value":{"goalId":null,"provider":"omniroute","model":"combo","providerUsage":{"inputTokens":556,"outputTokens":491,"cacheReadTokens":170944,"cacheWriteTokens":0,"totalTokens":171991},"contextUsage":{"tokens":171991,"contextWindow":1048576,"percent":16.402339935302734}},"at":"2026-09-14T03:44:30.337Z"}
+{"type":"session_shutdown","value":{"reason":"quit"},"at":"2026-09-14T03:54:30.394Z"}

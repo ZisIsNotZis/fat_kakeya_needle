@@ -13,3 +13,5 @@
 - Preferences: honest caveats over confident claims; pushback accepted
   when evidence-backed (e.g. he challenged the "zigzag" framing and
   was right); values visual artifacts (plots) and concrete tables.
+- Language: prefers Chinese (简体中文) for conversation and reports;
+  project AGENTS.md records this as a standing instruction.
