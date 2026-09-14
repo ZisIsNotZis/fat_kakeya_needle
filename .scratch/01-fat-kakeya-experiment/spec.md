@@ -21,8 +21,11 @@ probe the (open) constant of the theoretical Θ(1/log(1/ε)) asymptotic.
 ## Open (see docs/findings.md "Open questions")
 
 - [ ] 01-smaller-eps-asymptotics: does f̂·ln(1/ε) flatten below ε=0.01?
-- [ ] 01-structure-seeded-init: Perron-like initialization vs blind DE
+- [x] 01-structure-seeded-init: tested, negative result (see findings)
 - [ ] 01-seed-farm: min-of-N seeds at ε ∈ {0.01, 0.05} for stable minima
+- [ ] 01-night-plan: 过夜自主研究 Phase A–D，见 docs/research-plan.md
+  （SSOT）。Phase A 已 detached 启动；Phase B/C 由子代理实现 +
+  master runner 串行执行。
 
 ## Comments
 
