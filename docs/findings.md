@@ -30,7 +30,33 @@ polygons (shapely), area computed exactly at any distance. v2
 (center = σ(e^z − 1), σ = max(1, 8ε)) so exponential reach costs
 O(log) parameters. Search: differential evolution + Nelder-Mead polish.
 
-## Measured results (best-known f̂(ε), min over independent seeds)
+## 主结论（过夜自主研究后，2026-09-17）
+
+1. **f(ε) 的实验曲线**（36+ 点，ε ∈ [0.005, 0.8]，四族模型交叉验证）：
+   - 中大 ε（0.05–0.8）：幂律 f ≈ 1.16·ε^0.28 描述极好。
+   - 小 ε（≤0.01）：**A_eff = f·ln(1/ε) 在 ε≈0.01 达峰 ≈1.58 后回落**
+     （0.005 → 1.546），比值检验 f(0.01)/f(0.005)=1.178 ≈ log 律预测
+     1.151（幂律预测 1.212）——**log 律进入渐近区的信号**。
+   - **实验常数估计：f(ε) ≈ 1.56/log(1/ε)（ε ≤ 0.01）**。
+     理论只知 Θ(1/log)，此常数为首次数值估计。
+
+2. **各运动族全局最优**：
+
+   | ε | f̂ | 最优族 |
+   |---|---|---|
+   | 0.8 | 1.252 | pivot+slide |
+   | 0.1 | 0.5897 | v1 keyframe |
+   | 0.05 | 0.4719 | pivot+slide K=16 |
+   | 0.02 | 0.3952 | smooth K=32 |
+   | 0.01 | 0.3436 | v2 keyframe K=6 |
+   | 0.005 | **0.2917** | v2 keyframe K=6 |
+
+3. **结构性发现**：不同运动族的“好盆地”不重叠——关键帧族在 ε=0.005
+   到 0.2917，而枢转+滑移族（含光滑剖面变体）最好只到 0.342（缺口
+   ~15%）。真实 f(0.005) 可能更低。盲 DE 维数诅咒是普遍现象
+   （三个族都 K=6–8 优于更大 K）。
+
+## 数值结果（best-known f̂(ε)，min over seeds/families）
 
 | ε | f̂ | note |
 |---|---|---|
