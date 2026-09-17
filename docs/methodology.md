@@ -48,6 +48,10 @@ learn. Read before extending the optimization pipeline.
 - **Validate the evaluator first:** the centered half-turn must give
   π/4 to <1% before trusting anything downstream (caught a mirrored
   Y-axis bug and a 12% raster bias this way).
+- **评估器分辨率必须匹配 ε**：n_theta=40 的目标函数在 ε=0.005 时
+  漏扫 21%——DE 优化的不是真实面积。所有跨 ε 比较必须用同
+  高分辨率复评（area_hi 必须落盘！growing 路径曾漏掉）。这是
+  本项目最贵的教训：它制造了"A_eff 峰值回落"的假发现。
 - **Forensics before rewrites:** when a construction underperforms,
   dump per-segment swept areas before blaming the idea (caught mirror-
   closure violations, chain drift, and the endpoint-pivot sector cost
