@@ -46,8 +46,8 @@ def build_init(model, ndim, seed_params, popsize, rng, frac=0.3, sigma=0.1):
 
 
 def run_one(eps, K, Nf, Nb, seed, popsize, maxiter, workers,
-            seed_params=None, verbose=False):
-    model = SmoothProfileModel(K, eps, Nf=Nf, Nb=Nb)
+            seed_params=None, verbose=False, n_arc=120):
+    model = SmoothProfileModel(K, eps, Nf=Nf, Nb=Nb, n_arc=n_arc)
     ndim = model.ndim
     obj = SmoothObj(model, 3.0)
     bounds = [(-3.0, 3.0)] * ndim
@@ -82,6 +82,7 @@ def main() -> int:
     p.add_argument("--maxiter", type=int, default=200)
     p.add_argument("--workers", type=int, default=6)
     p.add_argument("--init-json", type=str, default=None)
+    p.add_argument("--n_arc", type=int, default=120)
     p.add_argument("--out", type=str, required=True)
     a = p.parse_args()
 
@@ -102,14 +103,22 @@ def main() -> int:
         try:
             f, best = run_one(a.eps, a.K, a.Nf, a.Nb, seed, a.popsize,
                               a.maxiter, a.workers, seed_params=seed_params,
-                              verbose=True)
+                              verbose=True, n_arc=a.n_arc)
         except (ValueError, RuntimeError) as e:
             print(f"seed {seed} failed: {e}", file=sys.stderr)
             continue
         results.append({"eps": a.eps, "K": a.K, "seed": seed, "area": f,
                         "model": "pivot-slide-smooth",
                         "best_params": best,
-                        "init": "mixed" if seed_params is not None else "random"})
+                        "init": "mixed" if seed_params is not None else "random",
+                        "n_arc": a.n_arc})
+        # incremental checkpoint: persist after every seed so long runs
+        # never lose completed work
+        try:
+            with open(a.out, "w") as fh:
+                json.dump(results, fh)
+        except OSError as e:
+            print(f"checkpoint write failed: {e}", file=sys.stderr)
     if not results:
         return 1
     best = min(results, key=lambda r: r["area"])
