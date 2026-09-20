@@ -3,6 +3,8 @@
 One-line problem: minimize the area of the set swept by a 1×ε rectangle
 turning 180° with unrestricted planar motion (translation + rotation).
 
+（本文件部分小节为英文历史记录；最终结论见下方中文"主结论"节。）
+
 ## Theoretical ground truth (SOTA, from literature)
 
 - Thin needle (ε→0), unconstrained region: infimum area = 0
