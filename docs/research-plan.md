@@ -1,8 +1,6 @@
-# 过夜自主研究计划（2026-09-11 晚 → 09-12 早）
+# 历史过夜研究计划（2026-09-11 晚 → 09-12 早；非当前 SSOT）
 
-用户已授权全夜自主研究。本文件是 **SSOT**：任何新会话/子代理先读本文件
-
-+ `docs/findings.md` + `docs/methodology.md` + `WORKSPACE.md` 即可接续。
+本文件保留当时计划与被后续证据推翻的假设，不作为当前待办或结论来源。当前目标以 `docs/philosophy.md` 为准，最新数学与数值结论见 `docs/findings.md`，执行状态见 `.scratch/01-fat-kakeya-experiment/issues/01-asymptotic-budget-constructive.md`，环境事实见 `WORKSPACE.md`。尤其旧 0.2917 假突破、族间 15% 差距及「对数阶未验证」已由高分辨率复评、接缝修复及 Keich 原文＋连续转场证明修正；不得照此历史计划重跑或报告。
 
 ## 主问题
 

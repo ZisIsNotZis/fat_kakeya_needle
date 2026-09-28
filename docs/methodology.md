@@ -24,11 +24,7 @@ learn. Read before extending the optimization pipeline.
 
 ## Model geometry
 
-- **Bounded-motion myth:** the optimal construction family (Perron
-  trees / Pál joins) is spatially bounded; travel distance is not the
-  resource that buys small area — overlapping rotation stations are.
-  A log-space reach parametrization is cheap insurance (v2 keeps it)
-  but the winning motions stayed compact.
+- **把局部数值盆地与理论运动分开：**历史优化中的好盆地保持紧凑，但这不证明真正最优运动须有界。`docs/continuous-motion-bridge.md` 的对数阶上界接合允许中心走到距离 O(ε^(-1/2))；远距轴向滑移虽花 εR 面积，却使横向改位所需旋转角降至 O(1/R)。固定 K 的搜索盆地与这类自由运动理论构造不是同一个族。
 - **Mirror closure is valid and halves the search:** keyframes over
   θ ∈ [0, π/2] with pose(π/2) = mirror(pose(0)); swept set = S1 ∪
   mirror_x(S1). Matches the symmetry of every known construction.

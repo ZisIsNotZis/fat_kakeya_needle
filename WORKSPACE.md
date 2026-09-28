@@ -27,10 +27,15 @@ Progress: `tail results/detached_run.log`; completion marker
 - Multiprocessing cannot spawn from a heredoc/stdin script (`<stdin>`
   main module) — write a temp .py file for smoke tests.
 - numpy scalar → int casts must be guarded (checker + dtype edge cases).
-- The old `basics.md` conversation replaces C·ε with a claimed Θ(1/log(1/ε))
-  law. The cited Kakeya-neighborhood estimates have not yet been checked
-  to imply a continuous half-turn motion with matching upper bound; do not
-  state this as a verified theorem for the project's motion problem.
+- For unrestricted continuous 180-degree motion (temporary angle reversals
+  and distant excursions allowed), f(eps)=Theta(1/log(1/eps)) is verified:
+  Keich 1999 Lemma 1 provides one compact all-direction Kakeya set with a
+  uniform neighborhood upper bound; docs/continuous-motion-bridge.md proves
+  low-area continuous connectors and the direction-tube overlap lower bound.
+  This does not certify the project's restricted numerical family, a sharp
+  constant, or a practical finite-precision optimizer. Keich's finite
+  triangle stages plus connectors do give a theoretical finite recursion;
+  see docs/keich-explicit-motion.md.
 - arXiv:math/0008098 is by Terence Tao, not Bourgain (metadata checked
   2026-09-28).
 

@@ -11,9 +11,9 @@ turning 180° with unrestricted planar motion (translation + rotation).
 
 - Thin needle (ε→0), unconstrained region: infimum area = 0
   (Besicovitch 1928; regions can be arbitrarily small).
-- Tao 的综述（arXiv:math/0008098，第 4 页）确认二维 Besicovitch 集的 δ-邻域面积下界 C/log(1/δ) 且 Keich 证明该**集合邻域**界尖锐；同文第 1–2 页确认零宽针可用任意小面积连续转向和平移。但这些陈述没有直接给出带厚度针在连续半圈运动下的同阶上界，连接步骤仍待查证；因此暂不把本项目 f(ε)=Θ(1/log(1/ε)) 当作已核验定理。
+- **本问题的严格阶数已核验**：自由连续运动（允许短暂角度回摆与随 ε 远行）满足 `f(ε)=Θ(1/log(1/ε))`。Keich 1999 原文印刷第 215 页 Lemma 1 给出**同一个紧致**全方向 Kakeya 集的统一 δ-邻域对数上界；`docs/continuous-motion-bridge.md` 明确补上正文 G-set 的四次旋转、长滑移小转角的低面积连续接合及 Córdoba 型方向矩形重叠下界。此阶数结论不证明最佳常数或项目数值族达到渐近阶。
 - 即使针对方向覆盖集合的对数阶成立，其最佳常数也未由现有实验确定；本项目的数值拟合只探索有限范围的候选系数。
-- Perron 树、Pál 接合是候选几何灵感；它们是否给出本项目所需、同阶面积的连续运动及具体 K 标度仍需证明。
+- Perron 树、Pál 接合是数值族的候选灵感；上述理论接合允许长距运动和角度回摆，尚未证明当前受限的等角枢转＋轴向滑移族也达到该阶。
 - Fixed-center rotation reference: π/4 ≈ 0.785 (disk of radius ½).
 - Scaling: f(ε) = ε²·f(1/ε) for ε > 1 (similarity argument, exact) —
   so ε ∈ (0,1] covers the whole problem.
@@ -28,16 +28,9 @@ polygons (shapely), area computed exactly at any distance. v2
 (center = σ(e^z − 1), σ = max(1, 8ε)) so exponential reach costs
 O(log) parameters. Search: differential evolution + Nelder-Mead polish.
 
-## 主结论（2026-09-19 crossover 拟合后定稿）
+## 2026-09-19 历史拟合（已被更低候选与评估器修复推翻，不作当前主结论）
 
-1. **有限数据可被修正 log 律拟合**：两参数 log 律
-   **f(ε) ≈ 2.27/(ln(1/ε)+1.60)**
-   全域（0.002–0.8，37 点）拟合残差与 4 参数混合模型同水平，
-   除 ε=0.002（+16%）外全部偏差 <±6.5%；幂律修正项在混合模型中
-   系数趋于 0（被弃用）。
-2. **有限区间拟合参数：A ≈ 2.27，并非已确认的渐近常数**。早期估计 1.56（无修正项拟合）与 2.1（低分辨率数据推论）均不可靠；固定 K 的枢转族有正面积下限，不能据此外推 ε→0。
-3. **A_eff 形状尚不能支持渐近断言**：令 L=ln(1/ε)，拟合式 A_eff=A·L/(L+B) 对 L 单调上升但二阶导数 -2AB/(L+B)^3<0，即上升减速；若实测确实上升加速，则与该形状诊断冲突，须检验取点、优化和评估分辨率。
-4. **未决**：ε=0.002 点报告 +16% 偏离，但仅有两个 fresh seeds，且采样分辨率低于 ε=0.005；尚不能排除评估/搜索差异。先统一复评和增加种子，再考虑更小 ε。
+旧 37 点曾拟合 `2.27/(ln(1/ε)+1.60)`，报告 ε=.002 偏离 +16%，并猜 A≈2.27 为渐近常数。统一复评、接缝修正和新候选使这组值不再一致；**旧拟合、离群与渐近常数猜测均已撤回**。有限数值不能代替 `docs/continuous-motion-bridge.md` 的阶数证明。
 
 ## 存档与迁移后候选序列（非全局最优证明；2026-09-28 更新）
 
@@ -103,9 +96,13 @@ O(log) parameters. Search: differential evolution + Nelder-Mead polish.
 - **2026-09-28 首次复评**：新增完整 Arc/Slide 数值包络（`results/pivot_numerical_enclosures.json`），中心旋转解析回归通过；但 Shapely 并集仍不具严格向外舍入。对 `smooth_hr_0005_K32.json` 最好参数，n_sub=40/80/160/320 的半圈加镜像采样面积分别为 0.3497321 / 0.3493582 / 0.3497333 / 0.3497335，出现本应不可能的 40→80 面积下降。各角度的 40 格点精确包含于 80 格点（浮点角差为零）、输入矩形均有效，但 GEOS 并集差集 40 格点并集减去 80 格点并集的面积约 0.0001873；这是布尔几何数值不稳定的实测反例，不能把细小 `upper-lower` 差值当作绝对误差保证。对应 ε=0.002 最好参数在 n_sub=320 时 sampled=0.3378498、numerical upper=0.3380324；仍仅两个 fresh seeds。
 - **局部修复与边界**：在枢转评估器及数值包络的多边形叠加前按 `min(1e-10, ε·1e-8)` 固定精度网格贴合。同一 ε=0.005 解重跑 n_arc=40/80 得 0.3497321291/0.3497328727，不再出现上述非单调；新增回归测试。网格贴合会改变几何边界，既不保证所有实例单调，也不提供严格上界；已提交的历史优化结果未被悄悄改写，比较前须统一版本重评。下一步构造可审计的向外舍入/外包，并核查文献中的连续运动同阶上界。
 
-## 2026-09-28 条件性理论桥：有界细管排列可连接成连续半转
+## 2026-09-28 原文核对与连续运动桥：严格对数阶
 
-`docs/continuous-motion-bridge.md` 给出独立转场引理：**若**每尺度 δ 有统一有界直径、至多 O(1/δ) 根覆盖方向 δ-网的单位线段，其 δ-邻域面积 O(1/log(1/δ))，则将站点原地短转和每次 O(√ε) 面积的远距滑移—小转角—滑回接合，取 δ=ε^(1/4)，得到自由平面**连续**粗针半转的 O(1/log(1/ε)) 构造。两项独立数学审查未发现转场面积反例；运动允许角度短暂回摆、中心远行。Keich 原文是否满足该引理的统一有界与逐尺度有限方向前提尚未核实，**因此仍是条件命题**，不能从现有引文直接宣布本问题上界定理成立；亦不是已实现的显式坐标递推。
+`docs/continuous-motion-bridge.md` 的转场引理已与 Keich 1999 原文 Lemma 1 接合：**同一个紧致集合**满足所有足够小 δ 的邻域上界、含每个方向单位线段；逐尺度抽取 O(1/δ) 个有界中心站点，δ=ε^(1/4) 时连续转场额外面积 O(ε^(1/4))。正文 G-set 只覆盖斜率 [0,1] 的全方向补步由四次旋转有限并明确处理。两路独立原文/数学审查未发现阻断，结合方向矩形重叠下界，得到自由连续半转的**无条件 Θ(1/log(1/ε)) 阶数**。注意理论构造允许临时角度回摆、中心远行；原文紧集版本是极限构造，另可用其**有限三角形阶段**给出有效的理论递推（下一节）。仍未证明当前数值族达到该阶、实用预算最优或乘性常数。
+
+## 2026-09-28 有限有效的理论运动递推（非实用预算最优）
+
+`docs/keich-explicit-motion.md` 给出有限递推：第 n 层 `2^n` 个有理三角形，`n=floor(log₂(1/ε)/4)`，四份旋转选 `4·2^n+1` 个针位并逐站连续接合。Keich 的 `|(G_n)_{2^-n}|≤36/n` 及转场总费 `O(2^-n)` 导出理论面积 `O(1/log(1/ε))`；已核对截距和面积。有限递推不等于预算最优。
 
 ## 2026-09-28 首个有理数面积上界（仅指定连续运动）
 
@@ -131,7 +128,7 @@ O(log) parameters. Search: differential evolution + Nelder-Mead polish.
 
 `hierarchical_pivot.py` 定义连续的 ruler 滑移运动：令 K=2^m、θ_j=jπ/(2K)、f_i=0，r(j)=1+v₂(j)、β_{j-1}=(-1)^{⌊j/2^{r(j)}⌋}s_{r(j)}；各段绕中心枢转，边界沿针轴完整滑移，最后镜像接合。**解析反例**：任取 m≥1，只令 s_m=a≠0、其余 s_r=0；前 K/2 段共享一枢轴，零宽针从 0 转到 π/4，单这部分扫掠面积就是 π/16，任意增大 K 仍不趋零。因此“ruler 参数化＋K 增长”本身不足以得到对数阶，虽然不排除另选 s_r 的有效递推。
 
-更具体的未经优化尺度 s_r=2^{-r}、ε=2^{-m}，在 `probe_ruler.py` / `results/ruler_recurrence_probe.json` 的 m=2…7（K=4…128）得到浮点数值 lower 1.4102→1.1947，m·lower 2.82→8.36，未显示 O(1/m) 下降；有限数据不能排除某个更大常数下的最终渐近。证明所缺的是不同层级圆弧扇形及完整滑移条带的并集足够重叠，使面积 ≤C/m；仅证明每个方向各存在一条针，未给出**方向间连续、低面积的转场**。在文献原始证明或新构造给出此引理前，不把集合邻域上界升级为本问题的运动上界。
+更具体的未经优化尺度 s_r=2^{-r}、ε=2^{-m}，在 `probe_ruler.py` / `results/ruler_recurrence_probe.json` 的 m=2…7（K=4…128）得到浮点数值 lower 1.4102→1.1947，m·lower 2.82→8.36，未显示 O(1/m) 下降；有限数据不能排除某个更大常数下的最终渐近。证明所缺的是不同层级圆弧扇形及完整滑移条带的并集足够重叠，使面积 ≤C/m；仅这套 ruler 形状本身没有给出**其族内**跨层级重叠。一般自由运动的低面积转场已由 `docs/continuous-motion-bridge.md` 独立证明，不能反推这个受限 ruler 族也满足同阶上界。
 
 ## 2026-09-28 分段数迁移：缩放滑移比盲目加 K 更有效
 
@@ -193,7 +190,7 @@ O(log) parameters. Search: differential evolution + Nelder-Mead polish.
 ## References
 
 - Tao, "From rotating needles to stability of waves; emerging connections between combinatorics, analysis and PDE" (arXiv:math/0008098), PDF 第 1–4 页：明确提及零宽针可用任意小面积连续旋转、针可用任意小面积平移，并称平面 Besicovitch 集的 δ-邻域至少 C/log(1/δ)、Keich 证明该**邻域界**尖锐。PDF 没有在所引段落证明带厚度针的连续运动达到同阶；旧记录误署 Bourgain。
-- Keich 1999, "On Lp Bounds for Kakeya Maximal Functions and the Minkowski Dimension in R²", DOI:10.1112/S0024609398005372（2026-09-28 经 Crossref 作者/标题/日期核对）；Tao 综述称其证明 Besicovitch 集 δ-邻域对数界尖锐。原文暂不可访问，尚不能把它直接当作本项目厚针连续运动的上界证明。
+- Keich 1999, "On Lp Bounds for Kakeya Maximal Functions and the Minkowski Dimension in R²", DOI:10.1112/S0024609398005372；Caltech 开放原文 `https://authors.library.caltech.edu/records/js5yc-8gw95/files/KEIblms99.pdf`，印刷第 215 页 Lemma 1 与第 218–219 页证明已核验。原文自身证明集合邻域界，连续粗针运动的转场是本项目的独立推导，见 `docs/continuous-motion-bridge.md`。
 - Tao's Kakeya survey notes (teorth.github.io/tao-web/apps/kakeya.html)
   and arXiv:2608.22209 — problem landscape, fat-needle framing.
 - Local verbatim source: `basics.md` (research transcript incl.
