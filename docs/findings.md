@@ -1,5 +1,7 @@
 # Findings — fat Kakeya needle, free 2D motion
 
+Budget: 200 lines / 18000 characters; exception retains historical numeric claims and their explicit supersession alongside current evidence until old result files are migrated into an archive.
+
 One-line problem: minimize the area of the set swept by a 1×ε rectangle
 turning 180° with unrestricted planar motion (translation + rotation).
 
@@ -89,8 +91,9 @@ O(log) parameters. Search: differential evolution + Nelder-Mead polish.
   random-init 0.461 — a tie. Conclusion: the good basin DE finds is
   NOT the classical pivot-chain family; the uniform-θ keyframe model
   with interpolated poses cannot faithfully express Perron-tree
-  triangle-overlap packing. A faithful test of the construction family
-  needs a pivot+slide segment representation (open).
+  triangle-overlap packing. A pivot+slide segment representation is one
+  candidate test, but its restricted axial slides and fixed angle grid
+  have not been proved expressive enough to reproduce Perron packing.
 
 ## 2026-09-28 证据审查：构造与证书边界
 
@@ -115,6 +118,12 @@ O(log) parameters. Search: differential evolution + Nelder-Mead polish.
 
 对上节 ε=0.005 续搜的**同一套 K=32 参数**不再优化，只缩小针宽（`probe_fixed_profile.py`，`results/fixed_profile_eps_probe.json`，每段 n_sub=320）：ε=0.005、0.002、0.001、0.0005、0.0002 的浮点数值 lower 依次为 0.342613、0.326618、0.321296、0.318636、0.317040，已显现正面积平台的方向。此实验仅描述**这一个固定运动**，不等于对每个 ε 重新选择最佳参数，也不能数值证明任何固定 K 族的精确极限；固定 K 不趋零的严谨结论仍来自前述 π/(8K) 扇形下界。要满足理论对数阶候选，必须构造随 ε 增长的复杂度并证明有效重叠。
 
+## 2026-09-28 层次递推候选的反证与未决引理
+
+`hierarchical_pivot.py` 定义连续的 ruler 滑移运动：令 K=2^m、θ_j=jπ/(2K)、f_i=0，r(j)=1+v₂(j)、β_{j-1}=(-1)^{⌊j/2^{r(j)}⌋}s_{r(j)}；各段绕中心枢转，边界沿针轴完整滑移，最后镜像接合。**解析反例**：任取 m≥1，只令 s_m=a≠0、其余 s_r=0；前 K/2 段共享一枢轴，零宽针从 0 转到 π/4，单这部分扫掠面积就是 π/16，任意增大 K 仍不趋零。因此“ruler 参数化＋K 增长”本身不足以得到对数阶，虽然不排除另选 s_r 的有效递推。
+
+更具体的未经优化尺度 s_r=2^{-r}、ε=2^{-m}，在 `probe_ruler.py` / `results/ruler_recurrence_probe.json` 的 m=2…7（K=4…128）得到浮点数值 lower 1.4102→1.1947，m·lower 2.82→8.36，未显示 O(1/m) 下降；有限数据不能排除某个更大常数下的最终渐近。证明所缺的是不同层级圆弧扇形及完整滑移条带的并集足够重叠，使面积 ≤C/m；仅证明每个方向各存在一条针，未给出**方向间连续、低面积的转场**。在文献原始证明或新构造给出此引理前，不把集合邻域上界升级为本问题的运动上界。
+
 ## Open questions
 
 1. Does f̂·ln(1/ε) flatten (log law, constant A) below ε = 0.01, or
@@ -124,8 +133,8 @@ O(log) parameters. Search: differential evolution + Nelder-Mead polish.
    findings above). The successor question: does a **pivot+slide
    segment representation** (each keyframe interval = rotate about a
    chosen cross-section point, then slide along the needle), which can
-   faithfully express Perron-tree packing, find areas the keyframe-
-   interpolation model cannot?
+   potentially express more of Perron-tree packing than the keyframe-
+   interpolation model, and find smaller areas? No faithful mapping proof exists.
 3. Sharp A for the true optimum: theory gives no candidate value.
 4. Seed-farm: min over N≥10 seeds at ε ∈ {0.01, 0.05} for a stable
    estimate of the good-basin value and its hit rate.

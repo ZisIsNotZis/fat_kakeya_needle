@@ -7,6 +7,7 @@ import numpy as np
 from shapely.affinity import scale
 from shapely.ops import unary_union
 
+from hierarchical_pivot import HierModel
 from pivot_slide import PivotSlideModel, needle_polygon, slide_strip
 from smooth_pivot import SmoothProfileModel
 from strict_bound import numerical_pivot_enclosure, strict_upper
@@ -129,6 +130,22 @@ class PivotEnclosureTests(unittest.TestCase):
                                            np.asarray(best['params']), n_sub=recorded['n_sub'])
         self.assertAlmostEqual(result['lower'], recorded['numerical_lower'], places=11)
         self.assertAlmostEqual(result['upper'], recorded['numerical_upper'], places=11)
+
+    def test_ruler_only_top_scale_has_fixed_area_sector(self):
+        # K growth alone does not shrink area: half the arcs share one pivot.
+        for m in (2, 3, 5):
+            K = 1 << m
+            model = HierModel(K, 1 / K)
+            scales = np.zeros(m)
+            scales[-1] = 0.5
+            params = model.to_full_params(np.r_[0.0, scales])
+            pivots, centers, _, beta = model.base.centers_and_pivots(params)
+            np.testing.assert_allclose(pivots[:K // 2] - pivots[0], 0.0, atol=1e-14)
+            self.assertEqual(np.count_nonzero(beta), 1)
+            self.assertAlmostEqual(centers[-1, 0], 0.0, places=12)
+            angle = model.base.theta[K // 2] - model.base.theta[0]
+            two_arm_sector = angle * (0.5 ** 2 + 0.5 ** 2) / 2
+            self.assertAlmostEqual(two_arm_sector, math.pi / 16, places=12)
 
     def test_generic_pose_is_not_supported(self):
         with self.assertRaises(NotImplementedError):

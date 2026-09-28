@@ -1,0 +1,119 @@
+[
+  {
+    "m": 2,
+    "eps": 0.25,
+    "K": 4,
+    "scales": [
+      0.5,
+      0.25
+    ],
+    "sum_abs_slides": 1.25,
+    "mirror_join_x": 2.7755575615628914e-17,
+    "n_sub": 8,
+    "numerical_lower": 1.4102053276875175,
+    "numerical_upper": 1.4465943626548126,
+    "m_times_lower": 2.820410655375035,
+    "analytic_single_arc_floor": 0.09817477042468103,
+    "limitation": "finite scales; floating-point geometry; no asymptotic proof"
+  },
+  {
+    "m": 3,
+    "eps": 0.125,
+    "K": 8,
+    "scales": [
+      0.5,
+      0.25,
+      0.125
+    ],
+    "sum_abs_slides": 2.625,
+    "mirror_join_x": -6.938893903907228e-17,
+    "n_sub": 8,
+    "numerical_lower": 1.3092652312750643,
+    "numerical_upper": 1.33529300412106,
+    "m_times_lower": 3.927795693825193,
+    "analytic_single_arc_floor": 0.04908738521234052,
+    "limitation": "finite scales; floating-point geometry; no asymptotic proof"
+  },
+  {
+    "m": 4,
+    "eps": 0.0625,
+    "K": 16,
+    "scales": [
+      0.5,
+      0.25,
+      0.125,
+      0.0625
+    ],
+    "sum_abs_slides": 5.3125,
+    "mirror_join_x": 1.3183898417423734e-16,
+    "n_sub": 8,
+    "numerical_lower": 1.2493600737452237,
+    "numerical_upper": 1.2722755612433783,
+    "m_times_lower": 4.997440294980895,
+    "analytic_single_arc_floor": 0.02454369260617026,
+    "limitation": "finite scales; floating-point geometry; no asymptotic proof"
+  },
+  {
+    "m": 5,
+    "eps": 0.03125,
+    "K": 32,
+    "scales": [
+      0.5,
+      0.25,
+      0.125,
+      0.0625,
+      0.03125
+    ],
+    "sum_abs_slides": 10.65625,
+    "mirror_join_x": -1.3877787807814457e-16,
+    "n_sub": 8,
+    "numerical_lower": 1.2183774084596206,
+    "numerical_upper": 1.2401333410109527,
+    "m_times_lower": 6.091887042298103,
+    "analytic_single_arc_floor": 0.01227184630308513,
+    "limitation": "finite scales; floating-point geometry; no asymptotic proof"
+  },
+  {
+    "m": 6,
+    "eps": 0.015625,
+    "K": 64,
+    "scales": [
+      0.5,
+      0.25,
+      0.125,
+      0.0625,
+      0.03125,
+      0.015625
+    ],
+    "sum_abs_slides": 21.328125,
+    "mirror_join_x": -1.214306433183765e-17,
+    "n_sub": 8,
+    "numerical_lower": 1.2026615883917862,
+    "numerical_upper": 1.2239413503681855,
+    "m_times_lower": 7.215969530350717,
+    "analytic_single_arc_floor": 0.006135923151542565,
+    "limitation": "finite scales; floating-point geometry; no asymptotic proof"
+  },
+  {
+    "m": 7,
+    "eps": 0.0078125,
+    "K": 128,
+    "scales": [
+      0.5,
+      0.25,
+      0.125,
+      0.0625,
+      0.03125,
+      0.015625,
+      0.0078125
+    ],
+    "sum_abs_slides": 42.6640625,
+    "mirror_join_x": -2.723515857283587e-16,
+    "n_sub": 8,
+    "numerical_lower": 1.1947411505790415,
+    "numerical_upper": 1.2158079257479157,
+    "m_times_lower": 8.36318805405329,
+    "analytic_single_arc_floor": 0.0030679615757712823,
+    "limitation": "finite scales; floating-point geometry; no asymptotic proof"
+  }
+]
