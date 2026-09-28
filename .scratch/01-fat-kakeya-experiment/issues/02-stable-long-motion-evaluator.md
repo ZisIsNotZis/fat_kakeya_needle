@@ -18,4 +18,5 @@ Blocked by: none
 先并行只读设计：比较现有 GEOS 精度网格、整数 polygon clipping（如 pyclipper）和自适应有理网格在 n=5 的性能/面积偏差。以单核 nice10 的短冒烟先证实后端可用；再只实现一条最小可行评分路径。若任何方法在 ε=2^-20 的长距薄条上无法给出可解释保守误差，记录资源/表示边界，不开始预算排名。
 
 ## Comments
-- 2026-09-28 19:50 +08 (agent): 用户确认自动推进；从 `WORKSPACE.md`、`docs/philosophy.md`、01 票据及 master@c5f7e17 重启。主仓库四个 `.pi-glla` 跟踪运行态文件删除仍在，来源不明，保留不恢复/不提交。已验证当前 venv 无 pyclipper。下一步只读专门设计与后端风险审查。
+- 2026-09-28 19:50 +08 (agent): 用户确认自动推进；从 `WORKSPACE.md`、`docs/philosophy.md`、01 票据及 master@c5f7e17 重启。主仓库四个 `.pi-glla` 跟踪运行态文件删除仍在，来源不明，保留不恢复/不提交。已验证当前 venv 无 pyclipper。
+- 2026-09-28 20:00 +08 (agent): 双只读设计/风险工作流 477a5edf-7533-4737-a23e-500cc96f6d48：推荐最小可选整数裁剪后端，先对 Keich n4/5 连续 slide/center_rotate 保守浮点外包做质量门槛，再加 pivot/v2 适配；整数裁剪只对输入整数多边形精确，不构成浮点运动严格证书。风险审查要求高远坐标范围/浮点乘尺度安全检查、显式正负滑移整条带、圆弧端点凸包+L∞方形外扩、孔洞面积处理、n5 双角分辨率≤2% 差异或标 `quality_limited`。设计阶段已由 PyPI API 识别 `pyclipper 1.4.0` CPython3.12 manylinux wheel、MIT 许可；下载 sdist SHA256 9882bd889f27da78add4dd6f881d25697efc740bf840274e749988d25496c8e1，检查 LICENSE MIT、捆绑 Clipper 6.4.2 头注 Boost 1.0、头文件 hiRange=0x3FFFFFFFFFFFFFFF。`uv pip install --python /home/z/.venv/bin/python3 pyclipper==1.4.0` exit0，import/version/simple-union 冒烟成功，已记录 WORKSPACE。下一步独立工作树实现一个 Keich n4/5 优先的窄端到端后端，安全整数尺度起点 2^40（n5 最大坐标约1025→整数1.13e15，仍低于2^53），超范围明确拒绝；后续适配其他族前不排名。

@@ -4,7 +4,14 @@
 
 - Python: `/home/z/.venv/bin/python3` (uv-managed venv). `pip` is absent;
   install with `uv pip install --python /home/z/.venv/bin/python3 <pkg>`.
-- Packages: numpy, scipy, shapely, matplotlib (installed).
+- Packages: numpy, scipy, shapely, matplotlib; optional numeric integer-geometry
+  backend `pyclipper==1.4.0` (installed 2026-09-28 with uv). The PyPI sdist
+  SHA-256 `9882bd889f27da78add4dd6f881d25697efc740bf840274e749988d25496c8e1`
+  contains an MIT wrapper license and bundled Clipper 6.4.2 under Boost 1.0;
+  inspect exact installed wheel when publishing an evaluator result. Reinstall:
+  `uv pip install --python /home/z/.venv/bin/python3 pyclipper==1.4.0`. Integer
+  clipping after floating-point pose quantization remains numerical, not a
+  mathematical certificate.
 - Machine: 12 cores, 125 GB RAM. Shared with the owner's ML training
   jobs — long optimizer runs use `--workers 6` (not -1) and `nice -n 10`.
 
