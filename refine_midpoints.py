@@ -1,7 +1,7 @@
 """Grow smooth control resolution by exact knot insertion, then local search.
 
-10 -> 19 controls per f/b profile preserves the starting piecewise-linear
-functions. Only the 9+9 newly inserted midpoint controls may vary. This is a
+N -> 2N-1 controls per f/b profile preserves the starting piecewise-linear
+functions. Only the newly inserted midpoint controls may vary. This is a
 continuation from an already discovered incumbent; discovery cost is unknown.
 """
 from __future__ import annotations
@@ -18,12 +18,13 @@ from strict_bound import numerical_pivot_enclosure
 
 
 def insert_knots(params: np.ndarray) -> np.ndarray:
-    if len(params) != 21:
-        raise ValueError("expected y0 + 10 f controls + 10 b controls")
-    old_grid = np.linspace(0.0, 1.0, 10)
-    new_grid = np.linspace(0.0, 1.0, 19)
-    f = np.interp(new_grid, old_grid, np.clip(params[1:11], -1.0, 1.0))
-    b = np.interp(new_grid, old_grid, params[11:21])
+    if len(params) < 5 or (len(params) - 1) % 2:
+        raise ValueError("expected y0 and equal f/b control counts")
+    count = (len(params) - 1) // 2
+    old_grid = np.linspace(0.0, 1.0, count)
+    new_grid = np.linspace(0.0, 1.0, 2 * count - 1)
+    f = np.interp(new_grid, old_grid, np.clip(params[1:1 + count], -1.0, 1.0))
+    b = np.interp(new_grid, old_grid, params[1 + count:])
     return np.r_[params[0], f, b]
 
 
@@ -35,16 +36,28 @@ def main() -> None:
     parser.add_argument("--budget", type=float, default=180.0)
     parser.add_argument("--n-arc", type=int, default=80)
     parser.add_argument("--n-verify", type=int, default=320)
+    parser.add_argument("--target-K", type=int, default=None)
+    parser.add_argument("--target-eps", type=float, default=None)
     args = parser.parse_args()
     if args.seeds < 1 or args.budget <= 0:
         parser.error("positive seeds and CPU budget required")
     source = min(json.loads(args.source.read_text()),
                  key=lambda row: row["numerical_upper"])
-    base = insert_knots(np.asarray(source["best_params"], dtype=float))
-    model = SmoothProfileModel(source["K"], source["eps"], Nf=19, Nb=19,
+    old = np.asarray(source["best_params"], dtype=float).copy()
+    old_count = (len(old) - 1) // 2
+    target_K = source["K"] if args.target_K is None else args.target_K
+    target_eps = source["eps"] if args.target_eps is None else args.target_eps
+    if target_K < 1 or not (0 < target_eps <= 1):
+        parser.error("invalid target K or epsilon")
+    old[1 + old_count:] *= source["K"] / target_K
+    base = insert_knots(old)
+    count = 2 * old_count - 1
+    model = SmoothProfileModel(target_K, target_eps, Nf=count, Nb=count,
                                n_arc=args.n_arc)
-    coordinate_indices = np.r_[np.arange(2, 20, 2), np.arange(21, 39, 2)]
-    initial_steps = np.r_[np.full(9, 0.05), np.full(9, 0.005)]
+    coordinate_indices = np.r_[np.arange(2, count + 1, 2),
+                               np.arange(count + 2, 2 * count + 1, 2)]
+    initial_steps = np.r_[np.full(old_count - 1, 0.05),
+                          np.full(old_count - 1, 0.005)]
     rows = []
     for seed in range(args.seeds):
         rng = np.random.default_rng(seed)
@@ -81,9 +94,11 @@ def main() -> None:
         cpu_s = time.process_time() - start
         check = numerical_pivot_enclosure(model.base,
                   model.to_full_params(x), n_sub=args.n_verify)
-        row = {"source": str(args.source), "eps": source["eps"], "K": source["K"],
+        row = {"source": str(args.source), "source_K": source["K"],
+               "source_eps": source["eps"], "slide_scale": source["K"] / target_K,
+               "eps": target_eps, "K": target_K,
                "seed": seed, "cpu_budget_s": args.budget, "cpu_used_s": cpu_s,
-               "calls": calls, "sweeps": sweeps, "Nf": 19, "Nb": 19,
+               "calls": calls, "sweeps": sweeps, "Nf": count, "Nb": count,
                "baseline_sampled": baseline, "best_sampled": value,
                "best_params": x.tolist(), "n_arc": args.n_arc,
                "n_verify": args.n_verify, "numerical_lower": check["lower"],

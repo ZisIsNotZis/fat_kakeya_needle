@@ -144,6 +144,19 @@ class PivotEnclosureTests(unittest.TestCase):
         self.assertAlmostEqual(old_model.swept_area(old),
                                new_model.swept_area(new), places=11)
 
+    def test_second_knot_insertion_preserves_scaled_motion(self):
+        with open('results/midpoint_refine_0002_K64.json') as fh:
+            record = min(json.load(fh), key=lambda row: row['numerical_upper'])
+        old = np.asarray(record['best_params']).copy()
+        old[20:] *= 0.5  # K64 -> K128, per-boundary slide scale.
+        new = insert_knots(old)
+        old_model = SmoothProfileModel(128, .002, 19, 19, n_arc=20)
+        new_model = SmoothProfileModel(128, .002, 37, 37, n_arc=20)
+        np.testing.assert_allclose(old_model.to_full_params(old),
+                                   new_model.to_full_params(new), atol=1e-14)
+        self.assertAlmostEqual(old_model.swept_area(old),
+                               new_model.swept_area(new), places=10)
+
     def test_slide_scaling_improves_recorded_k_doubling(self):
         with open('results/incumbent_refine_0005.json') as fh:
             record = min(json.load(fh), key=lambda row: row['numerical_upper'])

@@ -1,0 +1,13 @@
+[
+  {
+    "source": "results/midpoint_refine_0002_K64.json",
+    "eps": 0.002,
+    "K": 128,
+    "mode": "scaled",
+    "source_K": 64,
+    "n_sub": 320,
+    "numerical_lower": 0.31733220726285427,
+    "numerical_upper": 0.3173734358796814,
+    "limitation": "deterministic control transfer, not reoptimization; floating-point only"
+  }
+]
