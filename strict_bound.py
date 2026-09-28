@@ -11,6 +11,7 @@ from __future__ import annotations
 import math
 
 import numpy as np
+from shapely import set_precision, union
 from shapely.affinity import scale
 from shapely.ops import unary_union
 
@@ -90,8 +91,13 @@ def numerical_pivot_enclosure(model: PivotSlideModel, params: np.ndarray,
 
     if not math.isclose(centers[-1, 0], 0.0, abs_tol=1e-10):
         raise ValueError("final pose does not join its x-mirror")
-    lower = unary_union(lower_polys)
-    upper = unary_union(upper_polys)
-    lo = float(lower.union(scale(lower, xfact=-1, origin=(0, 0))).area)
-    up = float(upper.union(scale(upper, xfact=-1, origin=(0, 0))).area)
+    # Same fixed-grid overlay as the optimizer; the grid perturbation is
+    # numerical, not a certified inward/outward rounding direction.
+    grid = min(1e-10, model.eps * 1e-8)
+    lower = unary_union([set_precision(poly, grid) for poly in lower_polys])
+    upper = unary_union([set_precision(poly, grid) for poly in upper_polys])
+    lo_mirror = set_precision(scale(lower, xfact=-1, origin=(0, 0)), grid)
+    up_mirror = set_precision(scale(upper, xfact=-1, origin=(0, 0)), grid)
+    lo = float(union(lower, lo_mirror, grid_size=grid).area)
+    up = float(union(upper, up_mirror, grid_size=grid).area)
     return {"lower": lo, "upper": up, "gap": up - lo, "n_sub": n_sub}

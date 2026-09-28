@@ -8,6 +8,7 @@ from shapely.affinity import scale
 from shapely.ops import unary_union
 
 from pivot_slide import PivotSlideModel, needle_polygon, slide_strip
+from smooth_pivot import SmoothProfileModel
 from strict_bound import numerical_pivot_enclosure, strict_upper
 
 
@@ -106,6 +107,18 @@ class PivotEnclosureTests(unittest.TestCase):
                     c = pivots[i] - 0.5 * fractions[i] * u
                     pose = needle_polygon(theta, *c, eps)
                     self.assertLess(pose.difference(outer).area, 1e-13)
+
+    def test_nested_angle_mesh_does_not_lose_area(self):
+        # Without precision-grid overlay GEOS dropped about 0.000374 area
+        # when this same recorded solution was refined from 40 to 80.
+        with open('results/smooth_hr_0005_K32.json') as fh:
+            best = min(json.load(fh), key=lambda run: run['area'])
+        model = SmoothProfileModel(32, 0.005, Nf=8, Nb=8, n_arc=40)
+        params = np.asarray(best['best_params'])
+        coarse = model.swept_area(params)
+        model.base.n_arc = 80
+        fine = model.swept_area(params)
+        self.assertGreaterEqual(fine + 1e-7, coarse)
 
     def test_recorded_result_reproduces_full_precision(self):
         with open('results/pivot_005_K16_night.json') as fh:

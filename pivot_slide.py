@@ -26,6 +26,7 @@ from __future__ import annotations
 import math
 
 import numpy as np
+from shapely import set_precision, union
 from shapely.affinity import scale
 from shapely.geometry import Polygon
 from shapely.ops import unary_union
@@ -113,6 +114,10 @@ class PivotSlideModel:
                 c_next = c_end + beta[i] * self.u[i + 1]
                 polys.append(slide_strip(t1, c_end, c_next, self.eps))
 
-        swept = unary_union(polys)
-        mirrored = scale(swept, xfact=-1.0, origin=(0, 0))
-        return float(swept.union(mirrored).area)
+        # Fixed-grid overlay avoids GEOS floating topology losing sampled
+        # rectangles as the angle mesh is refined. This remains numerical:
+        # snapping perturbs boundaries and is not a rigorous area bound.
+        grid = min(1e-10, self.eps * 1e-8)
+        swept = unary_union([set_precision(poly, grid) for poly in polys])
+        mirrored = set_precision(scale(swept, xfact=-1.0, origin=(0, 0)), grid)
+        return float(union(swept, mirrored, grid_size=grid).area)
