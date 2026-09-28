@@ -1,0 +1,24 @@
+[
+  {
+    "source": "results/midpoint_refine_0002_K256.json",
+    "eps": 0.001,
+    "K": 256,
+    "mode": "scaled",
+    "source_K": 256,
+    "n_sub": 80,
+    "numerical_lower": 0.30637258803808287,
+    "numerical_upper": 0.30645724695171567,
+    "limitation": "deterministic control transfer, not reoptimization; floating-point only"
+  },
+  {
+    "source": "results/midpoint_refine_0002_K256.json",
+    "eps": 0.001,
+    "K": 512,
+    "mode": "scaled",
+    "source_K": 256,
+    "n_sub": 80,
+    "numerical_lower": 0.3063940582614472,
+    "numerical_upper": 0.30643585687388525,
+    "limitation": "deterministic control transfer, not reoptimization; floating-point only"
+  }
+]
