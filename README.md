@@ -87,6 +87,7 @@ uv pip install --python /home/z/.venv/bin/python3 shapely scipy numpy matplotlib
 
 ## 文档导航
 
+- `docs/philosophy.md` — **目标与哲学 SSOT**（v3：可扩展性论证；先读）
 - `docs/findings.md` — 结论 SSOT（含证据链与数据表）
 - `docs/methodology.md` — 优化方法论与教训
 - `docs/research-plan.md` — 研究计划与未来方向
