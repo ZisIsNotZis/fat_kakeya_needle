@@ -1,0 +1,13 @@
+[
+  {
+    "source": "results/incumbent_refine_0002_K64.json",
+    "eps": 0.002,
+    "K": 64,
+    "mode": "fixed",
+    "source_K": 64,
+    "n_sub": 640,
+    "numerical_lower": 0.32207355316502073,
+    "numerical_upper": 0.32211542250983216,
+    "limitation": "deterministic control transfer, not reoptimization; floating-point only"
+  }
+]
