@@ -1,0 +1,18 @@
+{
+  "status": "ok",
+  "eps": 1.52587890625e-05,
+  "scale": 1099511627776,
+  "geometry_backend": "pyclipper",
+  "backend_version": "1.4.0",
+  "max_step": 0.004941060100302592,
+  "step_fraction": 0.1,
+  "polygon_count": 984,
+  "primitive_count": 384,
+  "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+  "numeric_outer_area": 1.2418858977412615,
+  "wall_s": 0.439359677999164,
+  "cpu_s": 0.43486428000000005,
+  "n": 4,
+  "input_source": "keich_motion.generate",
+  "K_stations": 65
+}

@@ -8,7 +8,9 @@
   backend `pyclipper==1.4.0` (installed 2026-09-28 with uv). The PyPI sdist
   SHA-256 `9882bd889f27da78add4dd6f881d25697efc740bf840274e749988d25496c8e1`
   contains an MIT wrapper license and bundled Clipper 6.4.2 under Boost 1.0;
-  inspect exact installed wheel when publishing an evaluator result. Reinstall:
+  CPython 3.12 manylinux x86_64 wheel SHA-256
+  `d1f807e2b4760a8e5c6d6b4e8c1d71ef52b7fe1946ff088f4fa41e16a881a5ca`;
+  installed extension bytes match that wheel (verified 2026-09-28). Reinstall:
   `uv pip install --python /home/z/.venv/bin/python3 pyclipper==1.4.0`. Integer
   clipping after floating-point pose quantization remains numerical, not a
   mathematical certificate.

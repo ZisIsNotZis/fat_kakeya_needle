@@ -1,0 +1,27 @@
+{
+  "status": "ok",
+  "eps": 9.5367431640625e-07,
+  "scale": 1099511627776,
+  "geometry_backend": "pyclipper",
+  "backend_version": "1.4.0",
+  "max_step": 0.001235264730636997,
+  "step_fraction": 0.1,
+  "polygon_count": 3236,
+  "primitive_count": 768,
+  "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+  "numeric_outer_area": 0.9409196523593288,
+  "wall_s": 19.12444936599786,
+  "cpu_s": 19.118477622,
+  "quality_check": {
+    "finer_step_fraction": 0.05,
+    "finer_max_step": 0.0008734640606523256,
+    "finer_polygon_count": 4304,
+    "finer_status": "ok",
+    "relative_tolerance": 0.02,
+    "finer_numeric_outer_area": 0.9321554594458549,
+    "relative_discrepancy": 0.009314496611371658
+  },
+  "n": 5,
+  "input_source": "keich_motion.generate",
+  "K_stations": 129
+}
