@@ -6,8 +6,9 @@
 
 - 过去在 0.002≤ε≤0.8 的数值样本可用 `2.27/(ln(1/ε)+1.60)` 拟合。这只是**有限范围的拟合参数**，不是已证渐近常数，也不能证明构造在 ε→0 时达到理论阶。
 - 固定 K 段的枢转＋滑移运动，每段至少扫出面积 π/(8K)；对于项目中的等角枢转族，即使 K 增长，若始终使用固定分段线性控制曲线、每段滑移按指定的 1/K 规则缩放，真实连续扫掠面积仍有正下限（证明见 `docs/findings.md`）。该迁移族要突破此障碍，需改变控制形状或滑移规则；这不排除其他运动表示。
-- 旧优化器评估的是有限姿态采样的并集，可能低于真实连续扫掠面积。例：ε=0.001、K=1、每段 30 个姿态的中心旋转给出 0.058854，而解析面积约 0.785399。ε=0.002 的现有最小记录仅两个 fresh seeds，不能算通过项目的 ≥3 seeds 标准。
+- 旧优化器评估有限姿态，可能严重漏扫：ε=0.001、K=1、每段 30 姿态中心旋转给出 0.058854，而解析面积约 0.785399。当前 ε=0.002 的最好**候选运动**为 K=256、73+73 控制点，n_sub=160 浮点数值区间 [0.311840284,0.311882752]；它继承历史盆地，三次局部搜索并非三个独立冷启动，不能称真实 minimum 或已认证上界。
 - `strict_bound.py` 现提供 `numerical_pivot_enclosure`：用实际枢转圆弧的端点凸包、角点弧矢高和完整滑移条带，给出**浮点数值包络**。`make_certificates.py` 只生成 `results/pivot_numerical_enclosures.json`；旧泛用 `strict_upper` 已禁用，旧 `results/certificates.json` 不能当作证书。Shapely 几何与面积没有严谨向外舍入，故目前**没有数学严格上界证书**。
+- v2 关键帧旧评估器未强制镜像接缝连续；`v2_numerical_enclosure.py` 以末端横坐标作镜轴重算全部 34 条存档候选。ε=0.005 最好存档 v2 在 n_sub=320 的数值区间约 [0.37120,0.37385]，未击败同宽度已保存的光滑枢转候选；并非同预算方法排名。
 - 关于文献中的对数阶是否直接适用于要求运动连续的这个问题，原始证明及连接步骤仍待核验；详见 `docs/findings.md`。
 
 ## 模型和复现
@@ -17,8 +18,10 @@
 环境见 `WORKSPACE.md`。最小回归检查：
 
 ```bash
-/home/z/.venv/bin/python3 -m unittest -v test_pivot_enclosure
+/home/z/.venv/bin/python3 -m unittest -v test_pivot_enclosure test_v2_numerical_enclosure
 /home/z/.venv/bin/python3 make_certificates.py
+/home/z/.venv/bin/python3 v2_numerical_enclosure.py --best-new --n-sub 80 \
+    --out results/v2_best_repaired.json
 ```
 
 `make_certificates.py` 会重生成枢转族的**数值**包络结果；不会修改历史 `results/certificates.json`。单点优化示例：
@@ -30,8 +33,8 @@
 
 ## 下一步
 
-1. 给数值包络增加中间姿态的几何包含回归；实现可审计的向外舍入面积算法后，才讨论严格证书。
-2. 建立随 ε 增长的 K 的递推候选；用统一高分辨率重新评估，并对 ε=0.002 补足 fresh seeds。
+1. 现有数值包络已覆盖中间姿态几何回归；下一步实现可审计的向外舍入面积算法，才讨论严格证书。
+2. 继续寻找**控制形状随尺度增长且有跨层重叠证明**的递推；现有三层插结只有有限数值收益，对 ε=0.002 还需独立冷启动种子。
 3. 固定候选族、机器并发、评估精度和 CPU 核时后，测量预算→质量曲线；“最优”只针对明确列出的已实现方法及预算。
 
 `docs/philosophy.md` 是目标与证据层级的来源；`docs/findings.md` 记录结果、反例和未决问题；`docs/methodology.md` 记录评估器和优化器的已知陷阱。大型历史结果在 `results/`。
