@@ -30,16 +30,25 @@ def main() -> None:
     parser.add_argument("--n-arc", type=int, default=80)
     parser.add_argument("--n-verify", type=int, default=160)
     parser.add_argument("--sigma", type=float, default=0.03)
+    parser.add_argument("--target-eps", type=float, default=None)
+    parser.add_argument("--target-K", type=int, default=None,
+                        help="scale each slide control by source K / target K")
     args = parser.parse_args()
     if args.seeds < 1 or args.sigma < 0 or any(b <= 0 for b in args.budgets):
         parser.error("seeds, sigma, and budgets must be nonnegative/positive")
     records = json.loads(args.source.read_text())
-    incumbent = min(records, key=lambda record: record["area"])
-    x0 = np.asarray(incumbent["best_params"], dtype=float)
+    incumbent = min(records, key=lambda record:
+                    record.get("numerical_upper", record.get("area", float("inf"))))
+    x0 = np.asarray(incumbent["best_params"], dtype=float).copy()
     if (len(x0) - 1) % 2:
         parser.error("archive does not have equal control counts")
     controls = (len(x0) - 1) // 2
-    model = SmoothProfileModel(incumbent["K"], incumbent["eps"],
+    target_K = incumbent["K"] if args.target_K is None else args.target_K
+    target_eps = incumbent["eps"] if args.target_eps is None else args.target_eps
+    if target_K < 1 or not (0 < target_eps <= 1):
+        parser.error("invalid target K or epsilon")
+    x0[1 + controls:] *= incumbent["K"] / target_K
+    model = SmoothProfileModel(target_K, target_eps,
                                controls, controls, n_arc=args.n_arc)
     rows = []
     for budget in args.budgets:
@@ -71,8 +80,10 @@ def main() -> None:
             used_cpu = time.process_time() - start
             check = numerical_pivot_enclosure(model.base,
                       model.to_full_params(np.asarray(best[1])), n_sub=args.n_verify)
-            row = {"family": "smooth-incumbent-continuation", "eps": incumbent["eps"],
-                   "K": incumbent["K"], "source": str(args.source),
+            row = {"family": "smooth-incumbent-continuation", "eps": target_eps,
+                   "K": target_K, "source": str(args.source),
+                   "source_eps": incumbent["eps"], "source_K": incumbent["K"],
+                   "slide_scale": incumbent["K"] / target_K,
                    "source_seed": incumbent["seed"], "seed": seed, "sigma": args.sigma,
                    "incumbent_discovery_cpu_s": None,
                    "baseline_sampled": baseline, "cpu_budget_s": budget,
