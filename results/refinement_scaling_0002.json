@@ -1,0 +1,50 @@
+[
+  {
+    "stage": "K64-local",
+    "K": 64,
+    "seed": 0,
+    "numerical_lower": 0.32207355316502073,
+    "numerical_upper": 0.32211542250983216,
+    "selected_run_cpu_s": 120.55427160299999,
+    "stage_all_runs_cpu_s": 543.267167526,
+    "cumulative_best_lineage_cpu_s": 120.55427160299999,
+    "cumulative_all_runs_cpu_s": 543.267167526,
+    "unaccounted": "source discovery and all validation CPU"
+  },
+  {
+    "stage": "K64-19ctrl",
+    "K": 64,
+    "seed": 0,
+    "numerical_lower": 0.3182018817525024,
+    "numerical_upper": 0.3182431765183262,
+    "selected_run_cpu_s": 180.640820478,
+    "stage_all_runs_cpu_s": 542.048504204,
+    "cumulative_best_lineage_cpu_s": 301.195092081,
+    "cumulative_all_runs_cpu_s": 1085.3156717299998,
+    "unaccounted": "source discovery and all validation CPU"
+  },
+  {
+    "stage": "K128-37ctrl",
+    "K": 128,
+    "seed": 0,
+    "numerical_lower": 0.3143212592455761,
+    "numerical_upper": 0.314363894873724,
+    "selected_run_cpu_s": 240.09518133900002,
+    "stage_all_runs_cpu_s": 722.5243302580001,
+    "cumulative_best_lineage_cpu_s": 541.29027342,
+    "cumulative_all_runs_cpu_s": 1807.840001988,
+    "unaccounted": "source discovery and all validation CPU"
+  },
+  {
+    "stage": "K256-73ctrl",
+    "K": 256,
+    "seed": 0,
+    "numerical_lower": 0.3118402836938166,
+    "numerical_upper": 0.31188275218017836,
+    "selected_run_cpu_s": 300.139592778,
+    "stage_all_runs_cpu_s": 901.7850552770001,
+    "cumulative_best_lineage_cpu_s": 841.4298661979999,
+    "cumulative_all_runs_cpu_s": 2709.625057265,
+    "unaccounted": "source discovery and all validation CPU"
+  }
+]
