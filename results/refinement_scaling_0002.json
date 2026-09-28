@@ -46,5 +46,17 @@
     "cumulative_best_lineage_cpu_s": 841.4298661979999,
     "cumulative_all_runs_cpu_s": 2709.625057265,
     "unaccounted": "source discovery and all validation CPU"
+  },
+  {
+    "stage": "K256-coarse-knots",
+    "K": 256,
+    "seed": 0,
+    "numerical_lower": 0.31033534528061546,
+    "numerical_upper": 0.3103761034579813,
+    "selected_run_cpu_s": 240.445833374,
+    "stage_all_runs_cpu_s": 721.8998712079999,
+    "cumulative_best_lineage_cpu_s": 1081.8756995719998,
+    "cumulative_all_runs_cpu_s": 3431.524928473,
+    "unaccounted": "source discovery and all validation CPU"
   }
 ]

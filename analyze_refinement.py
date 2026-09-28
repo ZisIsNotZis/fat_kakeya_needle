@@ -18,6 +18,8 @@ STAGES = [
      "results/midpoint_refine_0002_K128_dense.json"),
     ("K256-73ctrl", "results/midpoint_refine_0002_K256.json",
      "results/midpoint_refine_0002_K256_dense.json"),
+    ("K256-coarse-knots", "results/coarse_refine_0002_K256.json",
+     "results/coarse_refine_0002_K256_dense.json"),
 ]
 
 
