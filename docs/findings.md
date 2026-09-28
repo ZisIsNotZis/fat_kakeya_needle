@@ -137,8 +137,7 @@ O(log) parameters. Search: differential evolution + Nelder-Mead polish.
 ## References
 
 - Tao, "From rotating needles to stability of waves; emerging connections between combinatorics, analysis and PDE" (arXiv:math/0008098), PDF 第 1–4 页：明确提及零宽针可用任意小面积连续旋转、针可用任意小面积平移，并称平面 Besicovitch 集的 δ-邻域至少 C/log(1/δ)、Keich 证明该**邻域界**尖锐。PDF 没有在所引段落证明带厚度针的连续运动达到同阶；旧记录误署 Bourgain。
-- Keich 1999, "On Lp bounds for Kakeya maximal functions and the
-  Minkowski dimension" — matching 1/log upper bound construction.
+- Keich 1999, "On Lp Bounds for Kakeya Maximal Functions and the Minkowski Dimension in R²", DOI:10.1112/S0024609398005372（2026-09-28 经 Crossref 作者/标题/日期核对）；Tao 综述称其证明 Besicovitch 集 δ-邻域对数界尖锐。原文暂不可访问，尚不能把它直接当作本项目厚针连续运动的上界证明。
 - Tao's Kakeya survey notes (teorth.github.io/tao-web/apps/kakeya.html)
   and arXiv:2608.22209 — problem landscape, fat-needle framing.
 - Local verbatim source: `basics.md` (research transcript incl.
