@@ -1,4 +1,4 @@
-"""Non-certified integer-polygon numerical area for Keich slide/center_rotate motions.
+"""Non-certified integer-polygon numerical area for continuous pose primitives.
 
 Requires optional pyclipper==1.4.0 (Clipper 6.4.2). Integer clipping is exact
 for its integer inputs, NOT for the floating-point poses or trigonometry that
@@ -90,14 +90,15 @@ def _corners(x: float, y: float, theta: float, eps: float):
             yield x + c * u - s * v, y + s * u + c * v
 
 
-def _roundoff_pad(x: float, y: float, theta: float, eps: float) -> float:
+def _roundoff_pad(x: float, y: float, theta: float, eps: float,
+                  radius: float | None = None) -> float:
     """Heuristic float pad (not a proven error bound for libm or upstream poses).
 
     Includes cancellation in distant centers and angular error. 64 ulps of
     the component magnitudes dominate ordinary double arithmetic roundoff;
     do not confuse this with a certified directed rounding of sin/cos.
     """
-    r = math.hypot(0.5, eps / 2)
+    r = math.hypot(0.5, eps / 2) if radius is None else radius
     return 64 * (math.ulp(x) + math.ulp(y) + math.ulp(theta) * r
                  + math.ulp(r) + math.ulp(1.0))
 
@@ -105,11 +106,11 @@ def _roundoff_pad(x: float, y: float, theta: float, eps: float) -> float:
 def primitive_paths(primitive: dict, eps: float, max_step: float, *,
                     max_paths: int = 100000, deadline: float = math.inf
                     ) -> list[list[tuple[int, int]]]:
-    """Conservatively model linear slide or fixed-center rotation numerically.
+    """Numerical hulls of endpoint corner boxes plus L-infinity angular sagitta.
 
-    Every path is a monotone integer hull of endpoint rectangle corner boxes;
-    rotation intervals also get an L-infinity sagitta pad. For each corner
-    trajectory the deviation from its chord is <= r*2*sin(step/4)^2.
+    Angular substeps are at most pi/2. For each corner trajectory, its
+    deviation from the endpoint chord is <= r*2*sin(step/4)^2. Linear center
+    interpolation contributes no further deviation from that chord.
     """
     eps, max_step = _finite(eps), _finite(max_step)
     if eps <= 0 or max_step <= 0:
@@ -139,31 +140,57 @@ def primitive_paths(primitive: dict, eps: float, max_step: float, *,
         points = [p for x, y in ((x0, y0), (x1, y1))
                   for cx, cy in _corners(x, y, a0, eps) for p in _box(cx, cy, pad)]
         return [_hull(points)]
-    if kind != "center_rotate":
+    if kind not in ("center_rotate", "pivot_rotate", "linear_pose"):
         raise ValueError(f"unsupported primitive kind: {kind}")
-    if (x0, y0) != (x1, y1):
-        raise ValueError("center_rotate changes center")
     angle = _finite(primitive['angle'])
     angle_tol = 64 * (math.ulp(a0) + math.ulp(a1) + math.ulp(angle))
     if abs((a1 - a0) - angle) > angle_tol:
-        raise ValueError('center_rotate angle disagrees with endpoint orientation')
-    # The circular sagitta formula is valid for each short arc, not for an
-    # endpoint-coincident complete revolution with zero computed sagitta.
+        raise ValueError(f'{kind} angle disagrees with endpoint orientation')
+    if kind == "center_rotate":
+        if (x0, y0) != (x1, y1):
+            raise ValueError("center_rotate changes center")
+        radius = math.hypot(0.5, eps / 2)
+
+        def center(t, theta):
+            return x0, y0
+    elif kind == "pivot_rotate":
+        px, py = map(_finite, primitive['pivot'])
+        fraction = _finite(primitive['fraction'])
+        if not -1 <= fraction <= 1:
+            raise ValueError("pivot fraction must lie in [-1, 1]")
+        radius = math.hypot((1 + abs(fraction)) / 2, eps / 2)
+
+        def center(t, theta):
+            return px - 0.5 * fraction * math.cos(theta), py - 0.5 * fraction * math.sin(theta)
+
+        for x, y, a, t in ((x0, y0, a0, 0), (x1, y1, a1, 1)):
+            cx, cy = center(t, a)
+            tolerance = 64 * (math.ulp(px) + math.ulp(py) + math.ulp(x)
+                              + math.ulp(y) + math.ulp(fraction) + math.ulp(a))
+            if math.hypot(x - cx, y - cy) > tolerance:
+                raise ValueError("pivot_rotate endpoint disagrees with pivot and fraction")
+    else:
+        radius = math.hypot(0.5, eps / 2)
+
+        def center(t, theta):
+            return x0 + t * (x1 - x0), y0 + t * (y1 - y0)
+
+    # A whole revolution cannot be enclosed using its coincident endpoints.
     max_step = min(max_step, math.pi / 2)
-    count = max(1, math.ceil(abs(a1 - a0) / max_step))
+    count = max(1, math.ceil(abs(angle) / max_step))
     if count > min(100000, max_paths):
         raise ResourceLimited("rotation exceeds remaining polygon budget")
-    step = (a1 - a0) / count
-    radius = math.hypot(0.5, eps / 2)
+    step = angle / count
     sagitta = radius * 2 * math.sin(abs(step) / 4) ** 2
     paths = []
     for i in range(count):
         if i % 64 == 0 and time.monotonic() > deadline:
             raise ResourceLimited("wall budget exhausted during rotation")
         left, right = a0 + i * step, a0 + (i + 1) * step
-        pad = sagitta + max(_roundoff_pad(x0, y0, a, eps) for a in (left, right))
-        points = [p for angle in (left, right)
-                  for cx, cy in _corners(x0, y0, angle, eps)
+        poses = [(x0, y0, a0) if i == 0 else (*center(i / count, left), left),
+                 (x1, y1, a1) if i + 1 == count else (*center((i + 1) / count, right), right)]
+        pad = sagitta + max(_roundoff_pad(x, y, a, eps, radius) for x, y, a in poses)
+        points = [p for x, y, a in poses for cx, cy in _corners(x, y, a, eps)
                   for p in _box(cx, cy, pad)]
         paths.append(_hull(points))
     return paths
@@ -222,6 +249,16 @@ def evaluate(primitives: list[dict], eps: float, *, max_wall_s: float = 100,
         if not math.isfinite(max_wall_s) or max_wall_s <= 0 or max_polygons < 1:
             raise ValueError("invalid work budget")
         radius = math.hypot(0.5, eps / 2)
+        # A pivot station can put an arm almost a full unit from the pivot.
+        # Use the largest actual corner radius across this entire path so
+        # max_step has the same sagitta/eps meaning for every motion family.
+        for primitive in primitives:
+            if primitive.get('kind') == 'pivot_rotate':
+                fraction = _finite(primitive['fraction'])
+                if not -1 <= fraction <= 1:
+                    raise ValueError('pivot fraction must lie in [-1, 1]')
+                radius = max(radius, math.hypot((1 + abs(fraction)) / 2, eps / 2))
+        row['max_corner_radius'] = radius
         # Exact inverse of r*2*sin(step/4)^2 <= step_fraction*eps.
         ratio = min(1.0, step_fraction * eps / (2 * radius))
         max_step = 4 * math.asin(math.sqrt(ratio))

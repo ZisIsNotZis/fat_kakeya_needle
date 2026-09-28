@@ -1,0 +1,22 @@
+{
+  "status": "ok",
+  "input_source": "results/v2_0005.json",
+  "source_record_index": 1,
+  "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+  "eps": 0.005,
+  "model": "v2-logspace-growing",
+  "K": 6,
+  "seed": 1,
+  "scale": 1099511627776,
+  "geometry_backend": "pyclipper",
+  "backend_version": "1.4.0",
+  "max_step": 0.002828409683050763,
+  "step_fraction": 0.0001,
+  "polygon_count": 1116,
+  "primitive_count": 12,
+  "max_corner_radius": 0.500006249960938,
+  "numeric_outer_area": 0.3751772878138853,
+  "wall_s": 1.5094288129985216,
+  "cpu_s": 1.5071529830000001,
+  "mirror_axis_x": 8.164937792477496e-05
+}

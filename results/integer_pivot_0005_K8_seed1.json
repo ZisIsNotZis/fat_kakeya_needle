@@ -1,0 +1,22 @@
+{
+  "status": "ok",
+  "input_source": "results/pivot_0005_K8.json",
+  "source_record_index": 1,
+  "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+  "eps": 0.005,
+  "model": "pivot-slide",
+  "K": 8,
+  "seed": 1,
+  "scale": 1099511627776,
+  "geometry_backend": "pyclipper",
+  "backend_version": "1.4.0",
+  "max_step": 0.002132498191253767,
+  "step_fraction": 0.0001,
+  "polygon_count": 1502,
+  "primitive_count": 30,
+  "max_corner_radius": 0.8795948734929041,
+  "numeric_outer_area": 0.36792101580564324,
+  "wall_s": 3.2422424239994143,
+  "cpu_s": 3.223044067,
+  "mirror_axis_x": -2.029415539537528e-17
+}
