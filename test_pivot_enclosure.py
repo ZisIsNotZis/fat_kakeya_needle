@@ -131,6 +131,18 @@ class PivotEnclosureTests(unittest.TestCase):
         self.assertAlmostEqual(result['lower'], recorded['numerical_lower'], places=11)
         self.assertAlmostEqual(result['upper'], recorded['numerical_upper'], places=11)
 
+    def test_slide_scaling_improves_recorded_k_doubling(self):
+        with open('results/incumbent_refine_0005.json') as fh:
+            record = min(json.load(fh), key=lambda row: row['numerical_upper'])
+        x = np.asarray(record['best_params'])
+        coarse = SmoothProfileModel(32, 0.005, 10, 10, n_arc=80).swept_area(x)
+        naive = SmoothProfileModel(64, 0.005, 10, 10, n_arc=80).swept_area(x)
+        scaled = x.copy()
+        scaled[11:] *= 0.5
+        refined = SmoothProfileModel(64, 0.005, 10, 10, n_arc=80).swept_area(scaled)
+        self.assertGreater(naive, coarse + 0.2)
+        self.assertLess(refined, coarse - 0.002)
+
     def test_ruler_only_top_scale_has_fixed_area_sector(self):
         # K growth alone does not shrink area: half the arcs share one pivot.
         for m in (2, 3, 5):

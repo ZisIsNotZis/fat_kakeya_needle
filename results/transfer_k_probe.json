@@ -1,0 +1,57 @@
+[
+  {
+    "source": "results/incumbent_refine_0005.json",
+    "eps": 0.005,
+    "K": 8,
+    "mode": "fixed",
+    "source_K": 32,
+    "n_sub": 80,
+    "numerical_lower": 0.7016624970945307,
+    "numerical_upper": 0.7019197214077647,
+    "limitation": "deterministic control transfer, not reoptimization; floating-point only"
+  },
+  {
+    "source": "results/incumbent_refine_0005.json",
+    "eps": 0.005,
+    "K": 16,
+    "mode": "fixed",
+    "source_K": 32,
+    "n_sub": 80,
+    "numerical_lower": 0.5767441778069283,
+    "numerical_upper": 0.5769415381981561,
+    "limitation": "deterministic control transfer, not reoptimization; floating-point only"
+  },
+  {
+    "source": "results/incumbent_refine_0005.json",
+    "eps": 0.005,
+    "K": 32,
+    "mode": "fixed",
+    "source_K": 32,
+    "n_sub": 80,
+    "numerical_lower": 0.34261206343477557,
+    "numerical_upper": 0.34324301359576054,
+    "limitation": "deterministic control transfer, not reoptimization; floating-point only"
+  },
+  {
+    "source": "results/incumbent_refine_0005.json",
+    "eps": 0.005,
+    "K": 64,
+    "mode": "fixed",
+    "source_K": 32,
+    "n_sub": 80,
+    "numerical_lower": 0.6117325374999679,
+    "numerical_upper": 0.6123586739104081,
+    "limitation": "deterministic control transfer, not reoptimization; floating-point only"
+  },
+  {
+    "source": "results/incumbent_refine_0005.json",
+    "eps": 0.005,
+    "K": 128,
+    "mode": "fixed",
+    "source_K": 32,
+    "n_sub": 80,
+    "numerical_lower": 0.9070649415388959,
+    "numerical_upper": 0.9077280194820446,
+    "limitation": "deterministic control transfer, not reoptimization; floating-point only"
+  }
+]

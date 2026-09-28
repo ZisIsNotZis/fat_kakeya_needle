@@ -1,0 +1,24 @@
+[
+  {
+    "source": "results/incumbent_refine_0005.json",
+    "eps": 0.002,
+    "K": 32,
+    "mode": "scaled",
+    "source_K": 32,
+    "n_sub": 320,
+    "numerical_lower": 0.32661754907359475,
+    "numerical_upper": 0.32677324437359273,
+    "limitation": "deterministic control transfer, not reoptimization; floating-point only"
+  },
+  {
+    "source": "results/incumbent_refine_0005.json",
+    "eps": 0.002,
+    "K": 64,
+    "mode": "scaled",
+    "source_K": 32,
+    "n_sub": 320,
+    "numerical_lower": 0.3232393704605417,
+    "numerical_upper": 0.323319506596557,
+    "limitation": "deterministic control transfer, not reoptimization; floating-point only"
+  }
+]
