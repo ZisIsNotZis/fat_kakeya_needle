@@ -32,6 +32,7 @@ def run_cell(family: str, eps: float, K: int, seed: int,
     start_cpu, start_wall = time.process_time(), time.monotonic()
     best = [float("inf"), None]
     calls = 0
+    population_evals = 5 * model.ndim
 
     def objective(x):
         nonlocal calls
@@ -58,7 +59,10 @@ def run_cell(family: str, eps: float, K: int, seed: int,
               model.to_full_params(np.asarray(best[1])), n_sub=n_verify)
     return {"family": family, "eps": eps, "K": K, "seed": seed,
             "cpu_budget_s": budget_cpu_s, "cpu_used_s": cpu_s,
-            "wall_used_s": wall_s, "calls": calls, "n_arc": n_arc,
+            "wall_used_s": wall_s, "calls": calls,
+            "population_evals": population_evals,
+            "search_started": calls > population_evals,
+            "n_arc": n_arc,
             "n_verify": n_verify, "best_params": best[1],
             "objective_sampled": best[0],
             "validation_numerical_lower": result["lower"],
