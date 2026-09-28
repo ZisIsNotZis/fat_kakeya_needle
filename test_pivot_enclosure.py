@@ -1,4 +1,5 @@
 """Regression tests for numerical enclosures of actual pivot-slide motions."""
+import json
 import math
 import unittest
 
@@ -79,6 +80,42 @@ class PivotEnclosureTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "discontinuous"):
             numerical_pivot_enclosure(BrokenModel(0.1, K=2),
                                       np.array([0.0, 0.0, 0.0, 0.2]), n_sub=4)
+
+    def test_arc_hulls_contain_intermediate_poses(self):
+        # Geometry inclusion, not merely area comparison; buffer is polygonal.
+        eps = 0.003
+        model = PivotSlideModel(eps, K=2)
+        params = np.array([0.0, 0.7, -0.5, 0.2])
+        pivots, _, fractions, _ = model.centers_and_pivots(params)
+        for i in range(model.K):
+            start, end = model.theta[i:i + 2]
+            radius = math.hypot((1 + abs(fractions[i])) / 2, eps / 2)
+            for left, right in zip(np.linspace(start, end, 9)[:-1],
+                                   np.linspace(start, end, 9)[1:]):
+                rects = []
+                for theta in (left, right):
+                    u = np.array([math.cos(theta), math.sin(theta)])
+                    c = pivots[i] - 0.5 * fractions[i] * u
+                    rects.append(needle_polygon(theta, *c, eps))
+                hull = unary_union(rects).convex_hull
+                delta = right - left
+                outer = hull.buffer(radius * (1 - math.cos(delta / 2)) /
+                                    math.cos(math.pi / 64), quad_segs=16)
+                for theta in np.linspace(left, right, 17)[1:-1]:
+                    u = np.array([math.cos(theta), math.sin(theta)])
+                    c = pivots[i] - 0.5 * fractions[i] * u
+                    pose = needle_polygon(theta, *c, eps)
+                    self.assertLess(pose.difference(outer).area, 1e-13)
+
+    def test_recorded_result_reproduces_full_precision(self):
+        with open('results/pivot_005_K16_night.json') as fh:
+            best = min(json.load(fh), key=lambda run: run['area'])
+        with open('results/pivot_numerical_enclosures.json') as fh:
+            recorded = json.load(fh)[0]
+        result = numerical_pivot_enclosure(PivotSlideModel(best['eps'], best['K']),
+                                           np.asarray(best['params']), n_sub=recorded['n_sub'])
+        self.assertAlmostEqual(result['lower'], recorded['numerical_lower'], places=11)
+        self.assertAlmostEqual(result['upper'], recorded['numerical_upper'], places=11)
 
     def test_generic_pose_is_not_supported(self):
         with self.assertRaises(NotImplementedError):

@@ -1,95 +1,37 @@
 # fat_kakeya_needle
 
-数值实验研究 **fat Kakeya needle 问题**：一根 1×ε 的细长矩形针，
-在无限平面上完全自由地运动（平移 + 旋转），转过 180°，问它扫过的
-最小面积 f(ε) 是多少？
+研究一根 1×ε 矩形针在平面上连续平移、旋转 180° 的扫掠面积。目标是寻找可随 ε 递推细化的构造，并比较有限算力预算下不同搜索方法取得的面积；失败、漏扫和不稳定结果同样需要可复核地记录。
 
-## 愿景与最终目标
+## 当前状态（2026-09-28）
 
-理论已知 f(ε) = Θ(1/log(1/ε))（Córdoba 1977 下界、Keich 1999 匹配
-上界），但**乘性常数 A 至今无人给出数值**。本项目的最终目标：
+- 过去在 0.002≤ε≤0.8 的数值样本可用 `2.27/(ln(1/ε)+1.60)` 拟合。这只是**有限范围的拟合参数**，不是已证渐近常数，也不能证明构造在 ε→0 时达到理论阶。
+- 固定 K 段的枢转＋滑移运动，每段至少扫出面积 π/(8K)；因此固定 K 的真实面积不能随 ε→0 趋零。必须研究 K 随 ε 增长且有足够跨段重叠的递推族。
+- 旧优化器评估的是有限姿态采样的并集，可能低于真实连续扫掠面积。例：ε=0.001、K=1、每段 30 个姿态的中心旋转给出 0.058854，而解析面积约 0.785399。ε=0.002 的现有最小记录仅两个 fresh seeds，不能算通过项目的 ≥3 seeds 标准。
+- `strict_bound.py` 现提供 `numerical_pivot_enclosure`：用实际枢转圆弧的端点凸包、角点弧矢高和完整滑移条带，给出**浮点数值包络**。`make_certificates.py` 只生成 `results/pivot_numerical_enclosures.json`；旧泛用 `strict_upper` 已禁用，旧 `results/certificates.json` 不能当作证书。Shapely 几何与面积没有严谨向外舍入，故目前**没有数学严格上界证书**。
+- 关于文献中的对数阶是否直接适用于要求运动连续的这个问题，原始证明及连接步骤仍待核验；详见 `docs/findings.md`。
 
-1. 用大规模数值优化画出可信的 f(ε) 曲线（ε 从 0.8 压到 0.002）；
-2. 从数据中反推**渐近常数**与修正结构；
-3. 把每个数值结果配上**可复核的误差证书**，让"数值实验"升级为
-   "计算辅助的严格上界"。
+## 模型和复现
 
-当前最佳估计（详见 docs/findings.md）：
+运动族包括关键帧线性插值（`sweeper_v2.py`）、枢转＋滑移（`pivot_slide.py`）、少量控制点的光滑剖面（`smooth_pivot.py`）、二进层次滑移（`hierarchical_pivot.py`）。优化主要使用差分进化；每族的数值比较必须指定相同的评估精度、fresh seeds 和实测 CPU 核时预算。优化器所得的 sampled area 是数值估计，不是自动成立的面积上界。
 
-> **f(ε) ≈ 2.27 / (ln(1/ε) + 1.60)**  （全域 0.002 ≤ ε ≤ 0.8，37 点，
-> 除最小 ε 外偏差 < ±6.5%）
-
-即渐近常数 **A ≈ 2.27**——据我们所知，这是该问题常数的首次数值估计。
-
-## 实现方法
-
-一根针的运动 = 一串关键帧位姿 (θ, x, y)；两个关键帧之间位姿线性
-插值（或"绕枢轴旋转 + 沿针滑移"），扫掠面积 = 所有中间位姿矩形
-的**精确多边形并集**（shapely，任意距离下精确，无光栅近似）。
-搜索用差分进化（DE）+ Nelder-Mead 抛光，多进程并行。
-
-四个运动族交叉验证（详见 docs/findings.md）：
-
-| 族 | 特点 | 角色 |
-|---|---|---|
-| v1 keyframe | 光栅评估，有界窗口 | 中大 ε 基线 |
-| v2 logspace keyframe | log 空间平移，可到任意远 | 小 ε |
-| pivot+slide free | 每段绕针上某点枢转 + 沿针滑移 | 物理可解释族 |
-| pivot+slide smooth | f(θ)、β(θ) 用少量控制点的光滑剖面 | 小 ε 主力（维数与 K 无关）|
-
-方法论硬约束（踩坑换来的，见 docs/methodology.md）：
-**min-over-≥3 fresh seeds** 是唯一可靠估计量；目标函数采样分辨率
-必须随 ε 缩小而加密（n_theta=40 在 ε=0.005 时漏扫 21%）；所有跨 ε
-结论必须经高分辨率复评。
-
-## 已做什么 / 主要成果
-
-- f̂(ε) 曲线 37 点（ε ∈ [0.002, 0.8]），四族交叉验证，
-  全部结果与证书工具可复现（`results/`，`strict_bound.py`）。
-- **A_eff = f̂·ln(1/ε) 单调上升**，与带修正项的 log 律完全一致；
-  crossover 拟合给出 A ≈ 2.27, B ≈ 1.60。
-- 阴性结果同样成体系：Perron 自相似层次参数化被证伪（塌缩为
-  两站点运动）；结构种子与随机种子打平；盲 DE 维数诅咒普遍
-  （三族皆 K=6–8 最优）。
-- 完整过程记录：`results/morning_report.md`（含两次结论反转的
-  证据链）。
-
-## 没做什么 / 开放问题
-
-- **ε=0.002 点 +16% 偏离** log+B 预测——是族表达边界还是更高阶
-  修正？需 ε=0.001 + v2 族高分辨率交叉验证。
-- **严格上界**尚未对所有已发表构造出证书（strict_bound.py 已就绪，
-  枢转+滑移族几何干净可先行）。
-- **f(ε) 的严格下界**完全没有——数值只能给上界。
-- 理论 log 律的数值验证在 ε ≥ 0.002 内不可行（修正项衰减太慢，
-  lnln(1/ε)/ln(1/ε) < 1% 需要 ε < 10⁻⁴⁰ 量级）。
-
-## Roadmap
-
-1. [ ] v2 族高分辨率评估器 polygon 化（raster 精度依赖 ε）
-2. [ ] ε=0.001 + ε=0.002 交叉验证（裁决 +16% 偏离）
-3. [ ] 对头条构造签发严格上界证书（strict_bound.py）
-4. [ ] 跨优化器对比（CMA-ES / 贝叶斯 vs DE），标定搜索能力天花板
-5. [ ] 族间不可达缺口成因（关键帧"切角" vs 枢转+滑移）
-
-## 快速开始
+环境见 `WORKSPACE.md`。最小回归检查：
 
 ```bash
-uv pip install --python /home/z/.venv/bin/python3 shapely scipy numpy matplotlib
-
-# 单点优化（例：eps=0.05, K=32, 光滑剖面族）
-/home/z/.venv/bin/python3 smooth_run.py --eps 0.05 --K 32 --Nf 6 --Nb 6 \
-    --seeds 3 --workers 6 --out results/demo.json
-
-# 长任务请用 detached（见 WORKSPACE.md），分析绘图：
-/home/z/.venv/bin/python3 analyze.py
+/home/z/.venv/bin/python3 -m unittest -v test_pivot_enclosure
+/home/z/.venv/bin/python3 make_certificates.py
 ```
 
-## 文档导航
+`make_certificates.py` 会重生成枢转族的**数值**包络结果；不会修改历史 `results/certificates.json`。单点优化示例：
 
-- `docs/philosophy.md` — **目标与哲学 SSOT**（v3：可扩展性论证；先读）
-- `docs/findings.md` — 结论 SSOT（含证据链与数据表）
-- `docs/methodology.md` — 优化方法论与教训
-- `docs/research-plan.md` — 研究计划与未来方向
-- `results/morning_report.md` — 完整过程日志（含两次结论反转）
-- `basics.md` — 用户提供的背景资料（verbatim 源）
+```bash
+/home/z/.venv/bin/python3 smooth_run.py --eps 0.05 --K 32 --Nf 6 --Nb 6 \
+    --seeds 3 --workers 6 --out results/demo.json
+```
+
+## 下一步
+
+1. 给数值包络增加中间姿态的几何包含回归；实现可审计的向外舍入面积算法后，才讨论严格证书。
+2. 建立随 ε 增长的 K 的递推候选；用统一高分辨率重新评估，并对 ε=0.002 补足 fresh seeds。
+3. 固定候选族、机器并发、评估精度和 CPU 核时后，测量预算→质量曲线；“最优”只针对明确列出的已实现方法及预算。
+
+`docs/philosophy.md` 是目标与证据层级的来源；`docs/findings.md` 记录结果、反例和未决问题；`docs/methodology.md` 记录评估器和优化器的已知陷阱。大型历史结果在 `results/`。
