@@ -1,26 +1,10 @@
-"""Certified strict upper bounds for swept areas of known motions.
+"""Numerical area enclosures for continuous pivot-slide motions.
 
-For any continuous motion pose(s) = (c(s), theta(s)), s in [0,1], the
-first-half sweep S1 satisfies: subdivide [0,1] into substeps; for each
-substep [s_k, s_k+1] every needle point of every intermediate pose stays
-within distance rho_k of the convex hull H_k of the two boundary poses,
-where rho_k is certified numerically as
-
-    rho_k = max_sampled_corner_distance(H_k)
-            + Lip_corner * (max gap between samples),
-
-with Lip_corner = max |d/ds corner(s)| <= |dc/ds| + r_max*|dtheta/ds|
-(r_max = circumradius = sqrt(0.25 + (eps/2)^2); the needle is the convex
-hull of its 4 corners, and if all corners are within rho of a convex set
-then the whole needle is).  Therefore
-
-    S1 subseteq union_k  buffer(H_k, rho_k)
-
-and the full-turn swept set is S1 union mirror_x(S1).  area(U) is a
-certified UPPER bound for the construction's swept area; the sampled
-union (without buffers) is a LOWER bound; U - L brackets the truth.
-
-Slides (pure along-needle translations) are exact rectangles already.
+For each arc subinterval, the endpoint rectangle hull is enlarged by the
+maximum corner arc sagitta. Slides are represented by their entire swept
+strip. The mirrored half joins at x=0. Shapely uses floating-point polygon
+operations (including polygonal buffers): these are NOT rigorous mathematical
+certificates, and neither the reported lower nor upper has outward rounding.
 """
 from __future__ import annotations
 
@@ -28,73 +12,86 @@ import math
 
 import numpy as np
 from shapely.affinity import scale
-from shapely.geometry import Point, Polygon
 from shapely.ops import unary_union
 
-
-def needle_polygon(theta, cx, cy, eps):
-    c, s = math.cos(theta), math.sin(theta)
-    hl, hw = 0.5, eps / 2.0
-    pts = [(cx + c * u - s * v, cy + s * u + c * v)
-           for u, v in ((hl, hw), (hl, -hw), (-hl, -hw), (-hl, hw))]
-    return Polygon(pts)
+from pivot_slide import PivotSlideModel, needle_polygon, slide_strip
 
 
-def corners(theta, cx, cy, eps):
-    c, s = math.cos(theta), math.sin(theta)
-    hl, hw = 0.5, eps / 2.0
-    return np.array([(cx + c * u - s * v, cy + s * u + c * v)
-                     for u, v in ((hl, hw), (hl, -hw), (-hl, -hw), (-hl, hw))])
+def strict_upper(*args, **kwargs):
+    """Reject legacy generic poses: endpoint displacements do not bound speed."""
+    raise NotImplementedError(
+        "Generic pose enclosures are unsupported; use numerical_pivot_enclosure "
+        "with a PivotSlideModel instead. Floating-point areas are not certificates."
+    )
 
 
-def strict_upper(eps, pose_fn, n_sub=300, m_sample=12):
-    """pose_fn(s) -> (theta, cx, cy) for s in [0,1], theta monotone 0..pi/2.
+def numerical_pivot_enclosure(model: PivotSlideModel, params: np.ndarray,
+                              n_sub: int = 300) -> dict:
+    """Sampled lower and conservative numerical upper for a pivot-slide path.
 
-    Returns dict with upper/lower areas and certified gap.
+    Every pivot arc is divided into n_sub angle steps. For a corner at radius
+    r from its pivot, the circular arc stays within r*(1-cos(delta/2)) of
+    the chord between its endpoint positions (delta <= pi/2). Since the
+    needle is the convex hull of its corners, buffering the endpoint needle
+    hull by the largest corner sagitta covers all intermediate poses in
+    exact arithmetic. Shapely's finite polygonal buffer is expanded by its
+    chord inradius factor, but floating-point operations are not certified.
     """
-    r_max = math.sqrt(0.25 + (eps / 2.0) ** 2)
-    ss = np.linspace(0.0, 1.0, n_sub + 1)
-    poses = [pose_fn(s) for s in ss]
-    rects = [corners(*p, eps) for p in poses]
+    if not isinstance(model, PivotSlideModel):
+        raise TypeError("model must be a PivotSlideModel")
+    if isinstance(n_sub, bool) or not isinstance(n_sub, int) or n_sub < 1:
+        raise ValueError("n_sub must be a positive integer")
+    params = np.asarray(params, dtype=float)
+    if not np.all(np.isfinite(params)):
+        raise ValueError("params must be finite")
+    pivots, centers, fractions, beta = model.centers_and_pivots(params)
+    if not all(np.all(np.isfinite(a)) for a in (pivots, centers, fractions, beta)):
+        raise ValueError("decoded motion must be finite")
 
-    polys_lower = []
-    polys_upper = []
-    for k in range(n_sub):
-        r0 = Polygon(rects[k])
-        r1 = Polygon(rects[k + 1])
-        polys_lower.append(r0)
-        h = unary_union([r0, r1]).convex_hull
-        # sample interior poses, certify rho
-        th0, cx0, cy0 = poses[k]
-        th1, cx1, cy1 = poses[k + 1]
-        dth = abs(th1 - th0)
-        # per-unit-s corner speed bound: |dc/ds| = |Δc|·n_sub,
-        # |dθ/ds| = dθ·n_sub; per-corner-point Lipschitz gap over sample
-        # spacing (1/(n_sub·m_sample) in s) is therefore
-        #   (|Δc| + r_max·dθ) / m_sample
-        lip_gap = (math.hypot(cx1 - cx0, cy1 - cy0) + r_max * dth) / m_sample
-        rho = 0.0
-        for j in range(1, m_sample):
-            s = ss[k] + (ss[k + 1] - ss[k]) * j / m_sample
-            th, cx, cy = pose_fn(s)
-            cs = corners(th, cx, cy, eps)
-            for pt in cs:
-                d = Point(pt).distance(h)
-                if d > rho:
-                    rho = d
-        rho += lip_gap  # Lipschitz gap correction (rigorous)
-        if rho > 1e-9:
-            polys_upper.append(h.buffer(rho))
-        else:
-            polys_upper.append(h)
+    lower_polys = []
+    upper_polys = []
+    # A round Shapely buffer uses 4*quad_segs chords per circle; growing
+    # the radius by sec(pi/(4*quad_segs)) covers each circular chord gap.
+    quad_segs = 16
+    buffer_factor = 1.0 / math.cos(math.pi / (4 * quad_segs))
+    for i in range(model.K):
+        theta0, theta1 = model.theta[i:i + 2]
+        if theta1 <= theta0 or theta1 - theta0 > math.pi / 2:
+            raise ValueError("unsupported pivot arc angle interval")
+        r_corner = math.hypot((1 + abs(fractions[i])) / 2, model.eps / 2)
+        last_rect = None
+        last_center = None
+        for j, theta in enumerate(np.linspace(theta0, theta1, n_sub + 1)):
+            direction = np.array([math.cos(theta), math.sin(theta)])
+            center = pivots[i] - 0.5 * fractions[i] * direction
+            if j == 0 and not np.allclose(center, centers[i], rtol=1e-12, atol=1e-12):
+                raise ValueError(f"discontinuous arc start at boundary {i}")
+            rect = needle_polygon(theta, center[0], center[1], model.eps)
+            lower_polys.append(rect)
+            if last_rect is not None:
+                hull = unary_union([last_rect, rect]).convex_hull
+                delta = theta - last_theta
+                sagitta = r_corner * (1 - math.cos(delta / 2))
+                upper_polys.append(hull.buffer(sagitta * buffer_factor,
+                                               quad_segs=quad_segs))
+            last_rect, last_center, last_theta = rect, center, theta
 
-    lower = unary_union(polys_lower)
-    upper = unary_union(polys_upper)
-    for g in (lower, upper):
-        pass
-    lo_m = scale(lower, xfact=-1.0, origin=(0, 0))
-    up_m = scale(upper, xfact=-1.0, origin=(0, 0))
-    lo = float(lower.union(lo_m).area)
-    up = float(upper.union(up_m).area)
-    return {"lower": lo, "upper": up, "gap": up - lo,
-            "n_sub": n_sub, "m_sample": m_sample}
+        if i < model.K - 1:
+            slide_end = last_center + beta[i] * model.u[i + 1]
+            if not np.allclose(slide_end, centers[i + 1], rtol=1e-12, atol=1e-12):
+                raise ValueError(f"discontinuous slide at boundary {i + 1}")
+            # Pure axial translation sweeps a complete strip, including both
+            # endpoints. The next arc must start at its end.
+            strip = slide_strip(theta1, last_center, slide_end, model.eps)
+            lower_polys.append(strip)
+            upper_polys.append(strip)
+        elif not np.allclose(last_center, centers[-1], rtol=1e-12, atol=1e-12):
+            raise ValueError("discontinuous final arc")
+
+    if not math.isclose(centers[-1, 0], 0.0, abs_tol=1e-10):
+        raise ValueError("final pose does not join its x-mirror")
+    lower = unary_union(lower_polys)
+    upper = unary_union(upper_polys)
+    lo = float(lower.union(scale(lower, xfact=-1, origin=(0, 0))).area)
+    up = float(upper.union(scale(upper, xfact=-1, origin=(0, 0))).area)
+    return {"lower": lo, "upper": up, "gap": up - lo, "n_sub": n_sub}

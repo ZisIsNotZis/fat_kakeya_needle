@@ -1,0 +1,14 @@
+[
+ {
+  "model": "pivot-slide",
+  "eps": 0.05,
+  "K": 16,
+  "optimizer_area_estimate": 0.4719008129965775,
+  "numerical_lower": 0.4722229811026692,
+  "numerical_upper": 0.4723456521580717,
+  "numerical_gap": 0.00012267105540253453,
+  "n_sub": 300,
+  "method": "endpoint-hull-corner-sagitta-and-full-slides",
+  "limitation": "Shapely floating-point geometry; not a mathematical certificate"
+ }
+]
