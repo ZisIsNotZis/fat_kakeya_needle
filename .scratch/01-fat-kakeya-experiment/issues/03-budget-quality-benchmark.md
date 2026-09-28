@@ -1,9 +1,9 @@
 # 03 — 有效运动族的同核时预算—质量基准
 
-Status: ready-for-agent
+Status: claimed
 Need-review: yes
 Need-test-cases: yes
-Blocked by: 02-stable-long-motion-evaluator
+Blocked by: none; 02-stable-long-motion-evaluator completed at 2026-09-28 21:05 +08.
 
 ## 目标
 在明确已实现运动族集合内，以相同 CPU 核时、独立冷启动和共同稳定评分口径测预算→数值质量；把历史 incumbent 的未知发现成本与增量续搜严格分开，不声称覆盖未知方法或数值证明真 minimum。
@@ -19,3 +19,4 @@ Blocked by: 02-stable-long-motion-evaluator
 ## Comments
 - 2026-09-28 19:50 +08 (agent): 继承 01 的冷启动 60/120 核秒试点和续搜数据，不能将二者混合。等待 02 的评分器及成本剖析；目前不启动共享机器长跑。
 - 2026-09-28 20:05 +08 (agent): 将正式比较缩为先 ε=.005 的三族、三种子、单核预算检查点；02 通过后才冻结参数/阈值并测成本，避免把尚未过关的 Keich n5 或旧不连续 v2 优化目标加入排名。此处是草案，未启动优化。
+- 2026-09-28 21:05 +08 (agent): 02 质量门槛通过，四候选四重角步/整数尺度复评均 `ok`（见 `results/integer_saved_crossfamily_quality.json`），但它们仅是存档运动构造，不是新搜索；本票据转 claimed。下一步测三族目标函数成本并另建修复 v2 搜索目标的单核预算 runner；正式预算和 seed 协议在成本预飞后冻结，Keich 仍是无优化理论基线。
