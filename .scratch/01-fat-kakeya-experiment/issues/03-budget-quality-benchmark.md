@@ -19,4 +19,5 @@ Blocked by: none; 02-stable-long-motion-evaluator completed at 2026-09-28 21:05 
 ## Comments
 - 2026-09-28 19:50 +08 (agent): 继承 01 的冷启动 60/120 核秒试点和续搜数据，不能将二者混合。等待 02 的评分器及成本剖析；目前不启动共享机器长跑。
 - 2026-09-28 20:05 +08 (agent): 将正式比较缩为先 ε=.005 的三族、三种子、单核预算检查点；02 通过后才冻结参数/阈值并测成本，避免把尚未过关的 Keich n5 或旧不连续 v2 优化目标加入排名。此处是草案，未启动优化。
-- 2026-09-28 21:05 +08 (agent): 02 质量门槛通过，四候选四重角步/整数尺度复评均 `ok`（见 `results/integer_saved_crossfamily_quality.json`），但它们仅是存档运动构造，不是新搜索；本票据转 claimed。下一步测三族目标函数成本并另建修复 v2 搜索目标的单核预算 runner；正式预算和 seed 协议在成本预飞后冻结，Keich 仍是无优化理论基线。
+- 2026-09-28 21:05 +08 (agent): 02 质量门槛通过，四候选四重角步/整数尺度复评均 `ok`（见 `results/integer_saved_crossfamily_quality.json`），但它们仅是存档运动构造，不是新搜索；本票据转 claimed。
+- 2026-09-28 21:20 +08 (agent): 初步目标函数族定为 smooth K32,Nf=Nb6、hierarchical K32(use_f0)、free pivot K8、v2 uniform-θ K6；Keich n=floor(log₂(1/ε)/4) 是非优化理论基线。统一候选运动通过 motion_adapters 的 pivot/v2 与 integer_motion_area.evaluate，粗搜索步长以 `step_fraction=.1` 对每族控制最大角点矢高≤0.1ε；每条获胜解再以 .0001/.00005 与 2^38/2^40 复评。各族初始范围需预飞确认：smooth y0±3、f±1、b±.5；hier y0±3、f0±.5、s±.5；free pivot y0±3、f±1、β±.5；v2 zs±3（历史最好 z∈[-2.256,0.364]）。这比较明确界内的算法而非全部可能运动。需先测各族至少10次新随机目标调用 CPU 中位/P95/失败率，确认预算60s足以越过 DE 种群（5×维数），然后才冻结并运行多 seed。新的 v2 objective 必须使用末点镜轴，不改旧 optimize_v2.py 历史结果。下一步委托隔离 runner 的 preflight/逐 seed checkpoint 实现并独立复核，暂不跑小时级预算。
