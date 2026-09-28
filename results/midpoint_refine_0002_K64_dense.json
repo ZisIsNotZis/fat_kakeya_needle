@@ -1,0 +1,38 @@
+[
+  {
+    "source": "results/midpoint_refine_0002_K64.json",
+    "seed": 0,
+    "eps": 0.002,
+    "K": 64,
+    "Nf": 19,
+    "Nb": 19,
+    "n_sub": 640,
+    "numerical_lower": 0.3182018817525024,
+    "numerical_upper": 0.3182431765183262,
+    "limitation": "floating-point geometry; continuation discovery cost unknown"
+  },
+  {
+    "source": "results/midpoint_refine_0002_K64.json",
+    "seed": 1,
+    "eps": 0.002,
+    "K": 64,
+    "Nf": 19,
+    "Nb": 19,
+    "n_sub": 640,
+    "numerical_lower": 0.3182977889795902,
+    "numerical_upper": 0.31833775676031795,
+    "limitation": "floating-point geometry; continuation discovery cost unknown"
+  },
+  {
+    "source": "results/midpoint_refine_0002_K64.json",
+    "seed": 2,
+    "eps": 0.002,
+    "K": 64,
+    "Nf": 19,
+    "Nb": 19,
+    "n_sub": 640,
+    "numerical_lower": 0.3182735419874588,
+    "numerical_upper": 0.3183126970711765,
+    "limitation": "floating-point geometry; continuation discovery cost unknown"
+  }
+]
