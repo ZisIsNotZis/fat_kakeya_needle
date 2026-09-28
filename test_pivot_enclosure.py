@@ -9,6 +9,7 @@ from shapely.ops import unary_union
 
 from hierarchical_pivot import HierModel
 from pivot_slide import PivotSlideModel, needle_polygon, slide_strip
+from refine_midpoints import insert_knots
 from smooth_pivot import SmoothProfileModel
 from strict_bound import numerical_pivot_enclosure, strict_upper
 
@@ -130,6 +131,18 @@ class PivotEnclosureTests(unittest.TestCase):
                                            np.asarray(best['params']), n_sub=recorded['n_sub'])
         self.assertAlmostEqual(result['lower'], recorded['numerical_lower'], places=11)
         self.assertAlmostEqual(result['upper'], recorded['numerical_upper'], places=11)
+
+    def test_midpoint_knot_insertion_preserves_recorded_motion(self):
+        with open('results/incumbent_refine_0002_K64.json') as fh:
+            record = min(json.load(fh), key=lambda row: row['numerical_upper'])
+        old = np.asarray(record['best_params'])
+        new = insert_knots(old)
+        old_model = SmoothProfileModel(64, .002, 10, 10, n_arc=40)
+        new_model = SmoothProfileModel(64, .002, 19, 19, n_arc=40)
+        np.testing.assert_allclose(old_model.to_full_params(old),
+                                   new_model.to_full_params(new), atol=1e-14)
+        self.assertAlmostEqual(old_model.swept_area(old),
+                               new_model.swept_area(new), places=11)
 
     def test_slide_scaling_improves_recorded_k_doubling(self):
         with open('results/incumbent_refine_0005.json') as fh:
