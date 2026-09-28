@@ -1,0 +1,38 @@
+[
+  {
+    "source": "results/v2_0005.json",
+    "source_record_index": 1,
+    "seed": 1,
+    "eps": 0.005,
+    "K": 6,
+    "model": "v2-logspace-growing",
+    "original_sampled_area": 0.2917361952629271,
+    "numerical_lower": 0.37119580851812234,
+    "numerical_upper": 0.373850753613468,
+    "mirror_axis_x": 8.164937792477496e-05,
+    "grid": 5e-11,
+    "n_sub": 320,
+    "original_area_model": "sampled poses mirrored about global x=0",
+    "geometry_revision": "linear-keyframe-fixed-grid-v1",
+    "motion": "linear centers and theta; reflected reverse second half",
+    "limitation": "GEOS floating-point area, buffer and overlay; not a strict certificate"
+  },
+  {
+    "source": "results/v2_0005_K8.json",
+    "source_record_index": 2,
+    "seed": 2,
+    "eps": 0.005,
+    "K": 8,
+    "model": "v2-logspace-growing",
+    "original_sampled_area": 0.33218296355015825,
+    "numerical_lower": 0.3864942979123166,
+    "numerical_upper": 0.3883578575732893,
+    "mirror_axis_x": -0.5343720446283587,
+    "grid": 5e-11,
+    "n_sub": 320,
+    "original_area_model": "sampled poses mirrored about global x=0",
+    "geometry_revision": "linear-keyframe-fixed-grid-v1",
+    "motion": "linear centers and theta; reflected reverse second half",
+    "limitation": "GEOS floating-point area, buffer and overlay; not a strict certificate"
+  }
+]
