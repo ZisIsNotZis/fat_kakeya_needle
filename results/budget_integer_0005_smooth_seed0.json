@@ -1,0 +1,1628 @@
+{
+  "mode": "run",
+  "family": "smooth",
+  "eps": 0.005,
+  "K": 32,
+  "dimension": 13,
+  "bounds": [
+    [
+      -3.0,
+      3.0
+    ],
+    [
+      -1.0,
+      1.0
+    ],
+    [
+      -1.0,
+      1.0
+    ],
+    [
+      -1.0,
+      1.0
+    ],
+    [
+      -1.0,
+      1.0
+    ],
+    [
+      -1.0,
+      1.0
+    ],
+    [
+      -1.0,
+      1.0
+    ],
+    [
+      -0.5,
+      0.5
+    ],
+    [
+      -0.5,
+      0.5
+    ],
+    [
+      -0.5,
+      0.5
+    ],
+    [
+      -0.5,
+      0.5
+    ],
+    [
+      -0.5,
+      0.5
+    ],
+    [
+      -0.5,
+      0.5
+    ]
+  ],
+  "population_evals": 65,
+  "motion": "continuous repaired pivot/linear-pose mirror about final center x",
+  "step_fraction": 0.1,
+  "seed": 0,
+  "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+  "budgets_cpu_s": [
+    60.0,
+    120.0,
+    240.0,
+    480.0
+  ],
+  "max_objective_wall_s": 60,
+  "max_validation_wall_s": 120,
+  "max_polygons": 100000,
+  "de": {
+    "popsize": 5,
+    "workers": 1,
+    "polish": false,
+    "updating": "immediate",
+    "tol": 0,
+    "maxiter": 100000
+  },
+  "status": "complete",
+  "search_started": true,
+  "calls": 18871,
+  "valid_calls": 18871,
+  "failed_calls": [],
+  "failed_count": 0,
+  "failed_log_dropped": 0,
+  "eval_log": [
+    {
+      "call": 18744,
+      "cpu_s": 475.433449894,
+      "status": "ok",
+      "area": 0.4457435616178808,
+      "objective_value": 0.4457435616178808,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18745,
+      "cpu_s": 475.469902526,
+      "status": "ok",
+      "area": 0.3958541399418886,
+      "objective_value": 0.3958541399418886,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18746,
+      "cpu_s": 475.50818773,
+      "status": "ok",
+      "area": 0.6263009551086585,
+      "objective_value": 0.6263009551086585,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18747,
+      "cpu_s": 475.543857086,
+      "status": "ok",
+      "area": 0.41968794182629005,
+      "objective_value": 0.41968794182629005,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18748,
+      "cpu_s": 475.579415878,
+      "status": "ok",
+      "area": 0.4530022595415173,
+      "objective_value": 0.4530022595415173,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18749,
+      "cpu_s": 475.614769237,
+      "status": "ok",
+      "area": 0.4169820593127134,
+      "objective_value": 0.4169820593127134,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18750,
+      "cpu_s": 475.649865085,
+      "status": "ok",
+      "area": 0.40088754912671476,
+      "objective_value": 0.40088754912671476,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18751,
+      "cpu_s": 475.68793344,
+      "status": "ok",
+      "area": 0.4880979890833942,
+      "objective_value": 0.4880979890833942,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18752,
+      "cpu_s": 475.723981005,
+      "status": "ok",
+      "area": 0.39571672858565743,
+      "objective_value": 0.39571672858565743,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18753,
+      "cpu_s": 475.758107015,
+      "status": "ok",
+      "area": 0.4507721516994765,
+      "objective_value": 0.4507721516994765,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18754,
+      "cpu_s": 475.793679686,
+      "status": "ok",
+      "area": 0.443202648695386,
+      "objective_value": 0.443202648695386,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18755,
+      "cpu_s": 475.829644895,
+      "status": "ok",
+      "area": 0.4980063898774447,
+      "objective_value": 0.4980063898774447,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18756,
+      "cpu_s": 475.868268516,
+      "status": "ok",
+      "area": 0.4421755839824868,
+      "objective_value": 0.4421755839824868,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18757,
+      "cpu_s": 475.904795838,
+      "status": "ok",
+      "area": 0.3944970796807864,
+      "objective_value": 0.3944970796807864,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18758,
+      "cpu_s": 475.935098478,
+      "status": "ok",
+      "area": 0.4428108693837023,
+      "objective_value": 0.4428108693837023,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18759,
+      "cpu_s": 475.970577053,
+      "status": "ok",
+      "area": 0.4217036513752725,
+      "objective_value": 0.4217036513752725,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18760,
+      "cpu_s": 476.006521955,
+      "status": "ok",
+      "area": 0.45934920599027246,
+      "objective_value": 0.45934920599027246,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18761,
+      "cpu_s": 476.04526876799997,
+      "status": "ok",
+      "area": 0.4130584224027446,
+      "objective_value": 0.4130584224027446,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18762,
+      "cpu_s": 476.076207168,
+      "status": "ok",
+      "area": 0.39832798489835247,
+      "objective_value": 0.39832798489835247,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18763,
+      "cpu_s": 476.112853429,
+      "status": "ok",
+      "area": 0.5004978235389981,
+      "objective_value": 0.5004978235389981,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18764,
+      "cpu_s": 476.148973661,
+      "status": "ok",
+      "area": 0.4031365779978547,
+      "objective_value": 0.4031365779978547,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18765,
+      "cpu_s": 476.182626349,
+      "status": "ok",
+      "area": 0.40069989018469176,
+      "objective_value": 0.40069989018469176,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18766,
+      "cpu_s": 476.221974129,
+      "status": "ok",
+      "area": 0.4791989770785305,
+      "objective_value": 0.4791989770785305,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18767,
+      "cpu_s": 476.257967689,
+      "status": "ok",
+      "area": 0.3946696432304287,
+      "objective_value": 0.3946696432304287,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18768,
+      "cpu_s": 476.293280075,
+      "status": "ok",
+      "area": 0.41121971030728016,
+      "objective_value": 0.41121971030728016,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18769,
+      "cpu_s": 476.33001999,
+      "status": "ok",
+      "area": 0.5396132794462365,
+      "objective_value": 0.5396132794462365,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18770,
+      "cpu_s": 476.36586281,
+      "status": "ok",
+      "area": 0.39405351627660334,
+      "objective_value": 0.39405351627660334,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18771,
+      "cpu_s": 476.401015327,
+      "status": "ok",
+      "area": 0.4978954085934548,
+      "objective_value": 0.4978954085934548,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18772,
+      "cpu_s": 476.43788939399997,
+      "status": "ok",
+      "area": 0.39719082301781955,
+      "objective_value": 0.39719082301781955,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18773,
+      "cpu_s": 476.473607189,
+      "status": "ok",
+      "area": 0.4028378560528985,
+      "objective_value": 0.4028378560528985,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18774,
+      "cpu_s": 476.509842806,
+      "status": "ok",
+      "area": 0.3930432383300525,
+      "objective_value": 0.3930432383300525,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18775,
+      "cpu_s": 476.545876673,
+      "status": "ok",
+      "area": 0.4071839709319621,
+      "objective_value": 0.4071839709319621,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18776,
+      "cpu_s": 476.58555913,
+      "status": "ok",
+      "area": 0.4676612571956436,
+      "objective_value": 0.4676612571956436,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18777,
+      "cpu_s": 476.621694904,
+      "status": "ok",
+      "area": 0.42442769618967807,
+      "objective_value": 0.42442769618967807,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18778,
+      "cpu_s": 476.654671671,
+      "status": "ok",
+      "area": 0.3947715033280303,
+      "objective_value": 0.3947715033280303,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18779,
+      "cpu_s": 476.690507152,
+      "status": "ok",
+      "area": 0.42450555599221557,
+      "objective_value": 0.42450555599221557,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18780,
+      "cpu_s": 476.726452663,
+      "status": "ok",
+      "area": 0.3989330401108825,
+      "objective_value": 0.3989330401108825,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18781,
+      "cpu_s": 476.767433505,
+      "status": "ok",
+      "area": 0.4137844992380387,
+      "objective_value": 0.4137844992380387,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18782,
+      "cpu_s": 476.803465474,
+      "status": "ok",
+      "area": 0.4012594993693964,
+      "objective_value": 0.4012594993693964,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18783,
+      "cpu_s": 476.839709472,
+      "status": "ok",
+      "area": 0.39376568620994135,
+      "objective_value": 0.39376568620994135,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18784,
+      "cpu_s": 476.87503406499997,
+      "status": "ok",
+      "area": 0.4211919292522373,
+      "objective_value": 0.4211919292522373,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18785,
+      "cpu_s": 476.908137468,
+      "status": "ok",
+      "area": 0.45657629613969825,
+      "objective_value": 0.45657629613969825,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18786,
+      "cpu_s": 476.947186175,
+      "status": "ok",
+      "area": 0.39400458810071143,
+      "objective_value": 0.39400458810071143,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18787,
+      "cpu_s": 476.98325255099996,
+      "status": "ok",
+      "area": 0.39578106223042975,
+      "objective_value": 0.39578106223042975,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18788,
+      "cpu_s": 477.018698919,
+      "status": "ok",
+      "area": 0.47423466631436506,
+      "objective_value": 0.47423466631436506,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18789,
+      "cpu_s": 477.054781001,
+      "status": "ok",
+      "area": 0.39229977990162107,
+      "objective_value": 0.39229977990162107,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18790,
+      "cpu_s": 477.090861748,
+      "status": "ok",
+      "area": 0.40832270090188744,
+      "objective_value": 0.40832270090188744,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18791,
+      "cpu_s": 477.130687309,
+      "status": "ok",
+      "area": 0.3939768552632446,
+      "objective_value": 0.3939768552632446,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18792,
+      "cpu_s": 477.165076843,
+      "status": "ok",
+      "area": 0.4057007296646138,
+      "objective_value": 0.4057007296646138,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18793,
+      "cpu_s": 477.202242194,
+      "status": "ok",
+      "area": 0.40523228374553966,
+      "objective_value": 0.40523228374553966,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18794,
+      "cpu_s": 477.237937438,
+      "status": "ok",
+      "area": 0.4513004350311034,
+      "objective_value": 0.4513004350311034,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18795,
+      "cpu_s": 477.27397330499997,
+      "status": "ok",
+      "area": 0.39705155123102825,
+      "objective_value": 0.39705155123102825,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18796,
+      "cpu_s": 477.313231344,
+      "status": "ok",
+      "area": 0.39301049951090966,
+      "objective_value": 0.39301049951090966,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18797,
+      "cpu_s": 477.348796887,
+      "status": "ok",
+      "area": 0.4097975329452653,
+      "objective_value": 0.4097975329452653,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18798,
+      "cpu_s": 477.38192141,
+      "status": "ok",
+      "area": 0.41608073050873207,
+      "objective_value": 0.41608073050873207,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18799,
+      "cpu_s": 477.417091506,
+      "status": "ok",
+      "area": 0.39666416423371675,
+      "objective_value": 0.39666416423371675,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18800,
+      "cpu_s": 477.452558754,
+      "status": "ok",
+      "area": 0.43415139959781673,
+      "objective_value": 0.43415139959781673,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18801,
+      "cpu_s": 477.492006263,
+      "status": "ok",
+      "area": 0.3974926717119119,
+      "objective_value": 0.3974926717119119,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18802,
+      "cpu_s": 477.527981609,
+      "status": "ok",
+      "area": 0.39563497489010774,
+      "objective_value": 0.39563497489010774,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18803,
+      "cpu_s": 477.564751759,
+      "status": "ok",
+      "area": 0.5016641980828397,
+      "objective_value": 0.5016641980828397,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18804,
+      "cpu_s": 477.600406459,
+      "status": "ok",
+      "area": 0.5175285740353747,
+      "objective_value": 0.5175285740353747,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18805,
+      "cpu_s": 477.635328044,
+      "status": "ok",
+      "area": 0.4709856556217901,
+      "objective_value": 0.4709856556217901,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18806,
+      "cpu_s": 477.67402906899997,
+      "status": "ok",
+      "area": 0.5167195118666391,
+      "objective_value": 0.5167195118666391,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18807,
+      "cpu_s": 477.709480177,
+      "status": "ok",
+      "area": 0.39289760516370564,
+      "objective_value": 0.39289760516370564,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18808,
+      "cpu_s": 477.74562203,
+      "status": "ok",
+      "area": 0.4174719512271439,
+      "objective_value": 0.4174719512271439,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18809,
+      "cpu_s": 477.780520162,
+      "status": "ok",
+      "area": 0.4107577291962989,
+      "objective_value": 0.4107577291962989,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18810,
+      "cpu_s": 477.816997713,
+      "status": "ok",
+      "area": 0.40118001710102635,
+      "objective_value": 0.40118001710102635,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18811,
+      "cpu_s": 477.856011176,
+      "status": "ok",
+      "area": 0.3913677166947205,
+      "objective_value": 0.3913677166947205,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18812,
+      "cpu_s": 477.891548543,
+      "status": "ok",
+      "area": 0.40856592011914056,
+      "objective_value": 0.40856592011914056,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18813,
+      "cpu_s": 477.92725827099997,
+      "status": "ok",
+      "area": 0.39993196354609,
+      "objective_value": 0.39993196354609,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18814,
+      "cpu_s": 477.963393393,
+      "status": "ok",
+      "area": 0.4041172864160244,
+      "objective_value": 0.4041172864160244,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18815,
+      "cpu_s": 477.998204984,
+      "status": "ok",
+      "area": 0.4526151101701857,
+      "objective_value": 0.4526151101701857,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18816,
+      "cpu_s": 478.03709683299996,
+      "status": "ok",
+      "area": 0.39816894700349637,
+      "objective_value": 0.39816894700349637,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18817,
+      "cpu_s": 478.07436762,
+      "status": "ok",
+      "area": 0.39762863376260316,
+      "objective_value": 0.39762863376260316,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18818,
+      "cpu_s": 478.109139275,
+      "status": "ok",
+      "area": 0.5196742128156381,
+      "objective_value": 0.5196742128156381,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18819,
+      "cpu_s": 478.145099479,
+      "status": "ok",
+      "area": 0.4084026945129687,
+      "objective_value": 0.4084026945129687,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18820,
+      "cpu_s": 478.18059449599997,
+      "status": "ok",
+      "area": 0.4237385192619224,
+      "objective_value": 0.4237385192619224,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18821,
+      "cpu_s": 478.220341938,
+      "status": "ok",
+      "area": 0.41996105294831304,
+      "objective_value": 0.41996105294831304,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18822,
+      "cpu_s": 478.25017349,
+      "status": "ok",
+      "area": 0.4107871214117141,
+      "objective_value": 0.4107871214117141,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18823,
+      "cpu_s": 478.284170642,
+      "status": "ok",
+      "area": 0.43254980216789246,
+      "objective_value": 0.43254980216789246,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18824,
+      "cpu_s": 478.319317057,
+      "status": "ok",
+      "area": 0.43632233543890864,
+      "objective_value": 0.43632233543890864,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18825,
+      "cpu_s": 478.354845072,
+      "status": "ok",
+      "area": 0.4115094945836736,
+      "objective_value": 0.4115094945836736,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18826,
+      "cpu_s": 478.394248855,
+      "status": "ok",
+      "area": 0.39745757123158665,
+      "objective_value": 0.39745757123158665,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18827,
+      "cpu_s": 478.42683905399997,
+      "status": "ok",
+      "area": 0.585793210940526,
+      "objective_value": 0.585793210940526,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18828,
+      "cpu_s": 478.462660211,
+      "status": "ok",
+      "area": 0.39940865685589827,
+      "objective_value": 0.39940865685589827,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18829,
+      "cpu_s": 478.498798024,
+      "status": "ok",
+      "area": 0.5790651461715244,
+      "objective_value": 0.5790651461715244,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18830,
+      "cpu_s": 478.529555297,
+      "status": "ok",
+      "area": 0.5788699691447534,
+      "objective_value": 0.5788699691447534,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18831,
+      "cpu_s": 478.568175882,
+      "status": "ok",
+      "area": 0.41387055576823273,
+      "objective_value": 0.41387055576823273,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18832,
+      "cpu_s": 478.602645587,
+      "status": "ok",
+      "area": 0.39296547384572494,
+      "objective_value": 0.39296547384572494,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18833,
+      "cpu_s": 478.638766004,
+      "status": "ok",
+      "area": 0.3930728326148931,
+      "objective_value": 0.3930728326148931,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18834,
+      "cpu_s": 478.675133488,
+      "status": "ok",
+      "area": 0.3941672497282366,
+      "objective_value": 0.3941672497282366,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18835,
+      "cpu_s": 478.710575066,
+      "status": "ok",
+      "area": 0.4240898487565085,
+      "objective_value": 0.4240898487565085,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18836,
+      "cpu_s": 478.749985943,
+      "status": "ok",
+      "area": 0.4060111034234051,
+      "objective_value": 0.4060111034234051,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18837,
+      "cpu_s": 478.782850511,
+      "status": "ok",
+      "area": 0.46070972909451885,
+      "objective_value": 0.46070972909451885,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18838,
+      "cpu_s": 478.81894404,
+      "status": "ok",
+      "area": 0.4237561426288689,
+      "objective_value": 0.4237561426288689,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18839,
+      "cpu_s": 478.85505356199997,
+      "status": "ok",
+      "area": 0.3927905358937643,
+      "objective_value": 0.3927905358937643,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18840,
+      "cpu_s": 478.891213734,
+      "status": "ok",
+      "area": 0.40400128092560583,
+      "objective_value": 0.40400128092560583,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18841,
+      "cpu_s": 478.930742723,
+      "status": "ok",
+      "area": 0.3929959426984949,
+      "objective_value": 0.3929959426984949,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18842,
+      "cpu_s": 478.968015317,
+      "status": "ok",
+      "area": 0.3935589597740664,
+      "objective_value": 0.3935589597740664,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18843,
+      "cpu_s": 479.00147461,
+      "status": "ok",
+      "area": 0.5329565137077592,
+      "objective_value": 0.5329565137077592,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18844,
+      "cpu_s": 479.035945604,
+      "status": "ok",
+      "area": 0.4504664390497681,
+      "objective_value": 0.4504664390497681,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18845,
+      "cpu_s": 479.07174571,
+      "status": "ok",
+      "area": 0.3911229290432003,
+      "objective_value": 0.3911229290432003,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18846,
+      "cpu_s": 479.110749995,
+      "status": "ok",
+      "area": 0.39538013888469903,
+      "objective_value": 0.39538013888469903,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18847,
+      "cpu_s": 479.146528871,
+      "status": "ok",
+      "area": 0.3939216430934054,
+      "objective_value": 0.3939216430934054,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18848,
+      "cpu_s": 479.180955366,
+      "status": "ok",
+      "area": 0.4531722456069147,
+      "objective_value": 0.4531722456069147,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18849,
+      "cpu_s": 479.216203999,
+      "status": "ok",
+      "area": 0.40985926634215364,
+      "objective_value": 0.40985926634215364,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18850,
+      "cpu_s": 479.252910581,
+      "status": "ok",
+      "area": 0.3924047613501663,
+      "objective_value": 0.3924047613501663,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18851,
+      "cpu_s": 479.292394738,
+      "status": "ok",
+      "area": 0.39267828670633353,
+      "objective_value": 0.39267828670633353,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18852,
+      "cpu_s": 479.32876638,
+      "status": "ok",
+      "area": 0.40078139118938033,
+      "objective_value": 0.40078139118938033,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18853,
+      "cpu_s": 479.364126816,
+      "status": "ok",
+      "area": 0.445202145687608,
+      "objective_value": 0.445202145687608,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18854,
+      "cpu_s": 479.401745989,
+      "status": "ok",
+      "area": 0.3977189550922651,
+      "objective_value": 0.3977189550922651,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18855,
+      "cpu_s": 479.45655329,
+      "status": "ok",
+      "area": 0.41591624594169074,
+      "objective_value": 0.41591624594169074,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18856,
+      "cpu_s": 479.493592308,
+      "status": "ok",
+      "area": 0.4136810520047279,
+      "objective_value": 0.4136810520047279,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18857,
+      "cpu_s": 479.527542746,
+      "status": "ok",
+      "area": 0.4069915575776314,
+      "objective_value": 0.4069915575776314,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18858,
+      "cpu_s": 479.563035424,
+      "status": "ok",
+      "area": 0.4773539368362816,
+      "objective_value": 0.4773539368362816,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18859,
+      "cpu_s": 479.59926927099997,
+      "status": "ok",
+      "area": 0.3992174124501015,
+      "objective_value": 0.3992174124501015,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18860,
+      "cpu_s": 479.633674447,
+      "status": "ok",
+      "area": 0.4851081544620912,
+      "objective_value": 0.4851081544620912,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18861,
+      "cpu_s": 479.672550515,
+      "status": "ok",
+      "area": 0.43983865425005897,
+      "objective_value": 0.43983865425005897,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18862,
+      "cpu_s": 479.707508577,
+      "status": "ok",
+      "area": 0.5119461381739276,
+      "objective_value": 0.5119461381739276,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18863,
+      "cpu_s": 479.740180927,
+      "status": "ok",
+      "area": 0.5162120436923996,
+      "objective_value": 0.5162120436923996,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18864,
+      "cpu_s": 479.775426631,
+      "status": "ok",
+      "area": 0.4203396561987797,
+      "objective_value": 0.4203396561987797,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18865,
+      "cpu_s": 479.81068774199997,
+      "status": "ok",
+      "area": 0.5609211793708838,
+      "objective_value": 0.5609211793708838,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18866,
+      "cpu_s": 479.850441567,
+      "status": "ok",
+      "area": 0.4067157730919663,
+      "objective_value": 0.4067157730919663,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18867,
+      "cpu_s": 479.887339124,
+      "status": "ok",
+      "area": 0.6190862759053136,
+      "objective_value": 0.6190862759053136,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18868,
+      "cpu_s": 479.92285577399997,
+      "status": "ok",
+      "area": 0.4224450941551055,
+      "objective_value": 0.4224450941551055,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18869,
+      "cpu_s": 479.958414527,
+      "status": "ok",
+      "area": 0.40119239627408304,
+      "objective_value": 0.40119239627408304,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18870,
+      "cpu_s": 479.992409803,
+      "status": "ok",
+      "area": 0.3998129263233048,
+      "objective_value": 0.3998129263233048,
+      "best_search_area": 0.39065061481078645
+    },
+    {
+      "call": 18871,
+      "cpu_s": 480.0315618,
+      "status": "ok",
+      "area": 0.4012189154258975,
+      "objective_value": 0.4012189154258975,
+      "best_search_area": 0.39065061481078645
+    }
+  ],
+  "eval_log_dropped": 18743,
+  "checkpoints": [
+    {
+      "budget_cpu_s": 60.0,
+      "calls": 2992,
+      "valid_calls": 2992,
+      "search_started": true,
+      "best_params": [
+        -1.3416002576295232,
+        0.39366974489489426,
+        -0.6144945335349536,
+        -0.6255957018869789,
+        0.13929181970106774,
+        0.04710238587016091,
+        0.5155205678056498,
+        -0.08206397305924346,
+        -0.008252411072482091,
+        -0.008614679705175099,
+        0.06110819991738181,
+        0.008904899528018873,
+        0.11958858470351519
+      ],
+      "best_search_area": 0.4602058453890063,
+      "observed_cpu_s": 60.006422514,
+      "observed_wall_s": 63.72090052999556,
+      "boundary_note": "an evaluation crossing this CPU checkpoint is excluded",
+      "status": "ok",
+      "validation": {
+        "status": "ok",
+        "raw": [
+          {
+            "step_fraction": 0.0001,
+            "scale": 274877906944,
+            "status": "ok",
+            "eps": 0.005,
+            "geometry_backend": "pyclipper",
+            "backend_version": "1.4.0",
+            "max_step": 0.0022193365050556984,
+            "polygon_count": 1534,
+            "primitive_count": 126,
+            "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+            "max_corner_radius": 0.8121078759415554,
+            "numeric_outer_area": 0.4483783252751388,
+            "wall_s": 3.9652811550040497,
+            "cpu_s": 3.964676617000009
+          },
+          {
+            "step_fraction": 0.0001,
+            "scale": 1099511627776,
+            "status": "ok",
+            "eps": 0.005,
+            "geometry_backend": "pyclipper",
+            "backend_version": "1.4.0",
+            "max_step": 0.0022193365050556984,
+            "polygon_count": 1534,
+            "primitive_count": 126,
+            "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+            "max_corner_radius": 0.8121078759415554,
+            "numeric_outer_area": 0.44837832526235866,
+            "wall_s": 3.987190797997755,
+            "cpu_s": 3.9866798589999917
+          },
+          {
+            "step_fraction": 5e-05,
+            "scale": 274877906944,
+            "status": "ok",
+            "eps": 0.005,
+            "geometry_backend": "pyclipper",
+            "backend_version": "1.4.0",
+            "max_step": 0.0015693078522016374,
+            "polygon_count": 2110,
+            "primitive_count": 126,
+            "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+            "max_corner_radius": 0.8121078759415554,
+            "numeric_outer_area": 0.44825876698447464,
+            "wall_s": 8.74778172600054,
+            "cpu_s": 8.74284903299997
+          },
+          {
+            "step_fraction": 5e-05,
+            "scale": 1099511627776,
+            "status": "ok",
+            "eps": 0.005,
+            "geometry_backend": "pyclipper",
+            "backend_version": "1.4.0",
+            "max_step": 0.0015693078522016374,
+            "polygon_count": 2110,
+            "primitive_count": 126,
+            "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+            "max_corner_radius": 0.8121078759415554,
+            "numeric_outer_area": 0.4482587669723038,
+            "wall_s": 8.6461144000059,
+            "cpu_s": 8.644762070000013
+          }
+        ],
+        "relative_tolerance": 0.005,
+        "validation_cpu_s": 25.35336051600001,
+        "numeric_outer_area_range": [
+          0.4482587669723038,
+          0.4483783252751388
+        ],
+        "relative_discrepancy": 0.0002666460354916448
+      },
+      "best_validated_so_far": {
+        "numeric_upper": 0.4483783252751388,
+        "first_budget_cpu_s": 60.0,
+        "params": [
+          -1.3416002576295232,
+          0.39366974489489426,
+          -0.6144945335349536,
+          -0.6255957018869789,
+          0.13929181970106774,
+          0.04710238587016091,
+          0.5155205678056498,
+          -0.08206397305924346,
+          -0.008252411072482091,
+          -0.008614679705175099,
+          0.06110819991738181,
+          0.008904899528018873,
+          0.11958858470351519
+        ]
+      }
+    },
+    {
+      "budget_cpu_s": 120.0,
+      "calls": 5782,
+      "valid_calls": 5782,
+      "search_started": true,
+      "best_params": [
+        0.4362803237478783,
+        0.48329153409092207,
+        -0.9112364371748944,
+        -0.8835028611231209,
+        0.09822671141672168,
+        0.2553462812298446,
+        0.8339018914761607,
+        -0.04500844562431294,
+        -0.01593232895293034,
+        0.0027037162126679615,
+        0.04800002766759037,
+        0.0019285106878202951,
+        0.0989064766111365
+      ],
+      "best_search_area": 0.42621205169938275,
+      "observed_cpu_s": 120.015955257,
+      "observed_wall_s": 127.50065001499752,
+      "boundary_note": "an evaluation crossing this CPU checkpoint is excluded",
+      "status": "ok",
+      "validation": {
+        "status": "ok",
+        "raw": [
+          {
+            "step_fraction": 0.0001,
+            "scale": 274877906944,
+            "status": "ok",
+            "eps": 0.005,
+            "geometry_backend": "pyclipper",
+            "backend_version": "1.4.0",
+            "max_step": 0.0020473055543088897,
+            "polygon_count": 1598,
+            "primitive_count": 126,
+            "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+            "max_corner_radius": 0.9543214817935031,
+            "numeric_outer_area": 0.40444868902348463,
+            "wall_s": 4.292639756997232,
+            "cpu_s": 4.292091406999987
+          },
+          {
+            "step_fraction": 0.0001,
+            "scale": 1099511627776,
+            "status": "ok",
+            "eps": 0.005,
+            "geometry_backend": "pyclipper",
+            "backend_version": "1.4.0",
+            "max_step": 0.0020473055543088897,
+            "polygon_count": 1598,
+            "primitive_count": 126,
+            "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+            "max_corner_radius": 0.9543214817935031,
+            "numeric_outer_area": 0.40444868901399494,
+            "wall_s": 3.8744544580040383,
+            "cpu_s": 3.873869189000004
+          },
+          {
+            "step_fraction": 5e-05,
+            "scale": 274877906944,
+            "status": "ok",
+            "eps": 0.005,
+            "geometry_backend": "pyclipper",
+            "backend_version": "1.4.0",
+            "max_step": 0.0014476636090094467,
+            "polygon_count": 2238,
+            "primitive_count": 126,
+            "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+            "max_corner_radius": 0.9543214817935031,
+            "numeric_outer_area": 0.40421025837104324,
+            "wall_s": 8.84242770599667,
+            "cpu_s": 8.841506482
+          },
+          {
+            "step_fraction": 5e-05,
+            "scale": 1099511627776,
+            "status": "ok",
+            "eps": 0.005,
+            "geometry_backend": "pyclipper",
+            "backend_version": "1.4.0",
+            "max_step": 0.0014476636090094467,
+            "polygon_count": 2238,
+            "primitive_count": 126,
+            "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+            "max_corner_radius": 0.9543214817935031,
+            "numeric_outer_area": 0.4042102583618349,
+            "wall_s": 8.790635013996507,
+            "cpu_s": 8.78977721299998
+          }
+        ],
+        "relative_tolerance": 0.005,
+        "validation_cpu_s": 25.808179999999936,
+        "numeric_outer_area_range": [
+          0.4042102583618349,
+          0.40444868902348463
+        ],
+        "relative_discrepancy": 0.0005895201743030054
+      },
+      "best_validated_so_far": {
+        "numeric_upper": 0.40444868902348463,
+        "first_budget_cpu_s": 120.0,
+        "params": [
+          0.4362803237478783,
+          0.48329153409092207,
+          -0.9112364371748944,
+          -0.8835028611231209,
+          0.09822671141672168,
+          0.2553462812298446,
+          0.8339018914761607,
+          -0.04500844562431294,
+          -0.01593232895293034,
+          0.0027037162126679615,
+          0.04800002766759037,
+          0.0019285106878202951,
+          0.0989064766111365
+        ]
+      }
+    },
+    {
+      "budget_cpu_s": 240.0,
+      "calls": 10306,
+      "valid_calls": 10306,
+      "search_started": true,
+      "best_params": [
+        -0.31964982272009035,
+        0.9760784225592571,
+        -0.6416912264916917,
+        -0.9736534784812049,
+        -0.07910767918425476,
+        0.41668082767947157,
+        0.9788959723340454,
+        -0.07071343546512066,
+        -0.03349359988446454,
+        0.01299194032031381,
+        0.033410357426844284,
+        0.0237469945389579,
+        0.02307748935110676
+      ],
+      "best_search_area": 0.41351260368809106,
+      "observed_cpu_s": 240.03384848299999,
+      "observed_wall_s": 253.8087739029943,
+      "boundary_note": "an evaluation crossing this CPU checkpoint is excluded",
+      "status": "ok",
+      "validation": {
+        "status": "ok",
+        "raw": [
+          {
+            "step_fraction": 0.0001,
+            "scale": 274877906944,
+            "status": "ok",
+            "eps": 0.005,
+            "geometry_backend": "pyclipper",
+            "backend_version": "1.4.0",
+            "max_step": 0.0020120660292606645,
+            "polygon_count": 1662,
+            "primitive_count": 126,
+            "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+            "max_corner_radius": 0.988042374104507,
+            "numeric_outer_area": 0.3935005168253605,
+            "wall_s": 3.9634243170003174,
+            "cpu_s": 3.963057531000004
+          },
+          {
+            "step_fraction": 0.0001,
+            "scale": 1099511627776,
+            "status": "ok",
+            "eps": 0.005,
+            "geometry_backend": "pyclipper",
+            "backend_version": "1.4.0",
+            "max_step": 0.0020120660292606645,
+            "polygon_count": 1662,
+            "primitive_count": 126,
+            "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+            "max_corner_radius": 0.988042374104507,
+            "numeric_outer_area": 0.39350051681410775,
+            "wall_s": 4.002419527998427,
+            "cpu_s": 4.002033615000073
+          },
+          {
+            "step_fraction": 5e-05,
+            "scale": 274877906944,
+            "status": "ok",
+            "eps": 0.005,
+            "geometry_backend": "pyclipper",
+            "backend_version": "1.4.0",
+            "max_step": 0.0014227455034860506,
+            "polygon_count": 2302,
+            "primitive_count": 126,
+            "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+            "max_corner_radius": 0.988042374104507,
+            "numeric_outer_area": 0.3933025306828739,
+            "wall_s": 8.956297882999934,
+            "cpu_s": 8.955397104999975
+          },
+          {
+            "step_fraction": 5e-05,
+            "scale": 1099511627776,
+            "status": "ok",
+            "eps": 0.005,
+            "geometry_backend": "pyclipper",
+            "backend_version": "1.4.0",
+            "max_step": 0.0014227455034860506,
+            "polygon_count": 2302,
+            "primitive_count": 126,
+            "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+            "max_corner_radius": 0.988042374104507,
+            "numeric_outer_area": 0.39330253067169213,
+            "wall_s": 9.035803712002235,
+            "cpu_s": 9.026358890999973
+          }
+        ],
+        "relative_tolerance": 0.005,
+        "validation_cpu_s": 25.956631544999937,
+        "numeric_outer_area_range": [
+          0.39330253067169213,
+          0.3935005168253605
+        ],
+        "relative_discrepancy": 0.0005031407716200356
+      },
+      "best_validated_so_far": {
+        "numeric_upper": 0.3935005168253605,
+        "first_budget_cpu_s": 240.0,
+        "params": [
+          -0.31964982272009035,
+          0.9760784225592571,
+          -0.6416912264916917,
+          -0.9736534784812049,
+          -0.07910767918425476,
+          0.41668082767947157,
+          0.9788959723340454,
+          -0.07071343546512066,
+          -0.03349359988446454,
+          0.01299194032031381,
+          0.033410357426844284,
+          0.0237469945389579,
+          0.02307748935110676
+        ]
+      }
+    },
+    {
+      "budget_cpu_s": 480.0,
+      "calls": 18870,
+      "valid_calls": 18870,
+      "search_started": true,
+      "best_params": [
+        1.6521132385746005,
+        0.8503347074645122,
+        0.6778541074338966,
+        -0.9652586141742912,
+        -0.5161971765922573,
+        0.34604196074728155,
+        0.9879103228464872,
+        0.1190194795638595,
+        -0.07516192934791865,
+        -0.03622698511948386,
+        0.048634149387201786,
+        0.033284201048869866,
+        0.038000446241171826
+      ],
+      "best_search_area": 0.39065061481078645,
+      "observed_cpu_s": 480.0315618,
+      "observed_wall_s": 506.15472795399546,
+      "boundary_note": "an evaluation crossing this CPU checkpoint is excluded",
+      "status": "ok",
+      "validation": {
+        "status": "ok",
+        "raw": [
+          {
+            "step_fraction": 0.0001,
+            "scale": 274877906944,
+            "status": "ok",
+            "eps": 0.005,
+            "geometry_backend": "pyclipper",
+            "backend_version": "1.4.0",
+            "max_step": 0.0020248393577190506,
+            "polygon_count": 1662,
+            "primitive_count": 126,
+            "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+            "max_corner_radius": 0.97561592523493,
+            "numeric_outer_area": 0.3637813095459758,
+            "wall_s": 4.189029859000584,
+            "cpu_s": 4.188536794000015
+          },
+          {
+            "step_fraction": 0.0001,
+            "scale": 1099511627776,
+            "status": "ok",
+            "eps": 0.005,
+            "geometry_backend": "pyclipper",
+            "backend_version": "1.4.0",
+            "max_step": 0.0020248393577190506,
+            "polygon_count": 1662,
+            "primitive_count": 126,
+            "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+            "max_corner_radius": 0.97561592523493,
+            "numeric_outer_area": 0.36378130953143456,
+            "wall_s": 4.322636861004867,
+            "cpu_s": 4.322170738999944
+          },
+          {
+            "step_fraction": 5e-05,
+            "scale": 274877906944,
+            "status": "ok",
+            "eps": 0.005,
+            "geometry_backend": "pyclipper",
+            "backend_version": "1.4.0",
+            "max_step": 0.0014317776100823251,
+            "polygon_count": 2302,
+            "primitive_count": 126,
+            "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+            "max_corner_radius": 0.97561592523493,
+            "numeric_outer_area": 0.3635249243668632,
+            "wall_s": 9.488440165005159,
+            "cpu_s": 9.487300323999989
+          },
+          {
+            "step_fraction": 5e-05,
+            "scale": 1099511627776,
+            "status": "ok",
+            "eps": 0.005,
+            "geometry_backend": "pyclipper",
+            "backend_version": "1.4.0",
+            "max_step": 0.0014317776100823251,
+            "polygon_count": 2302,
+            "primitive_count": 126,
+            "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+            "max_corner_radius": 0.97561592523493,
+            "numeric_outer_area": 0.36352492435416695,
+            "wall_s": 9.502261347995955,
+            "cpu_s": 9.50129679600002
+          }
+        ],
+        "relative_tolerance": 0.005,
+        "validation_cpu_s": 27.508747809000056,
+        "numeric_outer_area_range": [
+          0.36352492435416695,
+          0.3637813095459758
+        ],
+        "relative_discrepancy": 0.0007047783519413315
+      },
+      "best_validated_so_far": {
+        "numeric_upper": 0.3637813095459758,
+        "first_budget_cpu_s": 480.0,
+        "params": [
+          1.6521132385746005,
+          0.8503347074645122,
+          0.6778541074338966,
+          -0.9652586141742912,
+          -0.5161971765922573,
+          0.34604196074728155,
+          0.9879103228464872,
+          0.1190194795638595,
+          -0.07516192934791865,
+          -0.03622698511948386,
+          0.048634149387201786,
+          0.033284201048869866,
+          0.038000446241171826
+        ]
+      }
+    }
+  ],
+  "best_params": [
+    1.6521132385746005,
+    0.8503347074645122,
+    0.6778541074338966,
+    -0.9652586141742912,
+    -0.5161971765922573,
+    0.34604196074728155,
+    0.9879103228464872,
+    0.1190194795638595,
+    -0.07516192934791865,
+    -0.03622698511948386,
+    0.048634149387201786,
+    0.033284201048869866,
+    0.038000446241171826
+  ],
+  "best_search_area": 0.39065061481078645,
+  "discovery_cpu_s": 480.035330795,
+  "validation_cpu_s": 104.62691986999994,
+  "excluded_nonoptimized_baselines": [
+    "keich_n4",
+    "keich_n5"
+  ],
+  "aggregate_ranking_authorized": false,
+  "external_timeout_note": "Native pyclipper union is not preemptible; run with an external wall timeout. CPU may overshoot a budget by one evaluation. SIGINT/TERM marks aborted when Python regains control; SIGKILL leaves status running, which must not be ranked or resumed.",
+  "discovery_wall_s": 506.16316203099996
+}
