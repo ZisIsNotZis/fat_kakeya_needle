@@ -1,0 +1,11 @@
+{
+  "method": "rational-pivot-grid-v1",
+  "input_sha256": "28426e7eaebae584f394917376ab6b35abe40707a7c62dca494b60d18a78ab32",
+  "source": "results/coarse_refine_0002_K256.json",
+  "seed": 0,
+  "eps": "1/500",
+  "K": 256,
+  "q": 512,
+  "N": 87022,
+  "upper": "43511/131072"
+}
