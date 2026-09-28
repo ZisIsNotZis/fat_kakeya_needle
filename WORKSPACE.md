@@ -27,9 +27,12 @@ Progress: `tail results/detached_run.log`; completion marker
 - Multiprocessing cannot spawn from a heredoc/stdin script (`<stdin>`
   main module) — write a temp .py file for smoke tests.
 - numpy scalar → int casts must be guarded (checker + dtype edge cases).
-- The old `basics.md` conversation contains a corrected claim: the fat
-  needle minimum area is Θ(1/log(1/ε)) (Córdoba 1977 lower / Keich 1999
-  upper), not C·ε.
+- The old `basics.md` conversation replaces C·ε with a claimed Θ(1/log(1/ε))
+  law. The cited Kakeya-neighborhood estimates have not yet been checked
+  to imply a continuous half-turn motion with matching upper bound; do not
+  state this as a verified theorem for the project's motion problem.
+- arXiv:math/0008098 is by Terence Tao, not Bourgain (metadata checked
+  2026-09-28).
 
 ## Conventions
 

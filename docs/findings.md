@@ -124,8 +124,7 @@ O(log) parameters. Search: differential evolution + Nelder-Mead polish.
 
 ## References
 
-- Bourgain, "From rotating needles to stability of waves…"
-  (arXiv:math/0008098) — δ-neighborhood lower bound discussion.
+- Tao, "From rotating needles to stability of waves; emerging connections between combinatorics, analysis and PDE" (arXiv:math/0008098). 2026-09-28 核对 arXiv 摘要页的标题与作者；旧记录误署 Bourgain，且不能从摘要页确认本文支持前述连续运动渐近断言。
 - Keich 1999, "On Lp bounds for Kakeya maximal functions and the
   Minkowski dimension" — matching 1/log upper bound construction.
 - Tao's Kakeya survey notes (teorth.github.io/tao-web/apps/kakeya.html)
