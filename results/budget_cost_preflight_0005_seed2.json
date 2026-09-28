@@ -1,0 +1,561 @@
+{
+  "mode": "preflight",
+  "seed": 2,
+  "random_calls_per_family": 10,
+  "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+  "excluded_nonoptimized_baselines": [
+    "keich_n4",
+    "keich_n5"
+  ],
+  "families": [
+    {
+      "family": "smooth",
+      "eps": 0.005,
+      "K": 32,
+      "dimension": 13,
+      "bounds": [
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ]
+      ],
+      "population_evals": 65,
+      "motion": "continuous repaired pivot/linear-pose mirror about final center x",
+      "step_fraction": 0.1,
+      "calls": [
+        {
+          "cpu_s": 0.017764942000000006,
+          "status": "ok",
+          "numeric_outer_area": 0.7947670064678204,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.015885570000000016,
+          "status": "ok",
+          "numeric_outer_area": 0.9911994743796679,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.017255865000000037,
+          "status": "ok",
+          "numeric_outer_area": 0.7847811486061588,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.01626034200000004,
+          "status": "ok",
+          "numeric_outer_area": 1.0147794278859081,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.029887471,
+          "status": "ok",
+          "numeric_outer_area": 1.0527332465580546,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.015271617000000015,
+          "status": "ok",
+          "numeric_outer_area": 0.7668350757401854,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.01455213700000002,
+          "status": "ok",
+          "numeric_outer_area": 1.1038270971190607,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.01602839300000003,
+          "status": "ok",
+          "numeric_outer_area": 0.988877114914073,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.015150062999999991,
+          "status": "ok",
+          "numeric_outer_area": 1.0340713616710555,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.014873952000000079,
+          "status": "ok",
+          "numeric_outer_area": 1.0247161686708521,
+          "error": null,
+          "backend_version": "1.4.0"
+        }
+      ],
+      "cpu_median_s": 0.015956981500000023,
+      "cpu_p95_s": 0.02443233294999999,
+      "failure_count": 0,
+      "estimated_population_cpu_s": 1.0372037975000015
+    },
+    {
+      "family": "hierarchical",
+      "eps": 0.005,
+      "K": 32,
+      "dimension": 7,
+      "bounds": [
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ]
+      ],
+      "population_evals": 35,
+      "motion": "continuous repaired pivot/linear-pose mirror about final center x",
+      "step_fraction": 0.1,
+      "calls": [
+        {
+          "cpu_s": 0.019932159000000005,
+          "status": "ok",
+          "numeric_outer_area": 0.7699485109070776,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.021479126999999987,
+          "status": "ok",
+          "numeric_outer_area": 0.7327093447415691,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.020311659999999954,
+          "status": "ok",
+          "numeric_outer_area": 0.8285808604317725,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.02060670599999992,
+          "status": "ok",
+          "numeric_outer_area": 0.7615898178755658,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.031664264,
+          "status": "ok",
+          "numeric_outer_area": 0.7998003917095785,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.03546847899999994,
+          "status": "ok",
+          "numeric_outer_area": 0.7301915482755584,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.03453798699999999,
+          "status": "ok",
+          "numeric_outer_area": 0.7290559629010641,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.019110670999999968,
+          "status": "ok",
+          "numeric_outer_area": 0.6986626179503692,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.01996393399999996,
+          "status": "ok",
+          "numeric_outer_area": 0.7356535318692924,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.020708563000000013,
+          "status": "ok",
+          "numeric_outer_area": 0.826078402649408,
+          "error": null,
+          "backend_version": "1.4.0"
+        }
+      ],
+      "cpu_median_s": 0.020657634499999966,
+      "cpu_p95_s": 0.03504975759999996,
+      "failure_count": 0,
+      "estimated_population_cpu_s": 0.7230172074999988
+    },
+    {
+      "family": "free_pivot",
+      "eps": 0.005,
+      "K": 8,
+      "dimension": 16,
+      "bounds": [
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ]
+      ],
+      "population_evals": 80,
+      "motion": "continuous repaired pivot/linear-pose mirror about final center x",
+      "step_fraction": 0.1,
+      "calls": [
+        {
+          "cpu_s": 0.010536053000000045,
+          "status": "ok",
+          "numeric_outer_area": 0.823955626711168,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.008311975999999999,
+          "status": "ok",
+          "numeric_outer_area": 0.878154929810847,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.008656432999999963,
+          "status": "ok",
+          "numeric_outer_area": 0.91452147019983,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.010449809000000032,
+          "status": "ok",
+          "numeric_outer_area": 0.7971050842789581,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.010937262999999975,
+          "status": "ok",
+          "numeric_outer_area": 0.6814398955648314,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.010325581000000028,
+          "status": "ok",
+          "numeric_outer_area": 0.7932952934825325,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.011171615000000079,
+          "status": "ok",
+          "numeric_outer_area": 0.9609881847340593,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.011532407999999994,
+          "status": "ok",
+          "numeric_outer_area": 0.855795485816752,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.017155864999999992,
+          "status": "ok",
+          "numeric_outer_area": 0.8227454276961933,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.01933246199999994,
+          "status": "ok",
+          "numeric_outer_area": 0.7916858268397862,
+          "error": null,
+          "backend_version": "1.4.0"
+        }
+      ],
+      "cpu_median_s": 0.01073665800000001,
+      "cpu_p95_s": 0.01835299334999996,
+      "failure_count": 0,
+      "estimated_population_cpu_s": 0.8589326400000008
+    },
+    {
+      "family": "v2_repaired",
+      "eps": 0.005,
+      "K": 6,
+      "dimension": 14,
+      "bounds": [
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -3.0,
+          3.0
+        ]
+      ],
+      "population_evals": 70,
+      "motion": "continuous repaired pivot/linear-pose mirror about final center x",
+      "step_fraction": 0.1,
+      "calls": [
+        {
+          "cpu_s": 0.007306322000000032,
+          "status": "ok",
+          "numeric_outer_area": 17.60127824050933,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.007480523000000017,
+          "status": "ok",
+          "numeric_outer_area": 47.33851604115095,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.007500156999999952,
+          "status": "ok",
+          "numeric_outer_area": 53.728408247207824,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.007250996999999981,
+          "status": "ok",
+          "numeric_outer_area": 36.2084328532258,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.007383251999999896,
+          "status": "ok",
+          "numeric_outer_area": 15.696110653565102,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.004333659999999906,
+          "status": "ok",
+          "numeric_outer_area": 68.15606609519557,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.0042888690000000285,
+          "status": "ok",
+          "numeric_outer_area": 39.33785109428946,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.005355978999999955,
+          "status": "ok",
+          "numeric_outer_area": 18.341320731465,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.007550041000000007,
+          "status": "ok",
+          "numeric_outer_area": 54.784031632423826,
+          "error": null,
+          "backend_version": "1.4.0"
+        },
+        {
+          "cpu_s": 0.007453602999999864,
+          "status": "ok",
+          "numeric_outer_area": 32.67804841758612,
+          "error": null,
+          "backend_version": "1.4.0"
+        }
+      ],
+      "cpu_median_s": 0.007344786999999964,
+      "cpu_p95_s": 0.007527593199999983,
+      "failure_count": 0,
+      "estimated_population_cpu_s": 0.5141350899999975
+    }
+  ],
+  "status": "complete"
+}
