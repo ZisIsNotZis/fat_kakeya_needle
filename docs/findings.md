@@ -9,7 +9,7 @@ turning 180° with unrestricted planar motion (translation + rotation).
 
 - Thin needle (ε→0), unconstrained region: infimum area = 0
   (Besicovitch 1928; regions can be arbitrarily small).
-- 历史文献记录称细针方向覆盖集合的 δ-邻域具有约 1/log(1/δ) 的上下阶；此处引用尚未核对原文，也尚未证明小面积方向覆盖集合中的线段能以同阶扫掠面积连接成连续半圈运动。因此暂不把自由运动问题的 Θ(1/log(1/ε)) 当作已核验定理。
+- Tao 的综述（arXiv:math/0008098，第 4 页）确认二维 Besicovitch 集的 δ-邻域面积下界 C/log(1/δ) 且 Keich 证明该**集合邻域**界尖锐；同文第 1–2 页确认零宽针可用任意小面积连续转向和平移。但这些陈述没有直接给出带厚度针在连续半圈运动下的同阶上界，连接步骤仍待查证；因此暂不把本项目 f(ε)=Θ(1/log(1/ε)) 当作已核验定理。
 - 即使针对方向覆盖集合的对数阶成立，其最佳常数也未由现有实验确定；本项目的数值拟合只探索有限范围的候选系数。
 - Perron 树、Pál 接合是候选几何灵感；它们是否给出本项目所需、同阶面积的连续运动及具体 K 标度仍需证明。
 - Fixed-center rotation reference: π/4 ≈ 0.785 (disk of radius ½).
@@ -136,7 +136,7 @@ O(log) parameters. Search: differential evolution + Nelder-Mead polish.
 
 ## References
 
-- Tao, "From rotating needles to stability of waves; emerging connections between combinatorics, analysis and PDE" (arXiv:math/0008098). 2026-09-28 核对 arXiv 摘要页的标题与作者；旧记录误署 Bourgain，且不能从摘要页确认本文支持前述连续运动渐近断言。
+- Tao, "From rotating needles to stability of waves; emerging connections between combinatorics, analysis and PDE" (arXiv:math/0008098), PDF 第 1–4 页：明确提及零宽针可用任意小面积连续旋转、针可用任意小面积平移，并称平面 Besicovitch 集的 δ-邻域至少 C/log(1/δ)、Keich 证明该**邻域界**尖锐。PDF 没有在所引段落证明带厚度针的连续运动达到同阶；旧记录误署 Bourgain。
 - Keich 1999, "On Lp bounds for Kakeya maximal functions and the
   Minkowski dimension" — matching 1/log upper bound construction.
 - Tao's Kakeya survey notes (teorth.github.io/tao-web/apps/kakeya.html)
