@@ -1,0 +1,52 @@
+[
+  {
+    "source": "results/incumbent_refine_0002_K64.json",
+    "eps": 0.002,
+    "K": 64,
+    "n_sub": 320,
+    "numerical_lower": 0.32207353645301423,
+    "numerical_upper": 0.3221572935759824,
+    "analytic_fixed_K_floor": 0.006135923151542565,
+    "limitation": "fixed parameters; floating-point enclosure; no reoptimization"
+  },
+  {
+    "source": "results/incumbent_refine_0002_K64.json",
+    "eps": 0.001,
+    "K": 64,
+    "n_sub": 320,
+    "numerical_lower": 0.31668414714745935,
+    "numerical_upper": 0.31676775351147074,
+    "analytic_fixed_K_floor": 0.006135923151542565,
+    "limitation": "fixed parameters; floating-point enclosure; no reoptimization"
+  },
+  {
+    "source": "results/incumbent_refine_0002_K64.json",
+    "eps": 0.0005,
+    "K": 64,
+    "n_sub": 320,
+    "numerical_lower": 0.3139896785381291,
+    "numerical_upper": 0.31407321058243615,
+    "analytic_fixed_K_floor": 0.006135923151542565,
+    "limitation": "fixed parameters; floating-point enclosure; no reoptimization"
+  },
+  {
+    "source": "results/incumbent_refine_0002_K64.json",
+    "eps": 0.0002,
+    "K": 64,
+    "n_sub": 320,
+    "numerical_lower": 0.31237300907875215,
+    "numerical_upper": 0.3124565085240869,
+    "analytic_fixed_K_floor": 0.006135923151542565,
+    "limitation": "fixed parameters; floating-point enclosure; no reoptimization"
+  },
+  {
+    "source": "results/incumbent_refine_0002_K64.json",
+    "eps": 0.0001,
+    "K": 64,
+    "n_sub": 320,
+    "numerical_lower": 0.3118340669580655,
+    "numerical_upper": 0.31191755864418313,
+    "analytic_fixed_K_floor": 0.006135923151542565,
+    "limitation": "fixed parameters; floating-point enclosure; no reoptimization"
+  }
+]
