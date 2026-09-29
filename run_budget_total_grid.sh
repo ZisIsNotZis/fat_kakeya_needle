@@ -8,7 +8,7 @@ PY=/home/z/.venv/bin/python3
 OUT=results/budget_total_grid_0005
 LOG=.tmp/budget_total_grid_0005.log
 mkdir -p "$OUT" .tmp
-declare -A RF=( [smooth]=10 [hierarchical]=18 [free_pivot]=44 [v2_repaired]=2 )
+declare -A RF=( [smooth]=39 [hierarchical]=23 [free_pivot]=36 [v2_repaired]=17 )
 CELLS_DONE=.tmp/grid_cells_done.txt
 : > "$LOG"; : > "$CELLS_DONE"
 for family in smooth hierarchical free_pivot v2_repaired; do
