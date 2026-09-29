@@ -17,7 +17,6 @@ FROZEN_RF = {"smooth": 39, "hierarchical": 23, "free_pivot": 36,
              "v2_repaired": 17}
 HIT_TOLERANCE = 1.03
 GRID_DIR = Path("results/budget_total_grid_0005")
-EXPECTED_SHA_NOTE = "code_sha256 of every cell must list budget_total_integer.py"
 
 
 def _load_cell(path: Path):
@@ -65,12 +64,16 @@ def check_cell(cell, path: Path):
     total = cell.get("total_cpu_s")
     if not isinstance(total, (int, float)) or not math.isfinite(total):
         problems.append(f"{path.name}: nonfinite total_cpu_s")
-    elif total > budget:
+    elif isinstance(budget, (int, float)) and total > budget:
         problems.append(f"{path.name}: total_cpu_s {total} exceeds budget")
     if cell.get("selected_params") is None:
         problems.append(f"{path.name}: no selected params (provenance)")
-    if cell.get("aggregate_ranking_authorized", True) is True and False:
-        problems.append(f"{path.name}: unauthorized ranking flag")
+    score = cell.get("numeric_outer_area")
+    if not isinstance(score, (int, float)) or not math.isfinite(score):
+        problems.append(f"{path.name}: complete cell lacks a finite "
+                        "numeric_outer_area")
+    if cell.get("aggregate_ranking_authorized") is not False:
+        problems.append(f"{path.name}: cell must not self-authorize ranking")
     return problems
 
 
@@ -137,7 +140,7 @@ def aggregate(grid_dir: Path = GRID_DIR):
 def main():
     grid = Path(sys.argv[1]) if len(sys.argv) > 1 else GRID_DIR
     result = aggregate(grid)
-    out = Path("results/budget_total_aggregate_0005.json")
+    out = Path(grid).parent / (Path(grid).name + "_aggregate.json")
     out.write_text(json.dumps(result, indent=1))
     print(json.dumps({"status": result["status"], "out": str(out)}))
     if result["status"] != "ok":

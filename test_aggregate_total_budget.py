@@ -20,6 +20,7 @@ def make_cell(fam="smooth", budget=60, seed=0, status="complete",
         "selected_params": [0., 0.1, -0.2],
         "code_sha256": [{"file": "budget_total_integer.py", "sha256": "x"}],
         "environment": {"pyclipper": "1.4.0", "python": "3.12.3"},
+        "aggregate_ranking_authorized": False,
         "validation": {"status": "ok",
                        "numeric_outer_area_range": [area, area * 1.001]},
         "total_cpu_s": total if total is not None else budget * 0.9,
@@ -104,6 +105,55 @@ class AggregateTest(unittest.TestCase):
         self.assertEqual(smooth_row["hit_rate"], 1.0)
         hier_row = result["table"]["hierarchical"][60]
         self.assertEqual(hier_row["hit_rate"], 0.0)
+
+
+    def test_malformed_score_refused(self):
+        with tempfile.TemporaryDirectory() as d:
+            self.write_grid(Path(d), mutate=lambda c, *a: c.update(
+                numeric_outer_area=None))
+            result = agg.aggregate(Path(d))
+        self.assertEqual(result["status"], "invalid_grid")
+
+    def test_nan_score_refused(self):
+        with tempfile.TemporaryDirectory() as d:
+            self.write_grid(Path(d), mutate=lambda c, *a: c.update(
+                numeric_outer_area=float("nan")))
+            result = agg.aggregate(Path(d))
+        self.assertEqual(result["status"], "invalid_grid")
+
+    def test_ranking_self_authorization_refused(self):
+        with tempfile.TemporaryDirectory() as d:
+            self.write_grid(Path(d), mutate=lambda c, *a: c.update(
+                aggregate_ranking_authorized=True))
+            result = agg.aggregate(Path(d))
+        self.assertEqual(result["status"], "invalid_grid")
+
+    def test_protocol_and_backend_pins_refused(self):
+        with tempfile.TemporaryDirectory() as d:
+            def mutate(cell, fam, budget, seed):
+                if seed == 0:
+                    cell["protocol"] = "search_cpu"
+                    cell["environment"]["pyclipper"] = "1.3.0"
+                    cell["eps"] = 0.01
+                    del cell["code_sha256"]
+                    cell["search_started"] = False
+                    cell["validation"] = {"status": "quality_limited"}
+                    cell["selected_params"] = None
+                return cell
+            self.write_grid(Path(d), mutate=mutate)
+            result = agg.aggregate(Path(d))
+        self.assertEqual(result["status"], "invalid_grid")
+        joined = " ".join(result["violations"])
+        for needle in ("protocol", "pyclipper", "eps", "code_sha256",
+                       "initialization", "validation", "selected params"):
+            self.assertIn(needle, joined)
+
+    def test_unreadable_cell_refused(self):
+        with tempfile.TemporaryDirectory() as d:
+            self.write_grid(Path(d))
+            (Path(d) / "smooth_0_60.json").write_text("{broken")
+            result = agg.aggregate(Path(d))
+        self.assertEqual(result["status"], "invalid_grid")
 
 
 if __name__ == "__main__":
