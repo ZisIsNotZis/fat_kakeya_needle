@@ -1,0 +1,11 @@
+{
+  "method": "rational-pivot-grid-v1",
+  "input_sha256": "6cc4d700f3774e0c8566534a4b79393cd74d966ec0a3bf7ee4a5ff2d4fb664d1",
+  "source": "results/cert_source_grid_smooth_B480.json",
+  "seed": 0,
+  "eps": "1/200",
+  "K": 32,
+  "q": 2048,
+  "N": 1606310,
+  "upper": "803155/2097152"
+}
