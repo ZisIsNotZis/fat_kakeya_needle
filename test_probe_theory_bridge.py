@@ -46,7 +46,7 @@ class ProbeTest(unittest.TestCase):
         record, model, full = self._setup()
         first, offset = p.excursion_first_half(model, full, 10, 3, 0.)
         self.assertTrue(np.allclose(offset, 0.))
-        self.assertEqual(len(first), len(p.first_half(model, full)) + 3 * 3)
+        self.assertEqual(len(first), len(p.first_half(model, full)) + 3 * 2)
         for a, b in zip(first, first[1:]):
             self.assertTrue(np.allclose(a["end"]["center"],
                                         b["start"]["center"]))

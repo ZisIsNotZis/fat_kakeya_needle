@@ -90,6 +90,13 @@ def excursion_first_half(model, params, start_station: int, m: int, r: float):
                         "end": back})
             current = back
             offset = offset + r * (u[i] - u[i + 1])
+            if i < K - 1:  # keep the inter-station slide of the archived chain
+                beta = float(slides[i])
+                sld = _pose(np.asarray(current["center"]) + beta * u[i + 1],
+                            theta[i + 1])
+                out.append({"kind": "slide", "length": beta,
+                            "start": current, "end": sld})
+                current = sld
         else:
             f = float(fractions[i])
             nominal_start = shifted(pivots[i] - .5 * f * u[i])
