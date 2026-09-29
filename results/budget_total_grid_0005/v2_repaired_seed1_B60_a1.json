@@ -1,0 +1,1284 @@
+{
+  "mode": "total_run",
+  "protocol": "A_total_cpu",
+  "family": "v2_repaired",
+  "eps": 0.005,
+  "K": 6,
+  "dimension": 14,
+  "bounds": [
+    [
+      -3.0,
+      3.0
+    ],
+    [
+      -3.0,
+      3.0
+    ],
+    [
+      -3.0,
+      3.0
+    ],
+    [
+      -3.0,
+      3.0
+    ],
+    [
+      -3.0,
+      3.0
+    ],
+    [
+      -3.0,
+      3.0
+    ],
+    [
+      -3.0,
+      3.0
+    ],
+    [
+      -3.0,
+      3.0
+    ],
+    [
+      -3.0,
+      3.0
+    ],
+    [
+      -3.0,
+      3.0
+    ],
+    [
+      -3.0,
+      3.0
+    ],
+    [
+      -3.0,
+      3.0
+    ],
+    [
+      -3.0,
+      3.0
+    ],
+    [
+      -3.0,
+      3.0
+    ]
+  ],
+  "population_evals": 70,
+  "motion": "continuous repaired pivot/linear-pose mirror about final center x",
+  "step_fraction": 0.1,
+  "seed": 1,
+  "requested_total_budget_cpu_s": 60.0,
+  "reserved_validation_cpu_s": 17.0,
+  "search_deadline_cpu_s": 43.0,
+  "de": {
+    "popsize": 5,
+    "workers": 1,
+    "polish": false,
+    "updating": "immediate",
+    "tol": 0,
+    "maxiter": 100000,
+    "rng": "fresh np.random.default_rng(seed) per invocation"
+  },
+  "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+  "cpu_accounting_note": "time.process_time() is cumulative since process start, so total_cpu_s includes imports/startup, the DE search, checkpoint I/O, validation and the final publication write; search_cpu_s is measured from just before differential_evolution, and misc_cpu_s is the remainder.",
+  "selection_note": "selected_params is the best completed coarse candidate whose evaluation finished strictly before search_deadline_cpu_s; an evaluation that crosses the deadline is counted but never eligible.",
+  "score_source_note": "numeric_outer_area is the maximum of the four independent validation areas: a conservative numerical observation, not a rigorous bound.",
+  "environment": {
+    "python": "3.12.3",
+    "scipy": "1.18.1",
+    "numpy": "2.5.3",
+    "pyclipper": "1.4.0",
+    "affinity_core_count": 1,
+    "nice": 10
+  },
+  "code_sha256": [
+    {
+      "file": "budget_total_integer.py",
+      "sha256": "17cbe1bd2cdf3650ade2735c8117587887edd067627f247c4595c9b168cb8dae"
+    },
+    {
+      "file": "budget_search_integer.py",
+      "sha256": "9e7f2929c93700b7bde3a8dcba25abe0972fbdf4157611c6c080313577ddc815"
+    },
+    {
+      "file": "integer_motion_area.py",
+      "sha256": "b95acd18b525e8ae79bbfae853210ef85dde216f4184294d7571f10923796af8"
+    },
+    {
+      "file": "motion_adapters.py",
+      "sha256": "518b41162febd59b06cf17a8d15c09f7663f0a35e0ced7a381eea4c72518f719"
+    },
+    {
+      "file": "smooth_pivot.py",
+      "sha256": "90d7aa87ebd2dad7f9d1a1706cebe95a23c1e8caf29d9105b04ba0c8e539aee2"
+    },
+    {
+      "file": "hierarchical_pivot.py",
+      "sha256": "e54a361289b36abf1325d82c27965ebe41571f81fd041d78f34854b0d0450ee3"
+    },
+    {
+      "file": "pivot_slide.py",
+      "sha256": "24531dbb1e656b6b4c5c7c7a3c5474b651b53b6a87312a08179e72dea6aa1b8c"
+    },
+    {
+      "file": "v2_numerical_enclosure.py",
+      "sha256": "504d436ffa8ef1cba251994e3d6c07c8c662f0df23c0b5a07915da182973911b"
+    },
+    {
+      "file": "keich_motion.py",
+      "sha256": "86f69951038e5acb98e06eac53e1ab30f25d1c12656203b65c33870168c3b7fa"
+    }
+  ],
+  "excluded_nonoptimized_baselines": [
+    "keich_n4",
+    "keich_n5"
+  ],
+  "aggregate_ranking_authorized": false,
+  "resume_policy": "unsupported; every cell is an independent cold start and never reuses prior results",
+  "external_timeout_note": "Native pyclipper union is not preemptible; run under an external wall timeout (e.g. timeout --kill-after=10s). CPU may overshoot the search deadline by one evaluation; validation always runs to completion even when it exceeds the reserved R_f.",
+  "sigkill_note": "If status is still 'running' the process was SIGKILLed before publishing a terminal state; such a record is never ranked, scored, resumed or aggregated.",
+  "status": "complete",
+  "search_started": true,
+  "calls": 7050,
+  "valid_calls": 7050,
+  "failed_calls": [],
+  "failed_count": 0,
+  "failed_log_dropped": 0,
+  "eval_log": [
+    {
+      "call": 6923,
+      "cpu_s": 42.296945151,
+      "status": "ok",
+      "area": 0.4570296710068873,
+      "objective_value": 0.4570296710068873,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6924,
+      "cpu_s": 42.301885911,
+      "status": "ok",
+      "area": 0.4414010052852654,
+      "objective_value": 0.4414010052852654,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6925,
+      "cpu_s": 42.306183224,
+      "status": "ok",
+      "area": 2.838562030201753,
+      "objective_value": 2.838562030201753,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6926,
+      "cpu_s": 42.316127433,
+      "status": "ok",
+      "area": 0.43477425338167847,
+      "objective_value": 0.43477425338167847,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6927,
+      "cpu_s": 42.321318078,
+      "status": "ok",
+      "area": 0.4372982766527942,
+      "objective_value": 0.4372982766527942,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6928,
+      "cpu_s": 42.327999392,
+      "status": "ok",
+      "area": 0.44690266199935097,
+      "objective_value": 0.44690266199935097,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6929,
+      "cpu_s": 42.336026886,
+      "status": "ok",
+      "area": 0.4503587683718272,
+      "objective_value": 0.4503587683718272,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6930,
+      "cpu_s": 42.343977914,
+      "status": "ok",
+      "area": 0.4415317008154832,
+      "objective_value": 0.4415317008154832,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6931,
+      "cpu_s": 42.355905737,
+      "status": "ok",
+      "area": 0.4410991536469507,
+      "objective_value": 0.4410991536469507,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6932,
+      "cpu_s": 42.363832227,
+      "status": "ok",
+      "area": 0.4458178415870883,
+      "objective_value": 0.4458178415870883,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6933,
+      "cpu_s": 42.371844376,
+      "status": "ok",
+      "area": 0.43859072219914413,
+      "objective_value": 0.43859072219914413,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6934,
+      "cpu_s": 42.37976326,
+      "status": "ok",
+      "area": 0.4659671885262859,
+      "objective_value": 0.4659671885262859,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6935,
+      "cpu_s": 42.387559775,
+      "status": "ok",
+      "area": 0.4360298196690181,
+      "objective_value": 0.4360298196690181,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6936,
+      "cpu_s": 42.399135037,
+      "status": "ok",
+      "area": 0.43891869588099547,
+      "objective_value": 0.43891869588099547,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6937,
+      "cpu_s": 42.407160741,
+      "status": "ok",
+      "area": 0.4513279014839609,
+      "objective_value": 0.4513279014839609,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6938,
+      "cpu_s": 42.415367787,
+      "status": "ok",
+      "area": 0.4797196198805007,
+      "objective_value": 0.4797196198805007,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6939,
+      "cpu_s": 42.423267924,
+      "status": "ok",
+      "area": 0.43614609347358774,
+      "objective_value": 0.43614609347358774,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6940,
+      "cpu_s": 42.431315526,
+      "status": "ok",
+      "area": 0.4440657261542684,
+      "objective_value": 0.4440657261542684,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6941,
+      "cpu_s": 42.440848956,
+      "status": "ok",
+      "area": 0.4498309280634855,
+      "objective_value": 0.4498309280634855,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6942,
+      "cpu_s": 42.445503279,
+      "status": "ok",
+      "area": 0.44834030496567506,
+      "objective_value": 0.44834030496567506,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6943,
+      "cpu_s": 42.450207487,
+      "status": "ok",
+      "area": 0.43851811649624106,
+      "objective_value": 0.43851811649624106,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6944,
+      "cpu_s": 42.454839706,
+      "status": "ok",
+      "area": 0.44386070026229535,
+      "objective_value": 0.44386070026229535,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6945,
+      "cpu_s": 42.459522033,
+      "status": "ok",
+      "area": 0.4359176985722895,
+      "objective_value": 0.4359176985722895,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6946,
+      "cpu_s": 42.466750996,
+      "status": "ok",
+      "area": 0.44211322273674514,
+      "objective_value": 0.44211322273674514,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6947,
+      "cpu_s": 42.471336674,
+      "status": "ok",
+      "area": 0.4412706536253247,
+      "objective_value": 0.4412706536253247,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6948,
+      "cpu_s": 42.475926942,
+      "status": "ok",
+      "area": 0.4472981961288924,
+      "objective_value": 0.4472981961288924,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6949,
+      "cpu_s": 42.480473147,
+      "status": "ok",
+      "area": 0.46677784802779043,
+      "objective_value": 0.46677784802779043,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6950,
+      "cpu_s": 42.48501713,
+      "status": "ok",
+      "area": 0.4456409345673455,
+      "objective_value": 0.4456409345673455,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6951,
+      "cpu_s": 42.492222922,
+      "status": "ok",
+      "area": 0.4386146915874772,
+      "objective_value": 0.4386146915874772,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6952,
+      "cpu_s": 42.496748914,
+      "status": "ok",
+      "area": 0.4352517385258318,
+      "objective_value": 0.4352517385258318,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6953,
+      "cpu_s": 42.501309687,
+      "status": "ok",
+      "area": 0.45463271080899076,
+      "objective_value": 0.45463271080899076,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6954,
+      "cpu_s": 42.50588276,
+      "status": "ok",
+      "area": 0.4414139163719489,
+      "objective_value": 0.4414139163719489,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6955,
+      "cpu_s": 42.510516171,
+      "status": "ok",
+      "area": 0.44185934862116916,
+      "objective_value": 0.44185934862116916,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6956,
+      "cpu_s": 42.517182841,
+      "status": "ok",
+      "area": 0.44130372050847977,
+      "objective_value": 0.44130372050847977,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6957,
+      "cpu_s": 42.521780143,
+      "status": "ok",
+      "area": 0.4408183979318432,
+      "objective_value": 0.4408183979318432,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6958,
+      "cpu_s": 42.527162983,
+      "status": "ok",
+      "area": 0.4546950393269468,
+      "objective_value": 0.4546950393269468,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6959,
+      "cpu_s": 42.531874752,
+      "status": "ok",
+      "area": 0.44542509879912257,
+      "objective_value": 0.44542509879912257,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6960,
+      "cpu_s": 42.536484133,
+      "status": "ok",
+      "area": 0.44682404949853166,
+      "objective_value": 0.44682404949853166,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6961,
+      "cpu_s": 42.543276991,
+      "status": "ok",
+      "area": 0.4436151060230253,
+      "objective_value": 0.4436151060230253,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6962,
+      "cpu_s": 42.547890395,
+      "status": "ok",
+      "area": 0.4352039864028627,
+      "objective_value": 0.4352039864028627,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6963,
+      "cpu_s": 42.552325263,
+      "status": "ok",
+      "area": 0.4560023658842801,
+      "objective_value": 0.4560023658842801,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6964,
+      "cpu_s": 42.55698443,
+      "status": "ok",
+      "area": 0.4359957970456185,
+      "objective_value": 0.4359957970456185,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6965,
+      "cpu_s": 42.561578475,
+      "status": "ok",
+      "area": 0.4452823533739796,
+      "objective_value": 0.4452823533739796,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6966,
+      "cpu_s": 42.568239599,
+      "status": "ok",
+      "area": 0.4668663748475652,
+      "objective_value": 0.4668663748475652,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6967,
+      "cpu_s": 42.572731592,
+      "status": "ok",
+      "area": 0.4419197701056253,
+      "objective_value": 0.4419197701056253,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6968,
+      "cpu_s": 42.57716299,
+      "status": "ok",
+      "area": 0.4424782285083133,
+      "objective_value": 0.4424782285083133,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6969,
+      "cpu_s": 42.581567334,
+      "status": "ok",
+      "area": 0.4357273888108346,
+      "objective_value": 0.4357273888108346,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6970,
+      "cpu_s": 42.586136766,
+      "status": "ok",
+      "area": 0.4430500211364631,
+      "objective_value": 0.4430500211364631,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6971,
+      "cpu_s": 42.592904268,
+      "status": "ok",
+      "area": 0.4353319623951663,
+      "objective_value": 0.4353319623951663,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6972,
+      "cpu_s": 42.597734046,
+      "status": "ok",
+      "area": 0.4414114618770511,
+      "objective_value": 0.4414114618770511,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6973,
+      "cpu_s": 42.602318507,
+      "status": "ok",
+      "area": 0.45748699520072905,
+      "objective_value": 0.45748699520072905,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6974,
+      "cpu_s": 42.606866244,
+      "status": "ok",
+      "area": 0.43640285619997454,
+      "objective_value": 0.43640285619997454,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6975,
+      "cpu_s": 42.611321486,
+      "status": "ok",
+      "area": 0.44619937700185003,
+      "objective_value": 0.44619937700185003,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6976,
+      "cpu_s": 42.618637422,
+      "status": "ok",
+      "area": 0.4351550773479497,
+      "objective_value": 0.4351550773479497,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6977,
+      "cpu_s": 42.623169148,
+      "status": "ok",
+      "area": 0.44158605414938623,
+      "objective_value": 0.44158605414938623,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6978,
+      "cpu_s": 42.62778198,
+      "status": "ok",
+      "area": 0.44218718355590597,
+      "objective_value": 0.44218718355590597,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6979,
+      "cpu_s": 42.632991462,
+      "status": "ok",
+      "area": 0.44242359724014657,
+      "objective_value": 0.44242359724014657,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6980,
+      "cpu_s": 42.638299657,
+      "status": "ok",
+      "area": 0.44009352698764037,
+      "objective_value": 0.44009352698764037,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6981,
+      "cpu_s": 42.644924867,
+      "status": "ok",
+      "area": 0.43969651961844447,
+      "objective_value": 0.43969651961844447,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6982,
+      "cpu_s": 42.649405608,
+      "status": "ok",
+      "area": 0.43931912051927463,
+      "objective_value": 0.43931912051927463,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6983,
+      "cpu_s": 42.653741774,
+      "status": "ok",
+      "area": 0.4554883341663771,
+      "objective_value": 0.4554883341663771,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6984,
+      "cpu_s": 42.658135,
+      "status": "ok",
+      "area": 0.4453413565105689,
+      "objective_value": 0.4453413565105689,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6985,
+      "cpu_s": 42.662686946,
+      "status": "ok",
+      "area": 0.4406363765752356,
+      "objective_value": 0.4406363765752356,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6986,
+      "cpu_s": 42.669557296,
+      "status": "ok",
+      "area": 0.4356324076404509,
+      "objective_value": 0.4356324076404509,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6987,
+      "cpu_s": 42.674311259,
+      "status": "ok",
+      "area": 0.4369277988504986,
+      "objective_value": 0.4369277988504986,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6988,
+      "cpu_s": 42.678894893,
+      "status": "ok",
+      "area": 0.44005664529145383,
+      "objective_value": 0.44005664529145383,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6989,
+      "cpu_s": 42.683497872,
+      "status": "ok",
+      "area": 0.44747380036766343,
+      "objective_value": 0.44747380036766343,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6990,
+      "cpu_s": 42.688010699,
+      "status": "ok",
+      "area": 0.45254921445357477,
+      "objective_value": 0.45254921445357477,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6991,
+      "cpu_s": 42.696447344,
+      "status": "ok",
+      "area": 0.4386156815332084,
+      "objective_value": 0.4386156815332084,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6992,
+      "cpu_s": 42.702689906,
+      "status": "ok",
+      "area": 0.44178243366818926,
+      "objective_value": 0.44178243366818926,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6993,
+      "cpu_s": 42.707106306,
+      "status": "ok",
+      "area": 0.440780816283931,
+      "objective_value": 0.440780816283931,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6994,
+      "cpu_s": 42.711508435,
+      "status": "ok",
+      "area": 0.44191752562297687,
+      "objective_value": 0.44191752562297687,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6995,
+      "cpu_s": 42.716206109,
+      "status": "ok",
+      "area": 0.4453644538047846,
+      "objective_value": 0.4453644538047846,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6996,
+      "cpu_s": 42.722834587,
+      "status": "ok",
+      "area": 0.4493681477019068,
+      "objective_value": 0.4493681477019068,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6997,
+      "cpu_s": 42.727310056,
+      "status": "ok",
+      "area": 0.4413082471920148,
+      "objective_value": 0.4413082471920148,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6998,
+      "cpu_s": 42.731927192,
+      "status": "ok",
+      "area": 0.43639261648283867,
+      "objective_value": 0.43639261648283867,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 6999,
+      "cpu_s": 42.736440774,
+      "status": "ok",
+      "area": 0.43706726802199125,
+      "objective_value": 0.43706726802199125,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7000,
+      "cpu_s": 42.741056623,
+      "status": "ok",
+      "area": 0.44420929519774777,
+      "objective_value": 0.44420929519774777,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7001,
+      "cpu_s": 42.747945725,
+      "status": "ok",
+      "area": 0.4356648385953056,
+      "objective_value": 0.4356648385953056,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7002,
+      "cpu_s": 42.752536047,
+      "status": "ok",
+      "area": 0.44740449539524657,
+      "objective_value": 0.44740449539524657,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7003,
+      "cpu_s": 42.757154415,
+      "status": "ok",
+      "area": 0.4376442924317204,
+      "objective_value": 0.4376442924317204,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7004,
+      "cpu_s": 42.761658239,
+      "status": "ok",
+      "area": 0.4376848723232548,
+      "objective_value": 0.4376848723232548,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7005,
+      "cpu_s": 42.766084232,
+      "status": "ok",
+      "area": 0.4399852008461203,
+      "objective_value": 0.4399852008461203,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7006,
+      "cpu_s": 42.772792931,
+      "status": "ok",
+      "area": 0.4430529452306469,
+      "objective_value": 0.4430529452306469,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7007,
+      "cpu_s": 42.777404406,
+      "status": "ok",
+      "area": 0.4373105702661499,
+      "objective_value": 0.4373105702661499,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7008,
+      "cpu_s": 42.783674506,
+      "status": "ok",
+      "area": 0.47806526916332387,
+      "objective_value": 0.47806526916332387,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7009,
+      "cpu_s": 42.788207265,
+      "status": "ok",
+      "area": 0.48619331487554834,
+      "objective_value": 0.48619331487554834,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7010,
+      "cpu_s": 42.792643477,
+      "status": "ok",
+      "area": 0.43588551590308233,
+      "objective_value": 0.43588551590308233,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7011,
+      "cpu_s": 42.799918626,
+      "status": "ok",
+      "area": 0.4348330247398403,
+      "objective_value": 0.4348330247398403,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7012,
+      "cpu_s": 42.804459967,
+      "status": "ok",
+      "area": 0.44106035816892797,
+      "objective_value": 0.44106035816892797,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7013,
+      "cpu_s": 42.809157852,
+      "status": "ok",
+      "area": 0.43904568985352643,
+      "objective_value": 0.43904568985352643,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7014,
+      "cpu_s": 42.813718691,
+      "status": "ok",
+      "area": 0.4362406218333349,
+      "objective_value": 0.4362406218333349,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7015,
+      "cpu_s": 42.818314407,
+      "status": "ok",
+      "area": 0.43957642048719137,
+      "objective_value": 0.43957642048719137,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7016,
+      "cpu_s": 42.825129085,
+      "status": "ok",
+      "area": 0.4427343798884544,
+      "objective_value": 0.4427343798884544,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7017,
+      "cpu_s": 42.829774865,
+      "status": "ok",
+      "area": 0.43949845380754854,
+      "objective_value": 0.43949845380754854,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7018,
+      "cpu_s": 42.83439982,
+      "status": "ok",
+      "area": 0.4362705591542632,
+      "objective_value": 0.4362705591542632,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7019,
+      "cpu_s": 42.838974361,
+      "status": "ok",
+      "area": 0.4344413900768511,
+      "objective_value": 0.4344413900768511,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7020,
+      "cpu_s": 42.843621862,
+      "status": "ok",
+      "area": 0.4429758420431711,
+      "objective_value": 0.4429758420431711,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7021,
+      "cpu_s": 42.850349399,
+      "status": "ok",
+      "area": 0.4358244520028168,
+      "objective_value": 0.4358244520028168,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7022,
+      "cpu_s": 42.854869504,
+      "status": "ok",
+      "area": 0.44645008338296244,
+      "objective_value": 0.44645008338296244,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7023,
+      "cpu_s": 42.859588903,
+      "status": "ok",
+      "area": 0.43996110925906773,
+      "objective_value": 0.43996110925906773,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7024,
+      "cpu_s": 42.864344919,
+      "status": "ok",
+      "area": 0.4396697935855533,
+      "objective_value": 0.4396697935855533,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7025,
+      "cpu_s": 42.868744231,
+      "status": "ok",
+      "area": 0.43613616191464405,
+      "objective_value": 0.43613616191464405,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7026,
+      "cpu_s": 42.875667154,
+      "status": "ok",
+      "area": 0.44357576710402674,
+      "objective_value": 0.44357576710402674,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7027,
+      "cpu_s": 42.88030489,
+      "status": "ok",
+      "area": 0.44685799428532835,
+      "objective_value": 0.44685799428532835,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7028,
+      "cpu_s": 42.884626685,
+      "status": "ok",
+      "area": 0.4390269212101079,
+      "objective_value": 0.4390269212101079,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7029,
+      "cpu_s": 42.888983428,
+      "status": "ok",
+      "area": 0.44071564447346934,
+      "objective_value": 0.44071564447346934,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7030,
+      "cpu_s": 42.893378263,
+      "status": "ok",
+      "area": 0.44066970389091353,
+      "objective_value": 0.44066970389091353,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7031,
+      "cpu_s": 42.899837874,
+      "status": "ok",
+      "area": 0.43821999649377935,
+      "objective_value": 0.43821999649377935,
+      "min_area_so_far": 0.43385672524941005
+    },
+    {
+      "call": 7032,
+      "cpu_s": 42.904171431,
+      "status": "ok",
+      "area": 0.43320958486709976,
+      "objective_value": 0.43320958486709976,
+      "min_area_so_far": 0.43320958486709976
+    },
+    {
+      "call": 7033,
+      "cpu_s": 42.914290655,
+      "status": "ok",
+      "area": 0.4429842577776943,
+      "objective_value": 0.4429842577776943,
+      "min_area_so_far": 0.43320958486709976
+    },
+    {
+      "call": 7034,
+      "cpu_s": 42.919552588,
+      "status": "ok",
+      "area": 0.4630283301098457,
+      "objective_value": 0.4630283301098457,
+      "min_area_so_far": 0.43320958486709976
+    },
+    {
+      "call": 7035,
+      "cpu_s": 42.924271802,
+      "status": "ok",
+      "area": 0.4510367326218858,
+      "objective_value": 0.4510367326218858,
+      "min_area_so_far": 0.43320958486709976
+    },
+    {
+      "call": 7036,
+      "cpu_s": 42.930855942,
+      "status": "ok",
+      "area": 0.4338678777976276,
+      "objective_value": 0.4338678777976276,
+      "min_area_so_far": 0.43320958486709976
+    },
+    {
+      "call": 7037,
+      "cpu_s": 42.935302071,
+      "status": "ok",
+      "area": 0.4512728086807123,
+      "objective_value": 0.4512728086807123,
+      "min_area_so_far": 0.43320958486709976
+    },
+    {
+      "call": 7038,
+      "cpu_s": 42.940255454,
+      "status": "ok",
+      "area": 0.44529886665794804,
+      "objective_value": 0.44529886665794804,
+      "min_area_so_far": 0.43320958486709976
+    },
+    {
+      "call": 7039,
+      "cpu_s": 42.944819416,
+      "status": "ok",
+      "area": 0.43831170886056003,
+      "objective_value": 0.43831170886056003,
+      "min_area_so_far": 0.43320958486709976
+    },
+    {
+      "call": 7040,
+      "cpu_s": 42.949264408,
+      "status": "ok",
+      "area": 0.4533658916091945,
+      "objective_value": 0.4533658916091945,
+      "min_area_so_far": 0.43320958486709976
+    },
+    {
+      "call": 7041,
+      "cpu_s": 42.955954562,
+      "status": "ok",
+      "area": 0.44191671318166476,
+      "objective_value": 0.44191671318166476,
+      "min_area_so_far": 0.43320958486709976
+    },
+    {
+      "call": 7042,
+      "cpu_s": 42.960350811,
+      "status": "ok",
+      "area": 0.44953857632634703,
+      "objective_value": 0.44953857632634703,
+      "min_area_so_far": 0.43320958486709976
+    },
+    {
+      "call": 7043,
+      "cpu_s": 42.964919824,
+      "status": "ok",
+      "area": 0.4367282486246524,
+      "objective_value": 0.4367282486246524,
+      "min_area_so_far": 0.43320958486709976
+    },
+    {
+      "call": 7044,
+      "cpu_s": 42.969540869,
+      "status": "ok",
+      "area": 0.436084437511287,
+      "objective_value": 0.436084437511287,
+      "min_area_so_far": 0.43320958486709976
+    },
+    {
+      "call": 7045,
+      "cpu_s": 42.974087056,
+      "status": "ok",
+      "area": 0.451544098688529,
+      "objective_value": 0.451544098688529,
+      "min_area_so_far": 0.43320958486709976
+    },
+    {
+      "call": 7046,
+      "cpu_s": 42.980984276,
+      "status": "ok",
+      "area": 8.12365599230655,
+      "objective_value": 8.12365599230655,
+      "min_area_so_far": 0.43320958486709976
+    },
+    {
+      "call": 7047,
+      "cpu_s": 42.985532445,
+      "status": "ok",
+      "area": 0.44553965783122734,
+      "objective_value": 0.44553965783122734,
+      "min_area_so_far": 0.43320958486709976
+    },
+    {
+      "call": 7048,
+      "cpu_s": 42.990430314,
+      "status": "ok",
+      "area": 0.4577332349179849,
+      "objective_value": 0.4577332349179849,
+      "min_area_so_far": 0.43320958486709976
+    },
+    {
+      "call": 7049,
+      "cpu_s": 42.995055196,
+      "status": "ok",
+      "area": 0.43751262801136837,
+      "objective_value": 0.43751262801136837,
+      "min_area_so_far": 0.43320958486709976
+    },
+    {
+      "call": 7050,
+      "cpu_s": 42.999625831,
+      "status": "ok",
+      "area": 0.4347214935909084,
+      "objective_value": 0.4347214935909084,
+      "min_area_so_far": 0.43320958486709976
+    }
+  ],
+  "eval_log_dropped": 6922,
+  "cross_cutoff_evals_excluded": 0,
+  "selected_params": [
+    -1.2460779207966448,
+    -2.861941270493279,
+    -1.7953357857074022,
+    -2.6706190379576764,
+    -2.3138725582592174,
+    -2.08846962573241,
+    -2.654316379855222,
+    -1.4416323100845156,
+    -1.941756853608951,
+    -0.9030892275538367,
+    -1.5268610227769788,
+    -0.6646918220040546,
+    -1.12545688807916,
+    -0.6030024268098193
+  ],
+  "selected_search_area": 0.43320958486709976,
+  "optimizer_terminated_before_deadline": false,
+  "validation": {
+    "status": "ok",
+    "raw": [
+      {
+        "step_fraction": 0.0001,
+        "scale": 274877906944,
+        "status": "ok",
+        "eps": 0.005,
+        "geometry_backend": "pyclipper",
+        "backend_version": "1.4.0",
+        "max_step": 0.002828409683050763,
+        "polygon_count": 1116,
+        "primitive_count": 12,
+        "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+        "max_corner_radius": 0.500006249960938,
+        "numeric_outer_area": 0.4197159080731224,
+        "wall_s": 1.6384437879896723,
+        "cpu_s": 1.6381879409999982
+      },
+      {
+        "step_fraction": 0.0001,
+        "scale": 1099511627776,
+        "status": "ok",
+        "eps": 0.005,
+        "geometry_backend": "pyclipper",
+        "backend_version": "1.4.0",
+        "max_step": 0.002828409683050763,
+        "polygon_count": 1116,
+        "primitive_count": 12,
+        "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+        "max_corner_radius": 0.500006249960938,
+        "numeric_outer_area": 0.41971590806593445,
+        "wall_s": 1.7565334920072928,
+        "cpu_s": 1.7561898949999986
+      },
+      {
+        "step_fraction": 5e-05,
+        "scale": 274877906944,
+        "status": "ok",
+        "eps": 0.005,
+        "geometry_backend": "pyclipper",
+        "backend_version": "1.4.0",
+        "max_step": 0.0019999875835270894,
+        "polygon_count": 1572,
+        "primitive_count": 12,
+        "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+        "max_corner_radius": 0.500006249960938,
+        "numeric_outer_area": 0.4197126740110329,
+        "wall_s": 4.2242974340042565,
+        "cpu_s": 4.219533216999999
+      },
+      {
+        "step_fraction": 5e-05,
+        "scale": 1099511627776,
+        "status": "ok",
+        "eps": 0.005,
+        "geometry_backend": "pyclipper",
+        "backend_version": "1.4.0",
+        "max_step": 0.0019999875835270894,
+        "polygon_count": 1572,
+        "primitive_count": 12,
+        "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+        "max_corner_radius": 0.500006249960938,
+        "numeric_outer_area": 0.41971267400363477,
+        "wall_s": 4.270170624979073,
+        "cpu_s": 4.268956600000003
+      }
+    ],
+    "relative_tolerance": 0.005,
+    "validation_cpu_s": 11.887245438,
+    "numeric_outer_area_range": [
+      0.41971267400363477,
+      0.4197159080731224
+    ],
+    "relative_discrepancy": 7.705377436141975e-06
+  },
+  "validation_cpu_s": 11.889396751999996,
+  "validation_wall_s": 11.893834788992535,
+  "search_cpu_s": 42.534456549000005,
+  "search_wall_s": 51.51617849300965,
+  "total_cpu_s": 54.89345335,
+  "misc_cpu_s": 0.46748164799999614,
+  "wall_s": 63.41665454301983,
+  "overshoot_cpu_s": 0.0,
+  "gates": {
+    "population_initialized": true,
+    "validation_quality_ok": true,
+    "within_total_budget": true
+  },
+  "publication_note": "total_cpu_s is re-measured after the first publication write; a single bounded rewrite keeps the record honest and demotes a score to over_budget when that measurement exceeds B. The residual CPU of the very last rewrite itself is below the gate granularity.",
+  "numeric_outer_area": 0.4197159080731224
+}
