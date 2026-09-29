@@ -39,3 +39,25 @@ f(ε)=Θ(1/log(1/ε))，但在可计算 ε（本项目 incumbent 链所在尺度
 - 2026-09-29 (agent-04 worker): 票据创建即 claim。前次超时 worker 未留提交，
   本 worktree 从 b57b6e1 重新开始；按 commit-early 纪律分三次提交
   （ticket / probe+test / results+verdict）。
+## Result (2026-09-29, main-session implementation after 4 subagent timeouts)
+- Implementation: `probe_theory_bridge.py` + `test_probe_theory_bridge.py`
+  (6 tests OK). Rebuild pipeline verified byte-identical to
+  `motion_adapters.evaluate_saved` (rel_tol 1e-12). Two real bugs found and
+  fixed during TDD: boundary-check operator precedence; missing
+  inter-station beta slide in the excursion branch (would have changed the
+  motion itself); plus one design fix: post-excursion chain must anchor
+  pivots to the actual chain position, not the nominal lattice.
+- Sweep: 40/40 variants evaluated ok at step_fraction=1e-3, K256 carrier,
+  eps=0.002 (results/theory_bridge_probe_0002_K256.json).
+- VERDICT: **no advantage at computable scale.** Every variant is worse.
+  Best = mid_m1_R2 at +3.460% (single station, R=1); monotone degradation
+  with window size m and radius R (full replacement R=8: +1414%).
+  High-resolution confirm (1e-4) on the best variant: +3.25% (baseline
+  0.31166075884960276 vs variant 0.3217736810300932). Consistent with the
+  strict fixed-profile positive-floor theorem (db581e7): the excursion's
+  slide-out/slide-back sweep always exceeds its overlap gain on this
+  carrier. The theory's log-order advantage relies on asymptotic regimes
+  (R ~ eps^{-1/2} ~ 22 here) and set-theoretic bookkeeping, not on local
+  finite-eps gains.
+- Evidence tier: numerical estimate only (integer evaluator, same
+  resolution baseline vs variant; NOT a certificate, NOT asymptotic).
