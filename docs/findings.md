@@ -195,3 +195,15 @@ O(log) parameters. Search: differential evolution + Nelder-Mead polish.
   and arXiv:2608.22209 — problem landscape, fat-needle framing.
 - Local verbatim source: `basics.md` (research transcript incl.
   corrections; superseded claims there are annotated in WORKSPACE.md).
+
+## 2026-09-29 正式 budget→quality 标度律（协议 A，48 格全通过）
+
+见 `docs/budget-quality-scaling.md` 与票 03。要点：每格独立冷启动、
+总进程 CPU（搜索+四重复评+发布）计费、冻结 R_f=校准×1.5，48/48 格
+complete 零超支。拟合 q(B)=q∞+c/B：smooth q∞=0.3442（R²=.975），
+与存档长期探索最优 0.344088 在 0.04% 内吻合——有限预算外推命中了
+无限算力极限。族结构性差异明确：hierarchical 全预算/全 seed 停在
+0.5711 同一盆地；B=480 族间最优差距 6.1%（>3% 未收敛信号，不可宣称
+全局最优）。hit-rate：B=480 smooth 1.00 其余 0。全部为数值估计层，
+q∞ 为经验外推非渐近定理。票 04 附加：Keich 转场插入 40/40 变体更差
+（最优 +3.25%），数值族局限是结构性的。
