@@ -1,0 +1,656 @@
+{
+  "mode": "preflight_validation",
+  "protocol": "A_total_cpu",
+  "seed": 1,
+  "candidates_per_family": 1,
+  "no_ranking_note": "cost probe only: per-family raw four-fold validation calls; families are never ranked",
+  "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+  "environment": {
+    "python": "3.12.3",
+    "scipy": "1.18.1",
+    "numpy": "2.5.3",
+    "pyclipper": "1.4.0",
+    "affinity_core_count": 1,
+    "nice": 10
+  },
+  "code_sha256": [
+    {
+      "file": "budget_total_integer.py",
+      "sha256": "17cbe1bd2cdf3650ade2735c8117587887edd067627f247c4595c9b168cb8dae"
+    },
+    {
+      "file": "budget_search_integer.py",
+      "sha256": "9e7f2929c93700b7bde3a8dcba25abe0972fbdf4157611c6c080313577ddc815"
+    },
+    {
+      "file": "integer_motion_area.py",
+      "sha256": "b95acd18b525e8ae79bbfae853210ef85dde216f4184294d7571f10923796af8"
+    },
+    {
+      "file": "motion_adapters.py",
+      "sha256": "518b41162febd59b06cf17a8d15c09f7663f0a35e0ced7a381eea4c72518f719"
+    },
+    {
+      "file": "smooth_pivot.py",
+      "sha256": "90d7aa87ebd2dad7f9d1a1706cebe95a23c1e8caf29d9105b04ba0c8e539aee2"
+    },
+    {
+      "file": "hierarchical_pivot.py",
+      "sha256": "e54a361289b36abf1325d82c27965ebe41571f81fd041d78f34854b0d0450ee3"
+    },
+    {
+      "file": "pivot_slide.py",
+      "sha256": "24531dbb1e656b6b4c5c7c7a3c5474b651b53b6a87312a08179e72dea6aa1b8c"
+    },
+    {
+      "file": "v2_numerical_enclosure.py",
+      "sha256": "504d436ffa8ef1cba251994e3d6c07c8c662f0df23c0b5a07915da182973911b"
+    },
+    {
+      "file": "keich_motion.py",
+      "sha256": "86f69951038e5acb98e06eac53e1ab30f25d1c12656203b65c33870168c3b7fa"
+    }
+  ],
+  "excluded_nonoptimized_baselines": [
+    "keich_n4",
+    "keich_n5"
+  ],
+  "aggregate_ranking_authorized": false,
+  "families": [
+    {
+      "family": "smooth",
+      "eps": 0.005,
+      "K": 32,
+      "dimension": 13,
+      "bounds": [
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ]
+      ],
+      "population_evals": 65,
+      "motion": "continuous repaired pivot/linear-pose mirror about final center x",
+      "step_fraction": 0.1,
+      "candidates": [
+        {
+          "params": [
+            0.0709297482015403,
+            0.9009273926518706,
+            -0.7116807745607325,
+            0.8972988942744877,
+            -0.3763370959790291,
+            -0.1533471020548487,
+            0.6554051876408835,
+            -0.09080086363083872,
+            0.049593687673059494,
+            -0.47244088675693163,
+            0.2535131086748066,
+            0.03814331321927822,
+            -0.17026828350090784
+          ],
+          "raw": [
+            {
+              "step_fraction": 0.0001,
+              "scale": 274877906944,
+              "status": "ok",
+              "eps": 0.005,
+              "geometry_backend": "pyclipper",
+              "backend_version": "1.4.0",
+              "max_step": 0.0020514526476760734,
+              "polygon_count": 1598,
+              "primitive_count": 126,
+              "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+              "max_corner_radius": 0.9504669841891195,
+              "numeric_outer_area": 0.7896520150699601,
+              "wall_s": 1.3391711699950974,
+              "cpu_s": 1.338602565
+            },
+            {
+              "step_fraction": 0.0001,
+              "scale": 1099511627776,
+              "status": "ok",
+              "eps": 0.005,
+              "geometry_backend": "pyclipper",
+              "backend_version": "1.4.0",
+              "max_step": 0.0020514526476760734,
+              "polygon_count": 1598,
+              "primitive_count": 126,
+              "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+              "max_corner_radius": 0.9504669841891195,
+              "numeric_outer_area": 0.7896520150324104,
+              "wall_s": 1.230968274991028,
+              "cpu_s": 1.22323332
+            },
+            {
+              "step_fraction": 5e-05,
+              "scale": 274877906944,
+              "status": "ok",
+              "eps": 0.005,
+              "geometry_backend": "pyclipper",
+              "backend_version": "1.4.0",
+              "max_step": 0.0014505960466591568,
+              "polygon_count": 2238,
+              "primitive_count": 126,
+              "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+              "max_corner_radius": 0.9504669841891195,
+              "numeric_outer_area": 0.7888157615468535,
+              "wall_s": 2.7364660400053253,
+              "cpu_s": 2.730947961
+            },
+            {
+              "step_fraction": 5e-05,
+              "scale": 1099511627776,
+              "status": "ok",
+              "eps": 0.005,
+              "geometry_backend": "pyclipper",
+              "backend_version": "1.4.0",
+              "max_step": 0.0014505960466591568,
+              "polygon_count": 2238,
+              "primitive_count": 126,
+              "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+              "max_corner_radius": 0.9504669841891195,
+              "numeric_outer_area": 0.7888157615100851,
+              "wall_s": 2.5922071660024812,
+              "cpu_s": 2.591533624
+            }
+          ],
+          "validation_cpu_s": 7.893272120000001,
+          "status": "ok"
+        }
+      ],
+      "validation_cpu_max_s": 7.893272120000001
+    },
+    {
+      "family": "hierarchical",
+      "eps": 0.005,
+      "K": 32,
+      "dimension": 7,
+      "bounds": [
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ]
+      ],
+      "population_evals": 35,
+      "motion": "continuous repaired pivot/linear-pose mirror about final center x",
+      "step_fraction": 0.1,
+      "candidates": [
+        {
+          "params": [
+            0.0709297482015403,
+            0.4504636963259353,
+            -0.35584038728036627,
+            0.44864944713724386,
+            -0.18816854798951455,
+            -0.07667355102742435,
+            0.32770259382044176
+          ],
+          "raw": [
+            {
+              "step_fraction": 0.0001,
+              "scale": 274877906944,
+              "status": "ok",
+              "eps": 0.005,
+              "geometry_backend": "pyclipper",
+              "backend_version": "1.4.0",
+              "max_step": 0.002348498551290539,
+              "polygon_count": 1406,
+              "primitive_count": 126,
+              "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+              "max_corner_radius": 0.7252361571170274,
+              "numeric_outer_area": 0.6595402504500696,
+              "wall_s": 2.021421650002594,
+              "cpu_s": 2.0207513749999997
+            },
+            {
+              "step_fraction": 0.0001,
+              "scale": 1099511627776,
+              "status": "ok",
+              "eps": 0.005,
+              "geometry_backend": "pyclipper",
+              "backend_version": "1.4.0",
+              "max_step": 0.002348498551290539,
+              "polygon_count": 1406,
+              "primitive_count": 126,
+              "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+              "max_corner_radius": 0.7252361571170274,
+              "numeric_outer_area": 0.6595402503850563,
+              "wall_s": 2.0647944459924474,
+              "cpu_s": 2.064062892999999
+            },
+            {
+              "step_fraction": 5e-05,
+              "scale": 274877906944,
+              "status": "ok",
+              "eps": 0.005,
+              "geometry_backend": "pyclipper",
+              "backend_version": "1.4.0",
+              "max_step": 0.0016606392035203347,
+              "polygon_count": 1982,
+              "primitive_count": 126,
+              "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+              "max_corner_radius": 0.7252361571170274,
+              "numeric_outer_area": 0.6575467250646608,
+              "wall_s": 5.177836258008028,
+              "cpu_s": 5.1758808420000015
+            },
+            {
+              "step_fraction": 5e-05,
+              "scale": 1099511627776,
+              "status": "ok",
+              "eps": 0.005,
+              "geometry_backend": "pyclipper",
+              "backend_version": "1.4.0",
+              "max_step": 0.0016606392035203347,
+              "polygon_count": 1982,
+              "primitive_count": 126,
+              "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+              "max_corner_radius": 0.7252361571170274,
+              "numeric_outer_area": 0.6575467249942907,
+              "wall_s": 5.158775317002437,
+              "cpu_s": 5.157270265999998
+            }
+          ],
+          "validation_cpu_s": 14.428993118,
+          "status": "ok"
+        }
+      ],
+      "validation_cpu_max_s": 14.428993118
+    },
+    {
+      "family": "free_pivot",
+      "eps": 0.005,
+      "K": 8,
+      "dimension": 16,
+      "bounds": [
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ]
+      ],
+      "population_evals": 80,
+      "motion": "continuous repaired pivot/linear-pose mirror about final center x",
+      "step_fraction": 0.1,
+      "candidates": [
+        {
+          "params": [
+            0.0709297482015403,
+            0.9009273926518706,
+            -0.7116807745607325,
+            0.8972988942744877,
+            -0.3763370959790291,
+            -0.1533471020548487,
+            0.6554051876408835,
+            -0.18160172726167745,
+            0.09918737534611899,
+            -0.47244088675693163,
+            0.2535131086748066,
+            0.03814331321927822,
+            -0.17026828350090784,
+            0.2884287034284043,
+            -0.19680517070835502,
+            -0.046502110519348494
+          ],
+          "raw": [
+            {
+              "step_fraction": 0.0001,
+              "scale": 274877906944,
+              "status": "ok",
+              "eps": 0.005,
+              "geometry_backend": "pyclipper",
+              "backend_version": "1.4.0",
+              "max_step": 0.0020514526476760734,
+              "polygon_count": 1550,
+              "primitive_count": 30,
+              "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+              "max_corner_radius": 0.9504669841891195,
+              "numeric_outer_area": 0.6465695691673202,
+              "wall_s": 5.1285603169963,
+              "cpu_s": 5.125297379999999
+            },
+            {
+              "step_fraction": 0.0001,
+              "scale": 1099511627776,
+              "status": "ok",
+              "eps": 0.005,
+              "geometry_backend": "pyclipper",
+              "backend_version": "1.4.0",
+              "max_step": 0.0020514526476760734,
+              "polygon_count": 1550,
+              "primitive_count": 30,
+              "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+              "max_corner_radius": 0.9504669841891195,
+              "numeric_outer_area": 0.6465695691549376,
+              "wall_s": 5.114210357001866,
+              "cpu_s": 5.1116747390000015
+            },
+            {
+              "step_fraction": 5e-05,
+              "scale": 274877906944,
+              "status": "ok",
+              "eps": 0.005,
+              "geometry_backend": "pyclipper",
+              "backend_version": "1.4.0",
+              "max_step": 0.0014505960466591568,
+              "polygon_count": 2190,
+              "primitive_count": 30,
+              "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+              "max_corner_radius": 0.9504669841891195,
+              "numeric_outer_area": 0.6463225844277889,
+              "wall_s": 12.689639395000995,
+              "cpu_s": 12.681522026000003
+            },
+            {
+              "step_fraction": 5e-05,
+              "scale": 1099511627776,
+              "status": "ok",
+              "eps": 0.005,
+              "geometry_backend": "pyclipper",
+              "backend_version": "1.4.0",
+              "max_step": 0.0014505960466591568,
+              "polygon_count": 2190,
+              "primitive_count": 30,
+              "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+              "max_corner_radius": 0.9504669841891195,
+              "numeric_outer_area": 0.6463225844129122,
+              "wall_s": 12.952999831002671,
+              "cpu_s": 12.933532800999998
+            }
+          ],
+          "validation_cpu_s": 35.858675647,
+          "status": "ok"
+        }
+      ],
+      "validation_cpu_max_s": 35.858675647
+    },
+    {
+      "family": "v2_repaired",
+      "eps": 0.005,
+      "K": 6,
+      "dimension": 14,
+      "bounds": [
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          -3.0,
+          3.0
+        ]
+      ],
+      "population_evals": 70,
+      "motion": "continuous repaired pivot/linear-pose mirror about final center x",
+      "step_fraction": 0.1,
+      "candidates": [
+        {
+          "params": [
+            0.0709297482015403,
+            2.702782177955612,
+            -2.135042323682198,
+            2.6918966828234634,
+            -1.1290112879370873,
+            -0.4600413061645461,
+            1.9662155629226508,
+            -0.5448051817850326,
+            0.29756212603835674,
+            -2.83464532054159,
+            1.521078652048839,
+            0.2288598793156691,
+            -1.021609701005447,
+            1.7305722205704264
+          ],
+          "raw": [
+            {
+              "step_fraction": 0.0001,
+              "scale": 274877906944,
+              "status": "ok",
+              "eps": 0.005,
+              "geometry_backend": "pyclipper",
+              "backend_version": "1.4.0",
+              "max_step": 0.002828409683050763,
+              "polygon_count": 1116,
+              "primitive_count": 12,
+              "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+              "max_corner_radius": 0.500006249960938,
+              "numeric_outer_area": 38.346993933046555,
+              "wall_s": 0.15333336401090492,
+              "cpu_s": 0.15330570100000074
+            },
+            {
+              "step_fraction": 0.0001,
+              "scale": 1099511627776,
+              "status": "ok",
+              "eps": 0.005,
+              "geometry_backend": "pyclipper",
+              "backend_version": "1.4.0",
+              "max_step": 0.002828409683050763,
+              "polygon_count": 1116,
+              "primitive_count": 12,
+              "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+              "max_corner_radius": 0.500006249960938,
+              "numeric_outer_area": 38.346993932913165,
+              "wall_s": 0.15391499201359693,
+              "cpu_s": 0.15390837500000032
+            },
+            {
+              "step_fraction": 5e-05,
+              "scale": 274877906944,
+              "status": "ok",
+              "eps": 0.005,
+              "geometry_backend": "pyclipper",
+              "backend_version": "1.4.0",
+              "max_step": 0.0019999875835270894,
+              "polygon_count": 1572,
+              "primitive_count": 12,
+              "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+              "max_corner_radius": 0.500006249960938,
+              "numeric_outer_area": 38.3467649176898,
+              "wall_s": 0.26704157701169606,
+              "cpu_s": 0.2666049440000009
+            },
+            {
+              "step_fraction": 5e-05,
+              "scale": 1099511627776,
+              "status": "ok",
+              "eps": 0.005,
+              "geometry_backend": "pyclipper",
+              "backend_version": "1.4.0",
+              "max_step": 0.0019999875835270894,
+              "polygon_count": 1572,
+              "primitive_count": 12,
+              "limitation": "Floating poses, trigonometry and heuristic roundoff padding are not rigorously outward certified; numeric_outer_area is a numerical outer approximation, not a strict area bound.",
+              "max_corner_radius": 0.500006249960938,
+              "numeric_outer_area": 38.34676491756186,
+              "wall_s": 0.2730842550081434,
+              "cpu_s": 0.2730596310000024
+            }
+          ],
+          "validation_cpu_s": 0.8510885449999961,
+          "status": "ok"
+        }
+      ],
+      "validation_cpu_max_s": 0.8510885449999961
+    }
+  ],
+  "status": "complete"
+}
