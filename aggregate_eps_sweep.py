@@ -72,10 +72,15 @@ def aggregate(sweep_dir: Path = SWEEP_DIR):
         "status": "ok",
         "protocol": "A_total_cpu",
         "sweep_dir": str(sweep_dir),
-        "cells": 84,
+        "cells": len(cells),
         "eps_grid": list(EPS_GRID),
         "budget_cpu_s": EXPECTED_BUDGET,
         "frozen_rf": agg.FROZEN_RF,
+        "hit_rate_definition": ("fraction of the 3 frozen seeds whose "
+                                "validated score <= global best across "
+                                "families at the same eps x 1.03"),
+        "ranking_note": ("min-over-seeds of validated four-fold conservative "
+                         "scores; numerical estimates, NOT strict bounds"),
         "resolution_note": ("every cell uses the same coarse objective "
                             "step_fraction=.1 and the same four-fold "
                             "validation (2^38/2^40 x 1e-4/5e-5, spread "

@@ -25,14 +25,17 @@ for eps in 0.8 0.4 0.2 0.1 0.05 0.02 0.01; do
       if [ $rc -eq 0 ]; then
         echo "$OUT/${family}_seed${seed}_e${eps}.json" >> "$DONE"
       else
+        # one cold retry; remove the failed attempt first so the aggregator
+        # never sees two files for the same (family, eps, seed) key
+        rm -f "$OUT/${family}_seed${seed}_e${eps}.json"
         timeout --kill-after=10s 2400s \
           taskset -c 0 nice -n 10 "$PY" budget_total_integer.py --run \
             --family "$family" --seed "$seed" --eps "$eps" \
             --total-budget 480 --reserve "$rf" \
-            --out "$OUT/${family}_seed${seed}_e${eps}_retry.json" >> "$LOG" 2>&1
+            --out "$OUT/${family}_seed${seed}_e${eps}.json" >> "$LOG" 2>&1
         rc2=$?
         echo "$(date -Is) $tag retry rc=$rc2" >> "$LOG"
-        [ $rc2 -eq 0 ] && echo "$OUT/${family}_seed${seed}_e${eps}_retry.json" >> "$DONE"
+        [ $rc2 -eq 0 ] && echo "$OUT/${family}_seed${seed}_e${eps}.json" >> "$DONE"
       fi
     done
   done

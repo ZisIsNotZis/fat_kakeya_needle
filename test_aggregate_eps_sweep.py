@@ -67,6 +67,22 @@ class SweepTest(unittest.TestCase):
             result = sweep.aggregate(Path(d))
         self.assertEqual(result["status"], "invalid_grid")
 
+    def test_non_eps_checks_still_enforced(self):
+        """allowed_eps=None must not disable the ticket-03 checks."""
+        with tempfile.TemporaryDirectory() as d:
+            def mutate(cell, fam, eps, seed):
+                if seed == 0:
+                    cell["protocol"] = "search_cpu"
+                    cell["environment"]["pyclipper"] = "1.3.0"
+                    cell["reserved_validation_cpu_s"] = 1.0
+                return cell
+            self.write(Path(d), mutate=mutate)
+            result = sweep.aggregate(Path(d))
+        self.assertEqual(result["status"], "invalid_grid")
+        joined = " ".join(result["violations"])
+        for needle in ("protocol", "pyclipper", "R_f"):
+            self.assertIn(needle, joined)
+
     def test_log_law_shape_monotone(self):
         with tempfile.TemporaryDirectory() as d:
             self.write(Path(d))

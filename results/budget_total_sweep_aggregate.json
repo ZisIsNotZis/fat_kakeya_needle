@@ -19,6 +19,8 @@
   "free_pivot": 36,
   "v2_repaired": 17
  },
+ "hit_rate_definition": "fraction of the 3 frozen seeds whose validated score <= global best across families at the same eps x 1.03",
+ "ranking_note": "min-over-seeds of validated four-fold conservative scores; numerical estimates, NOT strict bounds",
  "resolution_note": "every cell uses the same coarse objective step_fraction=.1 and the same four-fold validation (2^38/2^40 x 1e-4/5e-5, spread <=0.5%), so values are comparable across eps",
  "table": {
   "smooth": {
