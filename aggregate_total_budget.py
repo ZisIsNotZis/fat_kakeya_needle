@@ -26,8 +26,12 @@ def _load_cell(path: Path):
         return {"status": "unreadable", "error": str(exc)}
 
 
-def check_cell(cell, path: Path):
-    """Return a list of violation strings for one cell record."""
+def check_cell(cell, path: Path, *, allowed_eps=(0.005, 5e-3)):
+    """Return a list of violation strings for one cell record.
+
+    allowed_eps restricts the eps values; pass None for grids whose eps axis
+    is validated separately (e.g. the ticket-05 sweep).
+    """
     problems = []
     fam = cell.get("family")
     budget = cell.get("requested_total_budget_cpu_s")
@@ -44,8 +48,9 @@ def check_cell(cell, path: Path):
         problems.append(f"{path.name}: reserve "
                         f"{cell.get('reserved_validation_cpu_s')!r} != frozen "
                         f"R_f {FROZEN_RF.get(fam)}")
-    if cell.get("eps") not in (0.005, 5e-3):
-        problems.append(f"{path.name}: eps {cell.get('eps')!r} != 0.005")
+    if allowed_eps is not None and cell.get("eps") not in allowed_eps:
+        problems.append(f"{path.name}: eps {cell.get('eps')!r} not in "
+                        f"{allowed_eps}")
     if not cell.get("code_sha256"):
         problems.append(f"{path.name}: missing code_sha256 provenance")
     env = cell.get("environment") or {}
