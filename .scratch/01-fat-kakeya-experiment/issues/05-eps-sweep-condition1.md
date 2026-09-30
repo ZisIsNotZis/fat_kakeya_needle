@@ -26,3 +26,12 @@ Claimed by: main session (manager), 2026-09-29 22:10。
 ## Comments
 - 2026-09-29 22:10 (manager): 机器负载 8.5/12（用户任务），维持单核
   nice10 纪律，预计 ~12 墙钟小时，自动轮询推进。
+## Result (2026-09-30 10:30)
+- 84/84 格 complete、零重试失败、零预算违规。聚合器
+  `aggregate_eps_sweep.py`（5 测试）+ 复用票 03 校验；独立 fresh
+  reviewer 已委托。产物 `results/budget_total_sweep_aggregate.json`、
+  文档 `docs/eps-sweep-condition1.md`。
+- 结论：条件 1（全程可复现值）达成（8 ε 点、统一分辨率、3 种子）；
+  大 ε 四族重合（几何主导），小 ε 方法分化（ε=0.01 差 37%）；
+  理论 log 形状在 [0.01,0.8] **不可证实**——f̂·ln(1/ε) 单调上升、
+  A/(ln+B) R² 0.08–0.28、局部幂律 α≈0.26/0.16，尚未进入渐近区。
