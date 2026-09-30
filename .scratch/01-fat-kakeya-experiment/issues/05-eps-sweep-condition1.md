@@ -36,3 +36,5 @@ Claimed by: main session (manager), 2026-09-29 22:10。
   理论 log 形状在 [0.01,0.8] **不可证实**——f̂·ln(1/ε) 单调上升、
   A/(ln+B) R² 0.08–0.28、局部幂律 α≈0.26/0.16，尚未进入渐近区。
 - 2026-09-30 11:15 (manager): 独立 fresh reviewer 判 **OK with notes**（无 P0/P1）。已应用两条 P2：⑴ 新增 sweep 路径回归测试（allowed_eps=None 不关闭其它检查；18 项测试全过）；⑵ 重试改为覆盖同路径（先 rm 失败件），消除聚合器 duplicate-cell 风险。另采纳 report-only 建议：扫描聚合输出补 hit_rate_definition/ranking_note，`cells` 由计数得出。复跑聚合器一致。
+- 2026-09-30 11:30 (manager): **票 05 关闭**。条件 1 达成，v3 三条终局判定全部完成；philosophy.md §七更新为维护态。本轮交付：84 格扫描 + 聚合器（18 测试）+ 文档 2 篇 + 独立审查 OK。
+Status: done
