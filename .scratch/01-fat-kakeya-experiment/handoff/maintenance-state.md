@@ -9,3 +9,11 @@
 - 重启条件：质疑任一证书，或决定做 ε 扫描（预算 5–10 倍本轮，约 10+ CPU 小时/格族）。
 - 基础设施可复用：integer_motion_area.py（评估器）、budget_total_integer.py（协议 A runner）、aggregate_total_budget.py（聚合器，12 测试）、rational_pivot_certificate.py（证书）、run_budget_total_grid.sh（网格驱动）。
 - 已知未决：四个 .pi-glla 文件的来源不明删除保持原状；两个旧 pi-subagents worktree（301a924、bf65cb6）未清理；票 01/02 已闭，03 已闭（条件 1 搁置项记录在案），04 已闭。
+
+## v1.0 发布（2026-09-30）
+
+- 条件 1 已完成（票 05，84 格 ε 扫描），v3 三条终局判定全部达成。
+- 已 push origin master + 标签 `v1.0`（github.com:ZisIsNotZis/fat_kakeya_needle）。
+- 新增文档：`docs/budget-quality-scaling.md`、`docs/eps-sweep-condition1.md`；
+  README 增"终局结果"节。
+- 维护态重启条件：质疑任一证书，或需要 ε<0.005 扫描（成本超线性）。

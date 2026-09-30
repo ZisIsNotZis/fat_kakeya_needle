@@ -39,3 +39,25 @@
 3. 固定候选族、机器并发、评估精度和 CPU 核时后，测量预算→质量曲线；“最优”只针对明确列出的已实现方法及预算。
 
 `docs/philosophy.md` 是目标与证据层级的来源；`docs/findings.md` 记录结果、反例和未决问题；`docs/methodology.md` 记录评估器和优化器的已知陷阱。大型历史结果在 `results/`。
+
+## 终局结果（v1.0，2026-09-30）
+
+v3 终局判定三条全部达成，项目进入维护态（见 `docs/philosophy.md` §七）：
+
+- **budget→quality 标度律**（48 格协议 A）：`q(B)=q∞+c/B`，smooth
+  `q∞=0.3442` 与存档最优 0.344088 在 0.04% 内吻合。见
+  `docs/budget-quality-scaling.md`。
+- **f̂(ε) 全程扫描**（84 格，ε∈[0.005,0.8]）：大 ε 几何主导（四族差
+  <0.3%）、小 ε 方法主导（ε=0.01 差 37%）；理论 log 形状在此区间
+  **不可证实**（f̂·ln(1/ε) 仍单调上升，局部幂律 α≈0.26）。见
+  `docs/eps-sweep-condition1.md`。
+- **严格证书**三条（可 `--verify` 复算）：ε=.05→0.547974、
+  ε=.002→0.321083、ε=.005 网格胜者→3203055/8388608≈0.381834。见
+  `docs/rational-pivot-certificate.md`。
+- **理论转场探针**：Keich excursion 在可计算尺度无增益（40/40 变体更差），
+  数值族局限是结构性的。见票 04。
+
+复现入口：`budget_total_integer.py`（协议 A runner）、
+`run_budget_total_grid.sh` / `run_budget_total_sweep.sh`（网格驱动）、
+`aggregate_total_budget.py` / `aggregate_eps_sweep.py`（聚合器，
+拒绝不完整或超支网格）、`rational_pivot_certificate.py`（证书）。
