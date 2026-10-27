@@ -1,3 +1,5 @@
+<p align="center"><strong>English</strong> · <a href="README.zh-CN.md">简体中文</a></p>
+
 <div align="center">
   <img src="assets/logo.svg" alt="fat_kakeya_needle logo" width="112">
 </div>
@@ -7,8 +9,6 @@
 <p align="center"><strong>Find smaller needle sweeps. Know what the compute bought. Keep proof separate from the number.</strong></p>
 
 <p align="center">A numerical-and-proof study of a 1×ε rectangle turning 180° under free planar motion.</p>
-
-<p align="center"><a href="README.zh-CN.md">简体中文</a> · <strong>English</strong></p>
 
 As ε→0, a needle can turn around in an arbitrarily small area. The hard questions are how fast the area decays, which finite-ε motions get closest, and what can actually be certified. This repository treats those as separate products: candidate motions, measured compute-to-quality scaling, and exact rational upper bounds for selected motions.
 
@@ -26,28 +26,29 @@ As ε→0, a needle can turn around in an arbitrarily small area. The hard quest
 
 ## Quick start
 
-Requires Python 3.12 with `numpy`, `scipy`, `shapely`, and `matplotlib`. The optional integer evaluator additionally needs `pyclipper==1.4.0`.
+Python 3.12. The proof path is standard-library only, so the first result needs no install:
 
 ```bash
+# 1. Clone, then recompute an exact rational upper bound (stdlib only)
 git clone https://github.com/ZisIsNotZis/fat_kakeya_needle.git
 cd fat_kakeya_needle
-python3 -m venv .venv
-source .venv/bin/activate
-python3 -m pip install numpy scipy shapely matplotlib
-python3 -m pip install pyclipper==1.4.0
-```
-
-Verify one exact rational certificate. The proof path itself uses only the Python standard library:
-
-```bash
 python3 rational_pivot_certificate.py results/coarse_refine_0002_K256.json \
   --seed 0 --q 2048 \
   --verify results/rational_pivot_0002_K256_seed0_q2048.json
 ```
 
-Run the core regression set:
+```bash
+# 2. For the optimizers and enclosures, install the numerical stack
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install numpy scipy shapely matplotlib
+python3 -m pip install pyclipper==1.4.0   # optional integer-polygon backend
+```
+
+The recorded environment uses Python 3.12 with `numpy`, `scipy`, `shapely`, `matplotlib`, and the optional `pyclipper==1.4.0`; see [`WORKSPACE.md`](WORKSPACE.md) for exact versions, hashes, and pitfalls.
 
 ```bash
+# 3. Run the core regression set
 python3 -m unittest -v test_pivot_enclosure test_v2_numerical_enclosure \
   test_rational_pivot_certificate test_keich_motion
 ```
@@ -92,7 +93,7 @@ motion family  →  continuous-pose adapter  →  area evaluator  →  search / 
 
 ## How to develop
 
-- **Environment:** the recorded environment is Python 3.12 with `numpy`, `scipy`, `shapely`, `matplotlib`, and optional `pyclipper==1.4.0`. See [`WORKSPACE.md`](WORKSPACE.md) for the exact machine notes and known pitfalls.
+- **Environment:** install as in [Quick start](#quick-start); [`WORKSPACE.md`](WORKSPACE.md) holds the recorded machine, package hashes, and known pitfalls.
 - **Before trusting an evaluator:** a centered half-turn must reproduce `π/4`. Every new family should pass that smoke test first.
 - **Before comparing methods:** fix the evaluation resolution, use at least three fresh seeds, report the hit rate, and charge the full CPU budget. A family gap above 3% is treated as a non-convergence signal, not a win.
 - **Before publishing a number:** say whether it is a sampled estimate, a numerical enclosure, or a strict bound. New numerical claims must carry enough metadata to be reproduced.

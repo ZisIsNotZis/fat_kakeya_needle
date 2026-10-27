@@ -1,3 +1,5 @@
+<p align="center"><strong>简体中文</strong> · <a href="README.md">English</a></p>
+
 <div align="center">
   <img src="assets/logo.svg" alt="fat_kakeya_needle 标志" width="112">
 </div>
@@ -7,8 +9,6 @@
 <p align="center"><strong>把针的扫掠做得更小，把算力换来的改进量说清楚，把数值与证明分开。</strong></p>
 
 <p align="center">研究 1×ε 矩形针在平面上自由运动、连续旋转 180° 时的最小扫掠面积。</p>
-
-<p align="center"><strong>简体中文</strong> · <a href="README.md">English</a></p>
 
 当 ε→0 时，针可以在任意小的面积里掉头。真正难的是：面积到底掉得多快，有限 ε 下哪种运动最接近极限，以及哪些结论真的能被证明。这个仓库把三件事分开做：候选运动、可复现的“算力→质量”标度、以及针对指定运动的精确有理上界。
 
@@ -26,28 +26,29 @@
 
 ## 快速开始
 
-需要 Python 3.12，以及 `numpy`、`scipy`、`shapely`、`matplotlib`。可选的整数多边形评估器还需要 `pyclipper==1.4.0`。
+需要 Python 3.12。证明路径只用标准库，所以第一个结果不需要装任何依赖：
 
 ```bash
+# 1. 克隆后直接复算一份精确有理上界（仅标准库）
 git clone https://github.com/ZisIsNotZis/fat_kakeya_needle.git
 cd fat_kakeya_needle
-python3 -m venv .venv
-source .venv/bin/activate
-python3 -m pip install numpy scipy shapely matplotlib
-python3 -m pip install pyclipper==1.4.0
-```
-
-复算一份精确有理证书。证明路径本身只依赖 Python 标准库：
-
-```bash
 python3 rational_pivot_certificate.py results/coarse_refine_0002_K256.json \
   --seed 0 --q 2048 \
   --verify results/rational_pivot_0002_K256_seed0_q2048.json
 ```
 
-跑最小回归集：
+```bash
+# 2. 跑优化器和包络前，装数值栈
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install numpy scipy shapely matplotlib
+python3 -m pip install pyclipper==1.4.0   # 可选的整数多边形后端
+```
+
+记录下来的环境是 Python 3.12 加 `numpy`、`scipy`、`shapely`、`matplotlib`，以及可选的 `pyclipper==1.4.0`；具体版本、哈希和陷阱见 [`WORKSPACE.md`](WORKSPACE.md)。
 
 ```bash
+# 3. 跑最小回归集
 python3 -m unittest -v test_pivot_enclosure test_v2_numerical_enclosure \
   test_rational_pivot_certificate test_keich_motion
 ```
@@ -92,7 +93,7 @@ python3 -m unittest -v test_pivot_enclosure test_v2_numerical_enclosure \
 
 ## 如何开发
 
-- **环境：** 记录下来的环境是 Python 3.12，加 `numpy`、`scipy`、`shapely`、`matplotlib`，可选 `pyclipper==1.4.0`。机器备注和已知陷阱见 [`WORKSPACE.md`](WORKSPACE.md)。
+- **环境：** 按[快速开始](#快速开始)安装；记录下来的机器、包哈希和已知陷阱见 [`WORKSPACE.md`](WORKSPACE.md)。
 - **先信评估器，再信结果：** 中心旋转半圈必须复现 `π/4`。任何新运动族先过这个冒烟测试。
 - **比较方法前先固定口径：** 固定评估分辨率，至少三个独立种子，报告命中率，并把完整 CPU 预算计入。族间差距超过 3% 只说明尚未收敛，不是胜负。
 - **报告数字前先标层级：** 说清它是采样估计、数值包络还是严格上界。新的数值结论必须带足够元数据，能被别人复现。
