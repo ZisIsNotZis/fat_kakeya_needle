@@ -1,6 +1,26 @@
 # Python
 __pycache__/
 *.pyc
+*.egg-info/
+.venv/
+venv/
+
+# Tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Build artifacts
+node_modules/
+dist/
+build/
+
+# OS / editor noise
+.DS_Store
+*~
+*.swp
+*.swo
 
 # Harness runtime state (machine-generated, session-local)
 .pi/
@@ -9,3 +29,4 @@ __pycache__/
 
 # Transient
 *.log
+results/*.pid
