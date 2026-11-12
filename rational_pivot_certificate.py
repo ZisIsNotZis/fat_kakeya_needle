@@ -165,12 +165,15 @@ def full_parameters(record):
     return vals[0], [interpolate(fctrl, nf, i) for i in range(K)], [interpolate(bctrl, nb, i+1) for i in range(K-1)]
 
 
-def polygons(record):
+def polygons(record, subdivisions=1):
+    if type(subdivisions) is not int or subdivisions < 1:
+        raise ValueError('subdivisions must be positive integer')
     K, eps = record['K'], number(record['eps'])
     if type(K) is not int or K < 1 or not F(0) < eps <= 1:
         raise ValueError('invalid K/eps')
     y0, f, beta = full_parameters(record)
-    u = trig_grid(K)
+    fine_u = trig_grid(K*subdivisions)
+    u = fine_u[::subdivisions]
     gamma = [beta[i]+(f[i+1]-f[i])/2 for i in range(K-1)]
     # Exact algebraic closure: x(P0)=-sum(gamma_j*cos(theta_{j+1}));
     # u(theta_K).x=0, so final center.x=0 without numerical tolerance.
@@ -179,14 +182,16 @@ def polygons(record):
         x0 = add(x0, neg(mul(u[i+1][0], g)))
     p = (x0, outward(y0, y0))
     pl, ph = pi_interval()
-    sagitta = ceil((1+eps/2)*ph*ph*D/F(32*K*K))
+    sagitta = ceil((1+eps/2)*ph*ph*D/F(32*K*K*subdivisions*subdivisions))
     for i in range(K):
-        start = rect(p, u[i], f[i], eps)
         end = rect(p, u[i+1], f[i], eps)
         # Rotation of each corner: linear endpoint interpolation has
-        # Euclidean interpolation error <= radius*delta^2/8. The radius
-        # is <=1+eps/2, so the enclosing L-infinity square suffices.
-        yield hull(box_points(start+end, sagitta))
+        # Euclidean interpolation error <= radius*(delta/subdivisions)^2/8.
+        # Radius <=1+eps/2, so the enclosing L-infinity square suffices.
+        for j in range(subdivisions):
+            a = rect(p, fine_u[i*subdivisions+j], f[i], eps)
+            b = rect(p, fine_u[i*subdivisions+j+1], f[i], eps)
+            yield hull(box_points(a+b, sagitta))
         if i+1 < K:
             displacement = (mul(u[i+1][0], beta[i]), mul(u[i+1][1], beta[i]))
             p_next = (add(p[0], mul(u[i+1][0], gamma[i])),
@@ -259,12 +264,15 @@ def source_record(path, seed):
     return hashlib.sha256(data).hexdigest(), matches[0]
 
 
-def certificate(path, seed, q):
+def certificate(path, seed, q, subdivisions=1):
     sha, record = source_record(path, seed)
-    n = count_cells(polygons(record), q)
-    return {'method': 'rational-pivot-grid-v1', 'input_sha256': sha,
+    n = count_cells(polygons(record, subdivisions), q)
+    result = {'method': 'rational-pivot-grid-v1', 'input_sha256': sha,
             'source': str(path), 'seed': seed, 'eps': str(record['eps']),
             'K': record['K'], 'q': q, 'N': n, 'upper': str(F(n, q*q))}
+    if subdivisions != 1:
+        result.update(method='rational-pivot-grid-v2-subdivided', subdivisions=subdivisions)
+    return result
 
 
 def main():
@@ -272,9 +280,11 @@ def main():
     parser.add_argument('source')
     parser.add_argument('--seed', type=int, default=1)
     parser.add_argument('--q', type=int, default=128)
+    parser.add_argument('--subdivisions', type=int, default=1,
+                        help='certified angular subdivisions per original pivot')
     parser.add_argument('--verify', help='recompute and compare a certificate JSON')
     args = parser.parse_args()
-    result = certificate(args.source, args.seed, args.q)
+    result = certificate(args.source, args.seed, args.q, args.subdivisions)
     if args.verify:
         stored = json.loads(Path(args.verify).read_text(),
                             object_pairs_hook=unique_object)

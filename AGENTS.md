@@ -1,26 +1,22 @@
 # AGENTS.md — fat_kakeya_needle 项目约定
 
+## 接手入口
+
+先读 `STATUS.md` 恢复当前状态与下一项工作。目标及历史承诺以 `docs/philosophy.md` 为准；数学/数值结论在 `docs/findings.md`。旧维护态不自动覆盖 2026-11-12 的恢复推进授权。
+
 ## 语言
 
-- 与用户对话、报告、总结一律使用**简体中文**。
-- 代码、代码注释、commit message、results/ 里的 JSON 字段保持英文
-  （机器消费 + 通用惯例）；面向用户的文档（README、docs/）用中文。
+- 与用户对话、报告、总结用简体中文。
+- 代码、注释、commit message、results JSON 字段用英文。
 
-## 等待策略（autonomous 模式）
+## 研究与证据
 
-- 自动唤醒（bg_run watcher 通知）不可靠，多次失败。自主研究等待长任务
-  （>30min）时，用**前台 `sleep N` 轮询**（如 `sleep 3600 && tail log`），
-  这是唯一可靠的等待方式。轮询间隔 = 任务预期时长 / 3，单次 bash 调用
-  带 timeout 参数覆盖 sleep+检查。等待前先把状态写进 docs（SSOT），
-  确保任何中断后可从文档恢复。
+研究 1×ε 矩形针自由连续半转的扫掠面积下确界；目标是可复现构造、预算→质量关系及严谨界，不把数值最小值写成真最优。
 
-## 项目性质
+- 报告区分数值估计、经验包络、严格定理。
+- 严格证书修改时读 `docs/rational-pivot-certificate.md` 与 `docs/certificate-review-2026-11-12.md`；有限ε通用下界见 `docs/finite-eps-lower-bound.md`。
+- 数值族比较时读 `docs/methodology.md` 与 `docs/budget-quality-scaling.md`，保持源运动、分辨率、种子、计费口径可比。
 
-数值实验项目：研究 1×ε 细长矩形针在完全自由平面运动（平移+旋转）
-下旋转 180° 的最小扫掠面积 f(ε)。详见 docs/findings.md。
+## 执行
 
-## 项目哲学
-
-目标与哲学的 SSOT 在 docs/philosophy.md（v3：不证明也不寻找真
-minimum，只论证"按此方法能找到"——budget→quality 标度关系）。
-报告数值时必须区分三层：数值估计 / 经验上界 / 严格定理。
+长任务使用当前 runtime 的 process 进度与 reminder 检查点；旧环境的 sleep/nohup 方案仅是历史记录。运行前核实实际平台，`WORKSPACE.md` 中 Linux 路径不代表当前机器。

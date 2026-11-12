@@ -94,6 +94,42 @@ class RationalPivotTests(unittest.TestCase):
             self.assertEqual(count_cells([polys[-1]], 8),
                              count_cells([[(-x, y) for x, y in polys[-1]]], 8))
 
+    def test_subdivision_preserves_slides_and_v1(self):
+        record = {'K': 2, 'eps': F(1, 10), 'model': 'pivot-slide',
+                  'params': [F(0), F(1, 3), -F(1, 4), F(2, 5)]}
+        original = list(polygons(record))
+        self.assertEqual(original, list(polygons(record, 1)))
+        fine = list(polygons(record, 4))
+        self.assertEqual(len(fine), 2*4+1)
+        self.assertEqual(original[1], fine[4])
+        for bad in (0, -1, True, F(2), 1.5):
+            with self.subTest(bad=bad), self.assertRaisesRegex(ValueError, 'subdivisions'):
+                list(polygons(record, bad))
+
+    def test_subdivided_center_rotation_analytic_bound(self):
+        # Center rotation sweeps exactly the radius sqrt(1+eps^2)/2 disk.
+        # Check an outer cover, not a sampled-area approximation.
+        record = {'K': 1, 'eps': F(1, 10), 'model': 'pivot-slide',
+                  'params': [F(0), F(0)]}
+        lo, hi = pi_interval()
+        exact_lo, exact_hi = lo*F(101, 400), hi*F(101, 400)
+        bound = F(count_cells(polygons(record, 16), 256), 256**2)
+        self.assertGreater(bound, exact_hi)
+        self.assertLess(bound-exact_lo, F(1, 20))
+        # Exact rational points on the unit circle exercise subarc coverage
+        # independently of the interval trig implementation.
+        outer = list(polygons(record, 8))
+        for k in range(21):
+            t = F(k, 20)
+            c, sn = (1-t*t)/(1+t*t), 2*t/(1+t*t)
+            for a in (-F(1, 2), F(1, 2)):
+                for b in (-F(1, 20), F(1, 20)):
+                    x, y = D*(a*c-b*sn), D*(a*sn+b*c)
+                    self.assertTrue(any(all((v[0]-u[0])*(y-u[1])-
+                                           (v[1]-u[1])*(x-u[0]) >= 0
+                                           for u, v in zip(poly, poly[1:]+poly[:1]))
+                                        for poly in outer))
+
     def test_gridline_dual_coverage(self):
         poly = hull([(0, 0), (D, 0), (D, D), (0, D)])
         self.assertEqual(dict(cell_intervals(poly, 1)), {-1: (-1, 1), 0: (-1, 1), 1: (-1, 1)})
@@ -164,6 +200,24 @@ class RationalPivotTests(unittest.TestCase):
                 with self.subTest(field=field, bad=bad), self.assertRaisesRegex(
                         ValueError, 'motion value must be a JSON number'):
                     certificate(source, 0, 8)
+
+    def test_subdivision_certificate_checker_metadata(self):
+        with tempfile.TemporaryDirectory() as temp:
+            source, saved = Path(temp)/'source.json', Path(temp)/'cert.json'
+            source.write_text('[{"seed":0,"K":1,"eps":0.05,"model":"pivot-slide","params":[0,0]}]')
+            v1 = certificate(source, 0, 8)
+            self.assertEqual(v1['method'], 'rational-pivot-grid-v1')
+            self.assertNotIn('subdivisions', v1)
+            result = certificate(source, 0, 8, 4)
+            self.assertEqual(result['method'], 'rational-pivot-grid-v2-subdivided')
+            self.assertEqual(result['subdivisions'], 4)
+            saved.write_text(json.dumps(result))
+            command = [sys.executable, 'rational_pivot_certificate.py', str(source),
+                       '--seed', '0', '--q', '8', '--subdivisions', '4', '--verify', str(saved)]
+            self.assertEqual(subprocess.run(command, capture_output=True, timeout=15).returncode, 0)
+            for bad in (2, 4.0, True):
+                saved.write_text(json.dumps({**result, 'subdivisions': bad}))
+                self.assertNotEqual(subprocess.run(command, capture_output=True, timeout=15).returncode, 0)
 
     def test_rejects_unrelated_explicit_model(self):
         record = {'K': 2, 'eps': F(1, 20), 'seed': 0,

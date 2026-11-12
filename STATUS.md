@@ -1,32 +1,32 @@
-# STATUS
+# 当前状态（2026-11-12）
 
-路由文件：只记「它是什么、现在什么状态、进展落在哪、下一步」。结论与数字见 `FINDINGS.md`（每条带 `文件:行`）；目标与证据层级的权威是 `docs/philosophy.md`。
-`文件:行` 引用绑定该提交之前的 revision `35b721a`。
+## 目标锚点
 
-## 它是什么
+研究 1×ε 矩形针连续自由平移、旋转半周的扫掠面积下确界 f(ε)。保留现行 v3 目标：可复现的构造、预算→质量关系及严谨上下界，不用数值宣称真最优或渐近常数；历史与证据等级见 `docs/philosophy.md`。
 
-研究**一根 1×ε 矩形针在平面上连续平移、旋转 180° 的扫掠面积**：**minimize** 该面积（ε 是针宽）。目标是找可随 ε 递推细化的构造，并在有限算力预算下比较不同搜索方法取得的面积；失败、漏扫与不稳定结果同样要可复核地记录。（`README.md:3`）
+原始阶数 Θ(1/log(1/ε)) 的文献前提与仓内桥接证明见 `docs/continuous-motion-bridge.md`：Keich 1999 紧致全方向 Kakeya 集邻域界 + 低面积连续转场给上界，方向矩形重叠给下界。允许角度回摆和中心远行，不保证当前受限枢转族达到该阶，也不由范围扫描推断。本次重取原PDF遇HTTP403，保留此前来源与散列，未冒称新的原文核验。
 
-## 当前状态
+## 本轮已完成
 
-**维护态（归档）**，自 2026-09-30 起；最后一次研究性提交 2026-10-15（`35b721a`），此后的提交只做仓库整理（README 重写与中文版、logo、许可证、贡献指南、忽略规则、过期的运行标记）。
+1. **严格上界收紧6.1275%**：固定 ε=.005 正式网格源运动及 q4096，仅细分旋转外包 m16，`f(.005)≤3006787/8388608≈.3584369421`，原界 `.3818339109`。独立数学审查及reviewer、根Manager各自完整复验通过。证明/最小复验命令见 `docs/rational-pivot-certificate.md`，最终审查见 `docs/certificate-review-2026-11-12.md`。
+2. **定位外包误差原因**：原v1外包本身面积≥99201/262144≈.3784217834（严格整数内覆盖）；故旧缺口不能全称为空间网格误差，只加q不够。这是旧外包下界，不是运动或f的下界。
+3. **通用有限 ε 下界**：均匀方向矩形+CS的显式下界适用于全体合格连续运动。有理实现给 ε=.005 下界2560000000000/11371543232201≈.225123358；与新上界组成严格区间（向外显示 `[.22512335,.35843695]`）。独立理论与实现审查通过，n1024完整重算及独立逐方向求和结果完全一致。推导与完整边界见 `docs/finite-eps-lower-bound.md`。
+4. **回归与独立检查**：17项合并回归通过；独立100随机有理多边形内外覆盖、3780个有理圆角点及30组粗细三角区间检查通过。
+5. **文档纠偏**：修正“旧7%全为网格开销”、有限预算拟合“命中无限算力极限”等过强论断；保留原数据、证书与全部有效负结果。
 
-- v3 终局判定三条全部达成，项目进入维护态。（`README.md:43-45`、`docs/philosophy.md:79-91`）
-- 重启条件写在 `docs/philosophy.md:91`：质疑任一证书、需要新的严格界，或要用别的运动族重测。**除这些条件外不主动投入。**
-- 全部结论都停在**数值估计层**，除两条有理证书外没有严格面积上界；这是仓库自己反复写明的边界（`README.md:7-13`、`FINDINGS.md` 的"部分"行）。
+## 范围与下一步
 
-## 最新进展落在哪个文件
+旧有限范围扫描与预算网格里程碑继续保留；它们不认证渐近常数、无限算力极限或全局最优。2026-11-12 新授权覆盖旧维护态的停止投入策略，但不要求为了活跃扩大计算。
 
-1. 结果、反例与未决问题：`docs/findings.md`（最近三节：`2026-09-29` budget→quality 标度律、`2026-09-30` f̂(ε) 全程扫描、以及更早的严格命题与证书边界）。
-2. 终局三条判定的结论：`README.md:43-63`、`docs/philosophy.md:79-91`。
-3. 三条判定各自的细节：`docs/budget-quality-scaling.md`、`docs/eps-sweep-condition1.md`、`docs/rational-pivot-certificate.md`。
-4. 理论侧：`docs/continuous-motion-bridge.md`（严格阶）、`docs/keich-explicit-motion.md`（有限递推）、`docs/numerical-motion-evaluator.md`（评估器陷阱）。
-5. 环境与已知陷阱：`WORKSPACE.md`；评估器/优化器陷阱：`docs/methodology.md`。
+当前在办：记录整合与里程碑提交。其后优先研究有限长矩形交叠能否改善条带下界；先证明平移下交叠最大化结论，再决定是否值得实现，不开新seed farm或更小ε扫描。
 
-## 下一步
+## 可复现入口
 
-维护态下**没有在办工作**；仓内写明的可重启方向只有这些，未新增判断：
+```sh
+python rational_pivot_certificate.py results/cert_source_grid_smooth_B480.json --seed 0 --q 4096 --subdivisions 16 --verify results/rational_pivot_grid_smooth_B480_q4096_m16.json
+python direction_overlap_lower_bound.py --eps 0.005 --directions 1024
+python -m unittest -v test_direction_overlap_lower_bound.py test_rational_pivot_certificate.py
+python certificate_review/independent_certificate_checks.py
+```
 
-1. `docs/findings.md:167-188` 的 5 个 open questions（log 律是否显现、pivot+slide 表示是否有忠实映射证明、真最优的 sharp 常数 A、ε∈{0.01,0.05} 的 ≥10 seed farm、pivot+slide 族的初值）。
-2. `README.md:37-39` 的"下一步"三条：修复 v2 的优化目标后再谈公平预算搜索与更紧的有理证书；找控制形状随尺度增长且有跨层重叠证明的递推；固定候选族/并发/精度/核时后测预算→质量曲线。
-3. `.wrapup`-类未决项：无（本仓库无未决阻塞登记）。
+均仅需Python标准库；当前Windows/Python3.14.10。`WORKSPACE.md` 主要是旧Linux环境，不照抄旧路径与sleep/nohup等待策略；使用当前runtime的process/reminder。旧导航：`FINDINGS.md`、`docs/findings.md`、`docs/budget-quality-scaling.md`、`docs/eps-sweep-condition1.md`。

@@ -1,0 +1,38 @@
+[
+  {
+    "method": "uniform-direction-overlap-rational-v1",
+    "eps": "1/200",
+    "directions": 1024,
+    "rounding_denominator": 1000000000000,
+    "sum_cap_numerator": 21743086464402,
+    "lower": "2560000000000/11371543232201",
+    "seconds": 6.189888799999608
+  },
+  {
+    "method": "uniform-direction-overlap-rational-v1",
+    "eps": "1/200",
+    "directions": 4096,
+    "rounding_denominator": 1000000000000,
+    "sum_cap_numerator": 90141748668464,
+    "lower": "1280000000000/5696359291779",
+    "seconds": 24.064832000003662
+  },
+  {
+    "method": "uniform-direction-overlap-rational-v1",
+    "eps": "1/20",
+    "directions": 1024,
+    "rounding_denominator": 1000000000000,
+    "sum_cap_numerator": 151824260218176,
+    "lower": "800000000000/2387879065909",
+    "seconds": 6.325123500006157
+  },
+  {
+    "method": "uniform-direction-overlap-rational-v1",
+    "eps": "1/500",
+    "directions": 4096,
+    "rounding_denominator": 1000000000000,
+    "sum_cap_numerator": 40211138389954,
+    "lower": "4096000000000/20605569194977",
+    "seconds": 25.442060399989714
+  }
+]

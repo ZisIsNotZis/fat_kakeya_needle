@@ -15,10 +15,11 @@ As ε→0, a needle can turn around in an arbitrarily small area. The hard quest
 ## At a glance
 
 - **Best floating candidate at ε = 0.002:** `0.310335–0.310376` for a K=256 smooth pivot+slide motion (`n_sub=160`). This is a numerical candidate, **not** a certificate or a proven minimum.
-- **Certified upper bounds for specified continuous motions:** ε = .05 → `4489/8192 ≈ 0.547974`; ε = .002 → `673359/2097152 ≈ 0.321083`; ε = .005 grid winner → `3203055/8388608 ≈ 0.381834`.
+- **Certified upper bounds for specified continuous motions:** ε = .05 → `4489/8192 ≈ 0.547974`; ε = .002 → `673359/2097152 ≈ 0.321083`; ε = .005 grid winner → `3006787/8388608 ≈ 0.3584369421` (2026-11-12: finer certified rotation enclosure, same motion).
+- **Finite-width rigorous bracket:** `0.22512335 ≤ f(0.005) ≤ 0.35843695` (outward-rounded). The lower bound applies to all admissible half-turn motions; the upper bound certifies one motion, not optimality. See the [derivation](docs/finite-eps-lower-bound.md).
 - **Theory:** for unrestricted continuous motion, `f(ε) = Θ(1/log(1/ε))`. Fixed-K pivot families have a positive-area obstruction: every uniform pivot segment sweeps at least `π/(8K)`.
 - **Compute scaling:** `q(B) = q∞ + c/B`; the smooth family gives `q∞ = 0.3442` (R² = 0.975), within 0.04% of the archived best `0.344088`.
-- **Status:** v1.0 research milestone reached; maintained for reproducibility and extension.
+- **Status:** v1.0 milestone retained; active certificate refinement resumed 2026-11-12. See [`STATUS.md`](STATUS.md) and the [independent review](docs/certificate-review-2026-11-12.md).
 
 ![Best-known swept area versus ε, and the log-law diagnostic](area_vs_eps.png)
 
