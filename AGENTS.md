@@ -17,6 +17,10 @@
 - 严格证书修改时读 `docs/rational-pivot-certificate.md` 与 `docs/certificate-review-2026-11-12.md`；有限ε通用下界见 `docs/finite-eps-lower-bound.md`。
 - 数值族比较时读 `docs/methodology.md` 与 `docs/budget-quality-scaling.md`，保持源运动、分辨率、种子、计费口径可比。
 
+## 资源硬暂停
+
+用户2026-11-12 09:31指令：所有本地GPU依赖工作暂停，仅用户明确重新授权可恢复；清除GPU预约/排队/重试/唤醒。CPU独立数学可继续，不作大型训练CPU替跑；不操作sys_gal或非本系统进程。当前项目无GPU任务。
+
 ## 执行
 
 长任务使用当前 runtime 的 process 进度与 reminder 检查点；旧环境的 sleep/nohup 方案仅是历史记录。运行前核实实际平台，`WORKSPACE.md` 中 Linux 路径不代表当前机器。
