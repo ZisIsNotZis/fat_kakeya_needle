@@ -1,36 +1,39 @@
 # 当前状态（2026-11-12）
 
-## 资源硬约束（用户2026-11-12 09:31）
+## 资源硬约束（用户09:31）
 
-所有本地GPU依赖工作硬暂停，仅用户明确重新授权可恢复；GPU预约、排队、自动重试与定时唤醒均不得保留。本项目GPU任务/PID/预约均为无，全部现有计算只用标准库CPU。不操作sys_gal或非本系统进程；CPU数学可继续，不用大型训练CPU替跑。
+所有本地GPU依赖工作硬暂停，仅用户明确重新授权可恢复；GPU预约、排队、自动重试与定时唤醒均不得保留。本项目全树无GPU任务/PID/预约/待释放显存，唯一子reviewer已明确确认。CPU独立数学可继续，不作大型训练CPU替跑；不操作sys_gal或非本系统进程。
 
 ## 目标锚点
 
-研究 1×ε 矩形针连续自由平移、旋转半周的扫掠面积下确界 f(ε)。保留现行 v3 目标：可复现的构造、预算→质量关系及严谨上下界，不用数值宣称真最优或渐近常数；历史与证据等级见 `docs/philosophy.md`。
+研究1×ε矩形针连续自由平移、旋转半周的扫掠面积下确界f(ε)。保留v3目标：可复现构造、预算→质量与严谨界，不用数值宣称真最优或渐近常数。目标历史见 `docs/philosophy.md`，结论见 `docs/findings.md`。
 
-原始阶数 Θ(1/log(1/ε)) 的文献前提与仓内桥接证明见 `docs/continuous-motion-bridge.md`：Keich 1999 紧致全方向 Kakeya 集邻域界 + 低面积连续转场给上界，方向矩形重叠给下界。允许角度回摆和中心远行，不保证当前受限枢转族达到该阶，也不由范围扫描推断。本次重取原PDF遇HTTP403，保留此前来源与散列，未冒称新的原文核验。
+原始Θ(1/log(1/ε))的Keich文献前提及自由连续运动桥接见 `docs/continuous-motion-bridge.md`。允许角度回摆和中心远行；不由扫描推断，也不认证受限枢转族。本轮重取原PDF遇403，不冒称重新核验原文。
 
-## 本轮已完成
+## 当前可交付结果
 
-1. **严格上界收紧6.1275%**：固定 ε=.005 正式网格源运动及 q4096，仅细分旋转外包 m16，`f(.005)≤3006787/8388608≈.3584369421`，原界 `.3818339109`。独立数学审查及reviewer、根Manager各自完整复验通过。证明/最小复验命令见 `docs/rational-pivot-certificate.md`，最终审查见 `docs/certificate-review-2026-11-12.md`。
-2. **定位外包误差原因**：原v1外包本身面积≥99201/262144≈.3784217834（严格整数内覆盖）；故旧缺口不能全称为空间网格误差，只加q不够。这是旧外包下界，不是运动或f的下界。
-3. **通用有限 ε 下界**：均匀方向矩形+CS的显式下界适用于全体合格连续运动。有理实现给 ε=.005 下界2560000000000/11371543232201≈.225123358；与新上界组成严格区间（向外显示 `[.22512335,.35843695]`）。独立理论与实现审查通过，n1024完整重算及独立逐方向求和结果完全一致。推导与完整边界见 `docs/finite-eps-lower-bound.md`。
-4. **回归与独立检查**：17项合并回归通过；独立100随机有理多边形内外覆盖、3780个有理圆角点及30组粗细三角区间检查通过。
-5. **文档纠偏**：修正“旧7%全为网格开销”、有限预算拟合“命中无限算力极限”等过强论断；保留原数据、证书与全部有效负结果。
+**`3141592653589/13596634733098 ≤ f(.005) ≤ 3006787/8388608`**，向外显示 **`[.23105663,.35843695]`**。
 
-## 范围与下一步
+- 上界：固定正式ε=.005/K32预算网格源运动和q4096，细分旋转外包m16使严格上界从.38183391收紧6.1275%；不是运动优化。reviewer与root分别完整复验通过。见 `docs/rational-pivot-certificate.md`、`docs/certificate-review-2026-11-12.md`。
+- 新下界：对**全体合格连续半转运动**，有限长矩形最大交叠+CS给 `f(ε)≥πε²/J(ε)≥π/[2log(1/ε)+3]`。BM证明任意平移交叠不超过中心重合值；角平分坐标精确积分给J；简洁式已作有理log外包认证。见 `docs/finite-rectangle-overlap.md` 及独立审查 `docs/finite-rectangle-overlap-review-2026-11-12.md`。未声称文献新颖性、锐常数或极限存在。
+- 独立审查与检查：3098组精确中心交叠、500组平移、47组独立log夹逼通过；22项合并回归通过。有限测试不替代数学证明。
+- 原v1外包本身面积≥.3784217834，说明旧差距不全是空间网格误差。此数仅为旧外包下界，非运动或f下界。旧证书和旧.22512335通用下界保留为有效但较弱证据。
+- 精确中心交叠是Gram核：旋转平均/Jensen证明在“该核+加权CS”松弛中均匀方向已经最优。**本路线封口，不再扩方向网格、调方向权重或磨精确J的小数。**
 
-旧有限范围扫描与预算网格里程碑继续保留；它们不认证渐近常数、无限算力极限或全局最优。2026-11-12 新授权覆盖旧维护态的停止投入策略，但不要求为了活跃扩大计算。
+## 下一检查点
 
-阶段成果已提交 `fe0b19a`，上下界独立验收已完成。下一检查点优先研究有限长矩形交叠能否改善条带下界；先证明平移下交叠最大化结论，再决定是否值得实现，不开新seed farm或更小ε扫描。
+没有在运行的优化或认证大任务。优先核对仓内“存档最好数值候选”与正式B480证书源是否对应不同运动，以及控制布局/源参数能否无歧义恢复；先做来源审计，不优化、不自动细化。若来源无法核实则保留不可认证边界，不猜Nf/Nb。此项有价值的原因是头条数值与当前证书可能并非同一运动，而非为了生成更小数字。
 
-## 可复现入口
+真正突破当前下界须增加超出两两最大交叠+CS的全局几何信息；尚无经验证的新方法，不以增加算力替代缺失理论。旧有限扫描/预算数据不认证渐近常数、无限算力极限或全族最优。
+
+## 最小复现（Python标准库，当前Windows/Python3.14.10）
 
 ```sh
+python finite_rectangle_lower_bound.py --eps 0.005
 python rational_pivot_certificate.py results/cert_source_grid_smooth_B480.json --seed 0 --q 4096 --subdivisions 16 --verify results/rational_pivot_grid_smooth_B480_q4096_m16.json
-python direction_overlap_lower_bound.py --eps 0.005 --directions 1024
-python -m unittest -v test_direction_overlap_lower_bound.py test_rational_pivot_certificate.py
-python certificate_review/independent_certificate_checks.py
+python -m unittest -v test_finite_rectangle_lower_bound.py test_direction_overlap_lower_bound.py test_rational_pivot_certificate.py
+python certificate_review/centered_overlap_checks.py
+python certificate_review/log_certificate_checks.py
 ```
 
-均仅需Python标准库；当前Windows/Python3.14.10。`WORKSPACE.md` 主要是旧Linux环境，不照抄旧路径与sleep/nohup等待策略；使用当前runtime的process/reminder。旧导航：`FINDINGS.md`、`docs/findings.md`、`docs/budget-quality-scaling.md`、`docs/eps-sweep-condition1.md`。
+`WORKSPACE.md`的Linux路径与sleep/nohup是历史环境；当前使用runtime process/reminder。初轮成果提交fe0b19a；最新阶段在上述证明/审查与本状态中定位，不覆写历史证据。

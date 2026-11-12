@@ -1,0 +1,42 @@
+[
+  {
+    "method": "finite-rectangle-overlap-simple-rational-v1",
+    "eps": "1/20",
+    "log_terms": 32,
+    "rounding_denominator": 1000000000000,
+    "pi_lower_numerator": 3141592653589,
+    "log_upper_numerator": 2995732273554,
+    "lower": "3141592653589/8991464547108",
+    "seconds": 0.00039459999243263155
+  },
+  {
+    "method": "finite-rectangle-overlap-simple-rational-v1",
+    "eps": "1/200",
+    "log_terms": 32,
+    "rounding_denominator": 1000000000000,
+    "pi_lower_numerator": 3141592653589,
+    "log_upper_numerator": 5298317366549,
+    "lower": "3141592653589/13596634733098",
+    "seconds": 0.000331600007484667
+  },
+  {
+    "method": "finite-rectangle-overlap-simple-rational-v1",
+    "eps": "1/500",
+    "log_terms": 32,
+    "rounding_denominator": 1000000000000,
+    "pi_lower_numerator": 3141592653589,
+    "log_upper_numerator": 6214608098423,
+    "lower": "3141592653589/15429216196846",
+    "seconds": 0.00034759999834932387
+  },
+  {
+    "method": "finite-rectangle-overlap-simple-rational-v1",
+    "eps": "1",
+    "log_terms": 32,
+    "rounding_denominator": 1000000000000,
+    "pi_lower_numerator": 3141592653589,
+    "log_upper_numerator": 0,
+    "lower": "3141592653589/3000000000000",
+    "seconds": 0.0002502999996067956
+  }
+]

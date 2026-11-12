@@ -14,7 +14,7 @@
 研究 1×ε 矩形针自由连续半转的扫掠面积下确界；目标是可复现构造、预算→质量关系及严谨界，不把数值最小值写成真最优。
 
 - 报告区分数值估计、经验包络、严格定理。
-- 严格证书修改时读 `docs/rational-pivot-certificate.md` 与 `docs/certificate-review-2026-11-12.md`；有限ε通用下界见 `docs/finite-eps-lower-bound.md`。
+- 严格证书修改时读 `docs/rational-pivot-certificate.md` 与 `docs/certificate-review-2026-11-12.md`；当前有限ε通用下界见 `docs/finite-rectangle-overlap.md`，旧条带下界保留于 `docs/finite-eps-lower-bound.md`。
 - 数值族比较时读 `docs/methodology.md` 与 `docs/budget-quality-scaling.md`，保持源运动、分辨率、种子、计费口径可比。
 
 ## 资源硬暂停
